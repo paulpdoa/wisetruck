@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+const mainRoute = require('./routes/mainRoute');
 
 // Port Connection
 const port = 8000;
@@ -23,3 +24,5 @@ app.listen(port, async () => {
 // Use
 app.use(cors());
 app.use(express.json());
+
+app.use('/api/',mainRoute);
