@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+
 // Models
 const User = require('../model/User');
 
@@ -65,20 +66,19 @@ module.exports.get_user_detail = async (req,res) => {
 }
 
 module.exports.post_user = async (req,res) => {
-    const { firstName,lastName,middleName,phoneNumber,email,isApproved,typeOfUser,province,barangay,municipality,password,confirmPassword } = req.body;
+    const { firstName,lastName,middleName,phoneNumber,email,isApproved,typeOfUser,province,barangay,city: municipality,password,confirmPassword } = req.body;
 
-    const validId = "req.files['idCard'][0].filename";
+    const validId = req.file.filename;
 
     try {
         if(password === confirmPassword) {
             const createUser = await User.create({ firstName,lastName,middleName,phoneNumber,email,isApproved,validId,typeOfUser,province,barangay,municipality,password });
-            res.status(200).json({ mssg: `Congrats ${firstName}, you have successfully registered to Wisetruck App!`, redirect:'/login' });
+            res.status(200).json({ mssg: `Thank you for signing up ${firstName}, please wait for approval`, redirect:'/login' });
         } else {
             res.status(200).json({mssg: `Password does not match, please check password`});
         }
 
     } catch(err) {
-        console.log(err);
         const uniqueErr = handleError(err);
         res.status(400).json({ mssg: uniqueErr });
     }
@@ -119,16 +119,80 @@ module.exports.user_login = async (req,res) => {
 
 module.exports.user_forget_password = async (req,res) => {
     const { email } = req.body;
-
+    const code = Math.floor(Math.random() * 100000);
+    
     try {
-        const userEmail = User.findOne({ email });
-
-        if(userEmail !== null) {
-
+        const user = await User.findOne({ email });
+       
+        if(user) {
+            const userCode = await User.updateOne({ _id: user._id },{ verificationCode: code });
+            const info = await transporter.sendMail({
+                from: `'WiseTruck' <${process.env.MAIL_ACCOUNT}>`,
+                to: `${user.email}`,
+                subject: 'Wisetruck App | Forgot Password',
+                html:  `
+                <h1>Hello ${user.firstName} ${user.lastName}</h1>
+                <p>Here is your code: <b>${code}</b></p>
+            
+                <p>Thank you for registering!</p>
+                `
+            });
+            console.log(info);
+            res.status(200).json({ redirect: `/verification/${user._id}`, mssg: `${user.email} has found, redirecting to verification page` })
+        } else {
+            res.status(400).json({ mssg: `${email} cannot be found in the system, please check email` });
         }
 
     } catch(err) {
         console.log(err);
     }
 
+}
+
+module.exports.user_verify_code = async (req,res) => {
+    const { id,code } = req.body;
+
+    try {
+        const checkId = await User.findById(id);
+
+        if(checkId.verificationCode === Number(code)) {
+            res.status(200).json({ mssg: 'Redirecting to update password', redirect: `/update/password/${id}` });
+        } else {
+            res.status(400).json({ mssg: 'Verification code does not match, please double check your email' });
+        }
+
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.user_update_password = async (req,res) => {
+    const { id,password,confirmPassword } = req.body;
+
+    try {
+        const user = await User.findById(id);
+        const isOldSameWithNew = await bcrypt.compare(password, user.password);
+        
+        if(!isOldSameWithNew) {
+            if(password === confirmPassword && password.length >= 8) {
+                const salt = await bcrypt.genSalt();
+                const hashedPassword = await bcrypt.hash(password,salt);
+            
+                const data = await User.updateOne({ _id: id },{ password: hashedPassword });
+                res.status(200).json({ redirect: '/login', mssg: 'Your password has been changed!' });
+            } else {
+                if(password !== confirmPassword) {
+                    res.status(400).json({ mssg: 'Password does not match, please check your password' });
+                } 
+
+                if(password.length < 8) {
+                    res.status(400).json({ mssg: 'Password must be greater than 8 characters' });
+                }
+            }
+        } else {
+            res.status(400).json({mssg: 'You cannot use your old password repetitively'});
+        }
+    } catch(err) {
+        console.log(err);
+    }
 }
