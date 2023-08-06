@@ -6,6 +6,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import Verification from './pages/Verification';
 import UpdatePassword from './pages/UpdatePassword';
 import CustomerHome from './pages/customer/CustomerHome';
+import CustomerNews from './pages/customer/CustomerNews';
 
 // Layouts
 import CustomerLayout from './layouts/CustomerLayout';
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
 
       <Route element={<CustomerLayout />}>
         <Route path='/customer' element={<CustomerHome />} />
+        <Route path='/customer/news' element={<CustomerNews />} />
       </Route>
     </Route>
   )

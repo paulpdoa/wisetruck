@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt');
 
 // Models
 const User = require('../model/User');
+const News = require('../model/New');
 
 const maxAge = 3 * 24 * 24 * 60;
 const createToken = (id) => {
@@ -192,6 +193,48 @@ module.exports.user_update_password = async (req,res) => {
         } else {
             res.status(400).json({mssg: 'You cannot use your old password repetitively'});
         }
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.get_news = async(req,res) => {
+    try {
+        const allNews = await News.find();
+        res.status(200).json(allNews);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.get_news_detail = async (req,res) => {
+    const { id } = req.params;
+
+    try {
+        const news = await News.findById(id);
+        res.status(200).json(news);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.post_news = async(req,res) => {
+    const { title, description } = req.body;
+
+    try {
+        const news = await News.create({ title,description });
+        res.status(200).json({ mssg: `${title} has been posted to newsfeed`, redirect:'/admin' });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.delete_news = async(req,res) => {
+    const { id } = req.params;
+
+    try {
+        const news = await News.deleteOne({ _id: id });
+        res.status(200).json({ mssg: 'News has been deleted successfully', redirect:'/admin' });
     } catch(err) {
         console.log(err);
     }
