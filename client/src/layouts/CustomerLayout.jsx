@@ -3,10 +3,10 @@ import Navbar from '../components/Navbar';
 
 const CustomerLayout = () => {
     return (
-        <>
+        <div className="h-screen">
             <Outlet />
             <Navbar />
-        </>
+        </div>
     )
 }
 

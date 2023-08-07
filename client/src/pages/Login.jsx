@@ -20,6 +20,9 @@ const Login = () => {
             const data = await axios.post(`${baseUrl()}/userlogin`, { email,password });
             alert(data.data.mssg);
             navigate(data.data.redirect);
+            localStorage.setItem('customer', `${data.data.customerDetails.firstName} ${data.data.customerDetails.lastName}`);
+            localStorage.setItem('customerId', data.data.customerDetails._id);
+            localStorage.setItem('token', data.data.token);
         } catch(err) {
             if(err.response.data.mssg.includes('password')) {
                 setPasswordErr(err.response.data.mssg);

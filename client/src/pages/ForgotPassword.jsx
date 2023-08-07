@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Link,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { baseUrl } from '../baseUrl';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
 const ForgotPassword = () => {
 
@@ -20,6 +21,7 @@ const ForgotPassword = () => {
             alert(data.data.mssg);
             navigate(data.data.redirect);
         } catch(err) {
+            setIsLoading(false);
             console.log(err);
         }
     }
@@ -35,7 +37,7 @@ const ForgotPassword = () => {
                 <h1 className="font-normal text-2xl">Recover your account</h1>
 
                 <div className="relative flex flex-col gap-2 mt-5">
-                    { isLoading && <p className="text-xs text-green-500">Please wait, a message is being sent to your email.</p>}
+                    { isLoading ? <p className="text-xs text-green-500 flex items-center gap-2"><AiOutlineLoading3Quarters className="animate-spin" /> Please wait, a message is being sent to your email.</p> : <p className="text-xs text-red-500 flex items-center gap-2">{email} cannot be found, please double check your email</p>}
                     <input className="w-full border-gray-300 border p-2 outline-none" type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email..." />
                     <span>{emailErr}</span>
                     <button className="bg-green-200 text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Send Code</button>

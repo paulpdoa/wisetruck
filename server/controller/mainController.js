@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 // Models
 const User = require('../model/User');
 const News = require('../model/New');
+const Waste = require('../model/Waste');
 
 const maxAge = 3 * 24 * 24 * 60;
 const createToken = (id) => {
@@ -99,7 +100,7 @@ module.exports.user_login = async (req,res) => {
         if(typeOfUser === 'customer') {
             const customerLogin = await User.login(email,password);
             const token = createToken(customerLogin._id);
-            res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: 'Login successful', redirect: '/customer' });
+            res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: 'Login successful', redirect: '/', customerDetails: checkUserType, token });
         }  else if(typeOfUser === 'driver') {
             const driverLogin = await User.login(email,password);
             const token = createToken(driverLogin._id);
@@ -220,9 +221,10 @@ module.exports.get_news_detail = async (req,res) => {
 
 module.exports.post_news = async(req,res) => {
     const { title, description } = req.body;
+    const photo = 'photo to';
 
     try {
-        const news = await News.create({ title,description });
+        const news = await News.create({ title,photo,description });
         res.status(200).json({ mssg: `${title} has been posted to newsfeed`, redirect:'/admin' });
     } catch(err) {
         console.log(err);
@@ -233,8 +235,78 @@ module.exports.delete_news = async(req,res) => {
     const { id } = req.params;
 
     try {
+        const newsTitle = await News.findById(id);
         const news = await News.deleteOne({ _id: id });
-        res.status(200).json({ mssg: 'News has been deleted successfully', redirect:'/admin' });
+        res.status(200).json({ mssg: `${newsTitle} has been deleted successfully`, redirect:'/admin' });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.update_news = async (req,res) => {
+    const { id } = req.params;
+    const { title,description } = req.body;
+    const photo = 'photo to'
+
+    try {
+        const news = await News.updateOne({ _id:id },{ title,photo,description });
+        res.status(200).json({ mssg: `${title} has been updated successfully`,redirect: '/admin' });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.get_waste = async (req,res) => {
+    try {
+        const wastes = await Waste.find();
+        res.status(200).json(wastes);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.get_waste_detail = async (req,res) => {
+    const { id } = req.params;
+
+    try {
+        const waste = await Waste.findById(id);
+        res.status(200).json(waste);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.post_waste = async(req,res) => {
+    const { name, description, specialInstruction, bestOption,typeOfWaste } = req.body;
+    const photo = 'photo to';
+
+    try {
+        const waste = await Waste.create({ name, photo, description, specialInstruction, bestOption,typeOfWaste});
+        res.status(200).json({ mssg: `${name} has been posted to wastes`, redirect:'/admin' });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.delete_wastes = async(req,res) => {
+    const { id } = req.params;
+
+    try {
+        const waste = await Waste.deleteOne({ _id: id });
+        res.status(200).json({ mssg: 'Waste has been deleted successfully', redirect:'/admin' });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.update_waste = async (req,res) => {
+    const { id } = req.params;
+    const { name, description, specialInstruction, bestOption,typeOfWaste } = req.body;
+    const photo = 'photo to'
+
+    try {
+        const waste = await Waste.updateOne({ _id:id },{ name, photo, description, specialInstruction, bestOption,typeOfWaste });
+        res.status(200).json({ mssg: `${name} has been updated successfully`,redirect: '/admin' });
     } catch(err) {
         console.log(err);
     }
