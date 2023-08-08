@@ -25,12 +25,14 @@ import NewsDetail from './pages/customer/NewsDetail';
 import AdminSignup from './pages/admin/AdminSignup';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminHome from './pages/admin/AdminHome';
-// Layouts
-import CustomerLayout from './layouts/CustomerLayout';
-import AdminLayout from './layouts/AdminLayout';
 import AdminCollection from './pages/admin/AdminCollection';
 import AdminNews from './pages/admin/AdminNews';
 import AdminWaste from './pages/admin/AdminWaste';
+import AdminUsers from './pages/admin/AdminUsers';
+
+// Layouts
+import CustomerLayout from './layouts/CustomerLayout';
+import AdminLayout from './layouts/AdminLayout';
 
 
 
@@ -71,6 +73,7 @@ const router = createBrowserRouter(
         <Route path='/admin/collection' element={<AdminCollection />} />
         <Route path='/admin/news' element={<AdminNews />} />
         <Route path='/admin/waste' element={<AdminWaste />} />
+        <Route path='/admin/users' element={<AdminUsers />} />
       </Route>
 
     </Route>

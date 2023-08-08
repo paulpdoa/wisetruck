@@ -108,9 +108,14 @@ module.exports.user_login = async (req,res) => {
         
         // If user is customer, redirect to customer page etc...
         if(typeOfUser === 'customer') {
-            const customerLogin = await User.login(email,password);
-            const token = createToken(customerLogin._id);
-            res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: 'Login successful', redirect: '/', customerDetails: checkUserType, token });
+            if(checkUserType.isApproved) {
+                const customerLogin = await User.login(email,password);
+                const token = createToken(customerLogin._id);
+                res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: 'Login successful', redirect: '/', customerDetails: checkUserType, token });
+            } else {
+                res.status(400).json({ mssg: `${checkUserType.email} is not yet approved by admin. Please contact your administrator` })
+            }
+            
         }  else if(typeOfUser === 'driver') {
             const driverLogin = await User.login(email,password);
             const token = createToken(driverLogin._id);
@@ -204,6 +209,53 @@ module.exports.user_update_password = async (req,res) => {
         } else {
             res.status(400).json({mssg: 'You cannot use your old password repetitively'});
         }
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.reject_user = async (req,res) => {
+    const { id } = req.body;
+
+    try {
+        const userFind = await User.findById(id);
+        const info = await transporter.sendMail({
+            from: `'Wisetruck App' <${process.env.MAIL_ACCOUNT}>`,
+            to: `${userFind.email}`,
+            subject: 'Account Rejected | Wisetruck App',
+            html:  `
+            <h1>Hello ${userFind.firstName} ${userFind.lastName}</h1>
+            <p>This is to notify you that you have been rejected by the admin</p>
+        
+            <p>Please contact your administrator for more information, thank you.</p>
+            `
+        });
+        console.log(info);
+        res.status(200).json({ mssg: `${userFind.firstName} has been rejected!`, redirect:'/admin' });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.approve_user = async (req,res) => {
+    const { id } = req.params;
+   
+    try {
+        const userFind = await User.findById(id);
+        const data = await User.updateOne({ _id: id }, { isApproved: true });
+        const info = await transporter.sendMail({
+            from: `'Wisetruck App' <${process.env.MAIL_ACCOUNT}>`,
+            to: `${userFind.email}`,
+            subject: 'Account Approved | Wisetruck App',
+            html:  `
+            <h1>Hello ${userFind.firstName} ${userFind.lastName}</h1>
+            <p>This is to notify you that you have been approved by the admin</p>
+        
+            <p>You can now login to your account, thank you.</p>
+            `
+        });
+        console.log(info);
+        res.status(200).json({ mssg: `${userFind.firstName} has been approved, email has been sent to user`, redirect:'/admin' });
     } catch(err) {
         console.log(err);
     }
