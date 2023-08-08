@@ -14,8 +14,8 @@ const NewsDetail = () => {
             </div>
             <div className="mt-10">
                 <div className="bg-green-200 border border-gray-500 p-5">
-                    <div className="w-full h-56 border border-gray-500">
-                        <p>Image here</p>
+                    <div className="w-full h-56 border border-gray-500 overflow-auto">
+                        <img className="" src={`${baseUrl()}/images/${records.photo}`} alt={records.title} />
                     </div>
 
                     <h1 className="text-xl font-semibold mt-5">{records?.title}</h1>

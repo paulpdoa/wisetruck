@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 const User = require('../model/User');
 const News = require('../model/New');
 const Waste = require('../model/Waste');
+const Admin = require('../model/Admin');
 
 const maxAge = 3 * 24 * 24 * 60;
 const createToken = (id) => {
@@ -42,6 +43,15 @@ const handleError = (err) => { // Handling errors
     if(err.message === 'This email doesn\'t exist' || err.message === "Cannot read properties of null (reading 'typeOfUser')") {
         errMssg = 'Your email is incorrect or doesn\'t exist, please check your email';
     }
+
+    if(err.message === 'This username doesn\'t exist') {
+        errMssg = 'Your username is incorrect, please check your username';
+    }
+
+    if(err.code === 11000 && err.keyPattern.userName === 1) {
+        errMssg = 'This username is already in use, please choose another username';
+    }
+
     return errMssg;
 
 }
@@ -63,7 +73,7 @@ module.exports.get_user_detail = async (req,res) => {
         const user = await User.findById(id);
         res.status(200).json(user);
     } catch(err) {
-        console.log(err);
+        console.log('There is no user found with this id');
     }
 }
 
@@ -199,6 +209,61 @@ module.exports.user_update_password = async (req,res) => {
     }
 }
 
+module.exports.get_admin = async (req,res) => {
+    try {
+        const admin = await Admin.find();
+        res.status(200).json(admin);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.get_admin_detail = async (req,res) => {
+
+    const { id } = req.params;
+
+    try {  
+        const admin = await Admin.findById(id);
+        res.status(200).json(admin);
+    } catch(err) {
+        console.log('There is no user found with this id');
+    }
+}
+
+module.exports.post_admin = async (req,res) => {
+    const { firstName, lastName, userName, password, confirmPassword, province, barangay, city } = req.body;
+
+    try {
+        if(password === confirmPassword) {
+            const createAdmin = await Admin.create({ firstName, lastName, userName, password, province, barangay, municipality: city });
+            res.status(200).json({ mssg: `Thank you for signing up ${userName}`, redirect:'/admin/login' });
+        } else {
+            res.status(200).json({mssg: `Password does not match, please check password`});
+        }
+
+    } catch(err) {
+        const uniqueErr = handleError(err);
+        res.status(400).json({ mssg: uniqueErr });
+    }
+
+}
+
+module.exports.admin_login = async (req,res) => {
+    const { userName,password } = req.body;
+
+    // Check user type
+
+    try {
+        const adminDetails = await Admin.findOne({ userName });
+        const adminLogin = await Admin.login(userName,password);
+        const token = createToken(adminLogin._id);
+        res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: 'Login successful', redirect: '/admin', token, adminDetails });
+    } catch(err) {
+        const error = handleError(err);
+        res.status(400).json({ mssg: error });
+    }
+} 
+
 module.exports.get_news = async(req,res) => {
     try {
         const allNews = await News.find();
@@ -221,7 +286,7 @@ module.exports.get_news_detail = async (req,res) => {
 
 module.exports.post_news = async(req,res) => {
     const { title, description } = req.body;
-    const photo = 'photo to';
+    const photo = req.file.filename;
 
     try {
         const news = await News.create({ title,photo,description });
@@ -237,7 +302,7 @@ module.exports.delete_news = async(req,res) => {
     try {
         const newsTitle = await News.findById(id);
         const news = await News.deleteOne({ _id: id });
-        res.status(200).json({ mssg: `${newsTitle} has been deleted successfully`, redirect:'/admin' });
+        res.status(200).json({ mssg: `${newsTitle.title} has been deleted successfully`, redirect:'/admin' });
     } catch(err) {
         console.log(err);
     }
@@ -302,10 +367,11 @@ module.exports.delete_wastes = async(req,res) => {
 module.exports.update_waste = async (req,res) => {
     const { id } = req.params;
     const { name, description, specialInstruction, bestOption,typeOfWaste } = req.body;
-    const photo = 'photo to'
+    //const photo = req.file.filename
+    
 
     try {
-        const waste = await Waste.updateOne({ _id:id },{ name, photo, description, specialInstruction, bestOption,typeOfWaste });
+        const waste = await Waste.updateOne({ _id:id },{ name, description, specialInstruction, bestOption,typeOfWaste });
         res.status(200).json({ mssg: `${name} has been updated successfully`,redirect: '/admin' });
     } catch(err) {
         console.log(err);

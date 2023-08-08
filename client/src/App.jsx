@@ -22,18 +22,30 @@ import ElectronicWaste from './pages/customer/ElectronicWaste';
 import WasteDetail from './pages/customer/WasteDetail';
 import CustomerRecycleCenter from './pages/customer/CustomerRecycleCenter';
 import NewsDetail from './pages/customer/NewsDetail';
+import AdminSignup from './pages/admin/AdminSignup';
+import AdminLogin from './pages/admin/AdminLogin';
+import AdminHome from './pages/admin/AdminHome';
 // Layouts
 import CustomerLayout from './layouts/CustomerLayout';
+import AdminLayout from './layouts/AdminLayout';
+import AdminCollection from './pages/admin/AdminCollection';
+import AdminNews from './pages/admin/AdminNews';
+import AdminWaste from './pages/admin/AdminWaste';
+
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
+      {/* For Customers */}
       <Route path='/signup' element={<Signup />} />
       <Route path='/login' element={<Login />} />
       <Route path='/forgot/password' element={<ForgotPassword />} />
       <Route path='/verification/:id' element={<Verification />} />
       <Route path='/update/password/:id' element={<UpdatePassword />} />
+      {/* For Admin */}
+      <Route path='/admin/signup' element={<AdminSignup />} />
+      <Route path='/admin/login' element={<AdminLogin />} />
 
       <Route element={<CustomerLayout />}>
         <Route path='/' element={<CustomerHome />} />
@@ -53,6 +65,14 @@ const router = createBrowserRouter(
         <Route path='/wasteinfo/:id' element={<WasteDetail />} />
         <Route path='/recyclecenters' element={<CustomerRecycleCenter />} />
       </Route>
+
+      <Route element={<AdminLayout />}>
+        <Route path='/admin' element={<AdminHome />} />
+        <Route path='/admin/collection' element={<AdminCollection />} />
+        <Route path='/admin/news' element={<AdminNews />} />
+        <Route path='/admin/waste' element={<AdminWaste />} />
+      </Route>
+
     </Route>
   )
 )
