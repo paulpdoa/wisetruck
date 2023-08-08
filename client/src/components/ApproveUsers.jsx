@@ -4,6 +4,7 @@ import { useState } from 'react';
 import DateFormatter from './DateFormatter';
 import RejectUser from './RejectUser';
 import UpdateUser from './UpdateUser';
+import { Link } from 'react-router-dom';
 
 const ApproveUsers = () => {
     const { records,isLoading } = fetchApiHook(`${baseUrl()}/users`);
@@ -27,9 +28,11 @@ const ApproveUsers = () => {
 
     return (
         <div className="mt-5 h-80 overflow-auto">
+            { isLoading ? <p className="text-xl font-medium animate-pulse">Loading please wait...</p> :
+             records.filter(record => !record.isApproved).length < 1 && <p className="text-xl font-medium animate-pulse">No users for approval</p> }
             <table className="w-full">
                 <tbody>
-                    { isLoading && 'Loading please wait...' }
+                    
                     <tr>
                         <th>Name</th>
                         <th>Date Registered</th>
@@ -38,7 +41,7 @@ const ApproveUsers = () => {
                     </tr>
                     { records.filter(record => !record.isApproved).map((record,idx) => (
                         <tr className="border border-black" key={idx}>
-                            <td>{record.firstName} {record.lastName}</td>
+                            <td><Link className="text-green-500 underline" to={`/admin/user/${record._id}`}>{record.firstName} {record.lastName}</Link></td>
                             <td><DateFormatter date={record.createdAt} /></td>
                             <td className={`${record.isApproved ? 'text-green-500' : 'text-red-500'}`}>{record.isApproved ? 'Active' : 'Inactive'}</td>
                             <td className="flex items-center justify-center gap-2 border-none">

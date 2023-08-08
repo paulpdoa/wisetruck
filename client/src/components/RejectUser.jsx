@@ -9,13 +9,15 @@ const RejectUser = ({ closeReject,userId,mssg }) => {
     const [isLoading,setIsLoading] = useState(false);
     const navigate = useNavigate();
 
-
     const rejectUser = async (e) => {
         e.preventDefault();
-
+        setIsLoading(true);
         try {
-            const data = await axios.post(`${baseUrl()}/admin/rejectuser/`, { userId });
-            console.log(data);
+            const data = await axios.post(`${baseUrl()}/admin/rejectuser/`, { id: userId });
+            setIsLoading(false);
+            alert(data.data.mssg);
+            navigate(data.data.redirect);
+            closeReject(false);
         } catch(err) {
             console.log(err) 
         }
@@ -24,12 +26,17 @@ const RejectUser = ({ closeReject,userId,mssg }) => {
     return (
         <div className="h-screen w-full left-0 flex items-center justify-center bg-opacity-50 absolute top-0 bg-black">
             <div className="border border-gray-900 rounded-md flex items-center flex-col p-2 bg-white">
-                { isLoading && <p className="text-green-500 text-sm flex items-center gap-2"><AiOutlineLoading3Quarters className="animate-spin" />Please wait, rejecting this user</p> }
-                <p>{mssg}</p>
-                <div className="flex gap-2 items-center">
-                    <button onClick={rejectUser} className="bg-green-500 text-gray-200 p-2">Yes</button>
-                    <button onClick={() => closeReject(false)} className="bg-red-500 text-gray-200 p-2">No</button>
-                </div>
+                { isLoading && <p className="text-green-500 font-semibold text-xl flex items-center gap-2"><AiOutlineLoading3Quarters className="animate-spin" />Please wait, rejecting this user</p> }
+                
+                { !isLoading &&
+                <>
+                    <p>{mssg}</p> 
+                    <div className="flex gap-2 items-center mt-3">
+                        <button onClick={rejectUser} className="bg-green-500 rounded-md text-gray-200 p-2">Yes</button>
+                        <button onClick={() => closeReject(false)} className="bg-red-500 rounded-md text-gray-200 p-2">No</button>
+                    </div>
+                </>
+                }
             </div>
         </div>
     )

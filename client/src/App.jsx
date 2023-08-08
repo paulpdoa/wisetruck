@@ -33,6 +33,7 @@ import AdminUsers from './pages/admin/AdminUsers';
 // Layouts
 import CustomerLayout from './layouts/CustomerLayout';
 import AdminLayout from './layouts/AdminLayout';
+import ViewUserId from './components/ViewUserId';
 
 
 
@@ -74,6 +75,7 @@ const router = createBrowserRouter(
         <Route path='/admin/news' element={<AdminNews />} />
         <Route path='/admin/waste' element={<AdminWaste />} />
         <Route path='/admin/users' element={<AdminUsers />} />
+        <Route path='/admin/user/:id' element={<ViewUserId />} />
       </Route>
 
     </Route>

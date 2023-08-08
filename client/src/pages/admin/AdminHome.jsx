@@ -1,10 +1,18 @@
+import { baseUrl } from "../../baseUrl";
+import { fetchApiHook } from "../../hooks/fetchApiHook";
+
 const AdminHome = () => {
+
+    const { records: users } = fetchApiHook(`${baseUrl()}/users`);
+    const activeUsers = users.filter(user => user.isApproved).length;
+
+
     return (
         <div className="p-10">
             <div className="flex items-center gap-5 justify-around w-full">
                 <div className="border border-gray-500 p-3 text-center w-full">
                     <h2 className="text-xl text-gray-700">Number of Members</h2>
-                    <p className="text-green-500 font-semibold text-sm">100</p>
+                    <p className="text-green-500 font-semibold text-sm">{activeUsers}</p>
                 </div>  
                 <div className="border border-gray-500 p-3 text-center w-full">
                     <h2 className="text-xl text-gray-700">Number of accumulated plastics</h2>

@@ -216,6 +216,7 @@ module.exports.user_update_password = async (req,res) => {
 
 module.exports.reject_user = async (req,res) => {
     const { id } = req.body;
+    console.log
 
     try {
         const userFind = await User.findById(id);
@@ -233,7 +234,7 @@ module.exports.reject_user = async (req,res) => {
         console.log(info);
         res.status(200).json({ mssg: `${userFind.firstName} has been rejected!`, redirect:'/admin' });
     } catch(err) {
-        console.log(err);
+        console.log(err.message);
     }
 }
 

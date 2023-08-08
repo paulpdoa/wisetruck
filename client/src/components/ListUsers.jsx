@@ -26,9 +26,11 @@ const ListUsers = () => {
 
     return (
         <div className="mt-5 h-80 overflow-auto">
+            { isLoading ? <p className="text-xl font-medium animate-pulse">Loading please wait...</p> :
+             records.filter(record => record.isApproved).length < 1 && <p className="text-xl font-medium animate-pulse">No active users yet</p> }
             <table className="w-full">
                 <tbody>
-                    { isLoading && 'Loading please wait...' }
+                    
                     <tr>
                         <th>Name</th>
                         <th>Date Registered</th>
