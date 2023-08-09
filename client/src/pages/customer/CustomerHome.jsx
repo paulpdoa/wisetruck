@@ -20,7 +20,7 @@ const CustomerHome = () => {
                         <h1 className="font-semibold text-gray-700">News and Announcements</h1>
                         <Link className="text-green-500 underline text-sm font-semibold" to='/news'>More</Link>
                     </div>
-                    <div className="p-2 mt-2 w-full h-56 overflow-auto">
+                    <div className="p-2 mt-2 w-full h-56 overflow-auto flex items-center justify-center">
                         { isLoading ? 'Please wait' : <img src={`${baseUrl()}/images/${latestNews?.photo}`} alt={latestNews?.title} /> }
                     </div>
                     { isLoading ? 'Please wait' : 

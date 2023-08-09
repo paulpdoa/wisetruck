@@ -34,6 +34,7 @@ import AdminUsers from './pages/admin/AdminUsers';
 import CustomerLayout from './layouts/CustomerLayout';
 import AdminLayout from './layouts/AdminLayout';
 import ViewUserId from './components/ViewUserId';
+import AdminFeedback from './pages/admin/AdminFeedback';
 
 
 
@@ -76,6 +77,7 @@ const router = createBrowserRouter(
         <Route path='/admin/waste' element={<AdminWaste />} />
         <Route path='/admin/users' element={<AdminUsers />} />
         <Route path='/admin/user/:id' element={<ViewUserId />} />
+        <Route path='/admin/feedbacks' element={<AdminFeedback />} />
       </Route>
 
     </Route>

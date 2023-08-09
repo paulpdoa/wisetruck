@@ -8,6 +8,8 @@ const User = require('../model/User');
 const News = require('../model/New');
 const Waste = require('../model/Waste');
 const Admin = require('../model/Admin');
+const Announcement = require('../model/Announcement');
+const Feedback = require('../model/Feedback');
 
 const maxAge = 3 * 24 * 24 * 60;
 const createToken = (id) => {
@@ -396,11 +398,11 @@ module.exports.get_waste_detail = async (req,res) => {
 
 module.exports.post_waste = async(req,res) => {
     const { name, description, specialInstruction, bestOption,typeOfWaste } = req.body;
-    const photo = 'photo to';
+    const photo = req.file.filename;
 
     try {
         const waste = await Waste.create({ name, photo, description, specialInstruction, bestOption,typeOfWaste});
-        res.status(200).json({ mssg: `${name} has been posted to wastes`, redirect:'/admin' });
+        res.status(200).json({ mssg: `${name} has been posted to waste lists`, redirect:'/admin' });
     } catch(err) {
         console.log(err);
     }
@@ -428,5 +430,69 @@ module.exports.update_waste = async (req,res) => {
         res.status(200).json({ mssg: `${name} has been updated successfully`,redirect: '/admin' });
     } catch(err) {
         console.log(err);
+    }
+}
+
+module.exports.get_announcement = async (req,res) => {
+    try {
+        const announcement = await Announcement.findOne().sort({createdAt: -1});
+        res.status(200).json(announcement);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.post_announcement = async (req,res) => {
+    const { description } = req.body;
+
+    try {
+        const announce = await Announcement.create({ description });
+        res.status(200).json({ mssg: 'Announcement has been created', redirect:'/admin' });
+    } catch(err) {
+        console.log(err);
+    }
+
+}
+
+module.exports.update_announcement = async (req,res) => {
+    const { id } = req.params;
+    const { description } = req.body;
+
+    try {
+        const announce = await Announcement.updateOne({ _id: id }, { description });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.delete_announcement = async(req,res) => {
+    const { id } = req.params;
+
+    try {
+        const announce = await Announcement.deleteOne({ _id:id });
+        res.status(200).json({ mssg:'Announcement has been deleted', redirect: '/admin' });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.get_feedback = async (req,res) => {
+    
+    try {
+        const feedback = await Feedback.find().populate('user_id');
+        res.status(200).json(feedback);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.post_feedback = async (req,res) => {
+    const { id: user_id,feedback } = req.body;
+    
+    try {
+        const feeds = await Feedback.create({ user_id,feedback });
+        res.status(200).json({ mssg: 'Feedback has been created', redirect:'/' });
+    } catch(err) {
+        consol.log(err);
     }
 }

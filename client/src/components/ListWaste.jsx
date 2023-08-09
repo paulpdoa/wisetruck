@@ -28,17 +28,20 @@ const ListWaste = () => {
 
     return (
         <div className="mt-5 h-80 overflow-auto">
+            { isLoading ? <p className="text-xl font-medium animate-pulse">Loading please wait...</p> :
+             records.length < 1 && <p className="text-xl font-medium animate-pulse">No waste added yet</p> }
             <table className="w-full">
                 <tbody>
-                    { isLoading && 'Loading please wait...' }
                     <tr>
                         <th>Name</th>
+                        <th>Waste Type</th>
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
                     { records.map((record,idx) => (
                         <tr className="border border-black" key={idx}>
                             <td>{record.name}</td>
+                            <td>{record.typeOfWaste}</td>
                             <td>{record.description}</td>
                             <td className="flex items-center justify-center gap-2 border-none">
                                 <button onClick={() => updateWaste(record)} className="text-green-500"><FiEdit /></button>

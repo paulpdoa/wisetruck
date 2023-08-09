@@ -2,7 +2,13 @@ const express = require('express');
 const route = express.Router();
 const { upload } = require('../middleware/uploadMiddleware');
 const { get_user, post_user, user_login, get_user_detail, user_forget_password, user_verify_code, user_update_password,
-get_news,post_news,get_news_detail, delete_news, user_logout, get_waste, get_waste_detail, post_waste, delete_wastes, update_news, get_admin, post_admin, get_admin_detail, admin_login, update_waste, reject_user, approve_user } = require('../controller/mainController');
+get_news,post_news,get_news_detail, delete_news, user_logout, get_waste, get_waste_detail, post_waste, delete_wastes, 
+update_news, get_admin, post_admin, get_admin_detail, admin_login, update_waste, reject_user, approve_user, get_announcement, 
+post_announcement, 
+post_feedback,
+get_feedback,
+update_announcement,
+delete_announcement} = require('../controller/mainController');
 
 // Customer Routes
 route.get('/users',get_user);
@@ -34,5 +40,15 @@ route.get('/wastes/:id',get_waste_detail);
 route.post('/wastes',upload.single('wastePhoto'),post_waste);
 route.delete('/wastes/:id',delete_wastes);
 route.patch('/wastes/:id',upload.single('wastePhoto'),update_waste);
+
+// Announcement Routes
+route.get('/announcements',get_announcement);
+route.post('/announcements',post_announcement);
+route.put('/announcements/:id',update_announcement);
+route.delete('/announcements/:id',delete_announcement);
+
+// Feedback Routes
+route.get('/feedbacks',get_feedback);
+route.post('/feedbacks',post_feedback);
 
 module.exports = route;

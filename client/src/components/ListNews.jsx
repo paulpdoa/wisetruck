@@ -28,9 +28,10 @@ const ListNews = () => {
 
     return (
         <div className="mt-5 h-80 overflow-auto">
+           { isLoading ? <p className="text-xl font-medium animate-pulse">Loading please wait...</p> :
+             records.length < 1 && <p className="text-xl font-medium animate-pulse">No news yet</p> }
             <table className="w-full">
                 <tbody>
-                    { isLoading && 'Loading please wait...' }
                     <tr>
                         <th>Title</th>
                         <th>Description</th>

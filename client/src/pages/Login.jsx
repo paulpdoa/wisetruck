@@ -28,12 +28,12 @@ const Login = () => {
                 setPasswordErr(err.response.data.mssg);
                 setTimeout(() => {
                     setPasswordErr('')
-                },1000)
+                },2000)
             } else {
                 setEmailErr(err.response.data.mssg);
                 setTimeout(() => {
                     setEmailErr('')
-                },1000)
+                },2000)
             }
             
         }

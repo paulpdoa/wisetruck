@@ -1,7 +1,7 @@
 import { baseUrl } from '../baseUrl';
 import { fetchApiHook } from '../hooks/fetchApiHook';
-import { BsTrash } from 'react-icons/bs';
-import { FiEdit } from 'react-icons/fi';
+// import { BsTrash } from 'react-icons/bs';
+// import { FiEdit } from 'react-icons/fi';
 import { useState } from 'react';
 import DateFormatter from './DateFormatter';
 

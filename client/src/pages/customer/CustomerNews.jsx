@@ -6,12 +6,13 @@ import { Link } from 'react-router-dom';
 const CustomerNews = () => {
 
     const { records,isLoading } = fetchApiHook(`${baseUrl()}/news`);
+    const { records: announcement, isLoading: loading } = fetchApiHook(`${baseUrl()}/announcements`);
 
     return (
         <div className="w-full h-auto py-10 pt-5">
             <div className="flex gap-2 items-center border-2 border-gray-400 m-3 justify-center p-3">
                 <TbSpeakerphone className="text-4xl" />
-                <h1 className="font-medium text-lg">There's no announcement yet</h1>
+                { loading ? <h1 className="font-medium text-lg">There's no announcement yet</h1> : <p className="font-medium text-lg">{announcement.description}</p> }
             </div>
 
             <div className="flex flex-col gap-2 items-center">
