@@ -23,8 +23,6 @@ const AdminNews = () => {
     const submitAnnouncement = async (e) => {
         e.preventDefault();
 
-        
-
         try {
             if(description === '') {
                 alert('Please enter a description for your announcement');

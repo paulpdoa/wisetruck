@@ -31,9 +31,9 @@ const CustomerHome = () => {
                     }
                 </div>
 
-                <div className="bg-green-100 border border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
+                <Link to='/junkshops' className="bg-green-100 border border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
                     <h1 className="font-semibold">Locate your nearest Junk shops</h1>
-                </div>
+                </Link>
 
                 <div className="bg-green-100 border border-gray-500 p-2 mx-2 rounded-md">
                     <div className="text-center">

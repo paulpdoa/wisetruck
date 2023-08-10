@@ -35,6 +35,7 @@ import CustomerLayout from './layouts/CustomerLayout';
 import AdminLayout from './layouts/AdminLayout';
 import ViewUserId from './components/ViewUserId';
 import AdminFeedback from './pages/admin/AdminFeedback';
+import CustomerJunkShops from './pages/customer/CustomerJunkShops';
 
 
 
@@ -68,6 +69,7 @@ const router = createBrowserRouter(
         <Route path='/wasteinfo/electronicwaste' element={<ElectronicWaste />} />
         <Route path='/wasteinfo/:id' element={<WasteDetail />} />
         <Route path='/recyclecenters' element={<CustomerRecycleCenter />} />
+        <Route path='/junkshops' element={<CustomerJunkShops />} />
       </Route>
 
       <Route element={<AdminLayout />}>
