@@ -1,0 +1,4 @@
+Steps in creating
+1. Collector will notify users by collecting barangay if for collection
+2. once clicked, users on that barangay will be notified
+3. If already collected by collector, then he can mark it as done, then will proceed automatically to next barangay

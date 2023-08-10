@@ -18,6 +18,7 @@ const UpdateUser = ({ closeApprove,userId,mssg }) => {
             alert(data.data.mssg);
             navigate(data.data.redirect);
             closeApprove(false);
+            window.location.reload();
         } catch(err) {
             console.log(err) 
         }
