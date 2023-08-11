@@ -8,7 +8,11 @@ post_announcement,
 post_feedback,
 get_feedback,
 update_announcement,
-delete_announcement} = require('../controller/mainController');
+delete_announcement,
+get_collector,
+post_collector,
+get_collector_detail,
+collector_login} = require('../controller/mainController');
 
 // Customer Routes
 route.get('/users',get_user);
@@ -50,5 +54,12 @@ route.delete('/announcements/:id',delete_announcement);
 // Feedback Routes
 route.get('/feedbacks',get_feedback);
 route.post('/feedbacks',post_feedback);
+
+//Collector Routes
+route.get('/collectors',get_collector);
+route.get('/collectors/:id',get_collector_detail);
+route.post('/collectors',post_collector);
+route.post('/collectorlogin',collector_login);
+
 
 module.exports = route;

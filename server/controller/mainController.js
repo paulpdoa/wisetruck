@@ -10,6 +10,7 @@ const Waste = require('../model/Waste');
 const Admin = require('../model/Admin');
 const Announcement = require('../model/Announcement');
 const Feedback = require('../model/Feedback');
+const Collector = require('../model/Collector');
 
 const maxAge = 3 * 24 * 24 * 60;
 const createToken = (id) => {
@@ -113,7 +114,7 @@ module.exports.user_login = async (req,res) => {
             if(checkUserType.isApproved) {
                 const customerLogin = await User.login(email,password);
                 const token = createToken(customerLogin._id);
-                res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: 'Login successful', redirect: '/', customerDetails: checkUserType, token });
+                res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${customerLogin.userName}, welcome to Wisetruck App`, redirect: '/', customerDetails: checkUserType, token });
             } else {
                 res.status(400).json({ mssg: `${checkUserType.email} is not yet approved by admin. Please contact your administrator` })
             }
@@ -312,7 +313,7 @@ module.exports.admin_login = async (req,res) => {
         const adminDetails = await Admin.findOne({ userName });
         const adminLogin = await Admin.login(userName,password);
         const token = createToken(adminLogin._id);
-        res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: 'Login successful', redirect: '/admin', token, adminDetails });
+        res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${adminDetails.userName}, welcome to Wisetruck Admin Page!`, redirect: '/admin', token, adminDetails });
     } catch(err) {
         const error = handleError(err);
         res.status(400).json({ mssg: error });
@@ -494,5 +495,61 @@ module.exports.post_feedback = async (req,res) => {
         res.status(200).json({ mssg: 'Feedback has been created', redirect:'/' });
     } catch(err) {
         consol.log(err);
+    }
+}
+
+// Collector Controllers
+module.exports.get_collector = async (req,res) => {
+    try {
+        const collector = await Collector.find();
+        res.status(200).json(collector);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.get_collector_detail = async (req,res) => {
+
+    const { id } = req.params;
+
+    try {  
+        const collector = await Collector.findById(id);
+        res.status(200).json(collector);
+    } catch(err) {
+        console.log('There is no collector found with this id');
+    }
+}
+
+module.exports.post_collector = async (req,res) => {
+    const { firstName, lastName, userName, password, confirmPassword, province, barangay, city } = req.body;
+
+    try {
+        if(password === confirmPassword) {
+            const createCollector = await Collector.create({ firstName, lastName, userName, password, province, barangay, municipality: city });
+            res.status(200).json({ mssg: `Thank you for signing up ${userName}`, redirect:'/collector/login' });
+        } else {
+            res.status(200).json({mssg: `Password does not match, please check password`});
+        }
+
+    } catch(err) {
+        const uniqueErr = handleError(err);
+        res.status(400).json({ mssg: uniqueErr });
+    }
+
+}
+
+module.exports.collector_login = async (req,res) => {
+    const { userName,password } = req.body;
+
+    // Check user type
+
+    try {
+        const collectorDetails = await Collector.findOne({ userName });
+        const collectorLogin = await Collector.login(userName,password);
+        const token = createToken(collectorLogin._id);
+        res.status(200).cookie('collectorJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${collectorDetails.userName}, welcome to Wisetruck Collector page`, redirect: '/collector', token, collectorDetails });
+    } catch(err) {
+        const error = handleError(err);
+        res.status(400).json({ mssg: error });
     }
 }

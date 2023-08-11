@@ -36,6 +36,8 @@ import AdminLayout from './layouts/AdminLayout';
 import ViewUserId from './components/ViewUserId';
 import AdminFeedback from './pages/admin/AdminFeedback';
 import CustomerJunkShops from './pages/customer/CustomerJunkShops';
+import CollectorLayout from './layouts/CollectorLayout';
+import CollectorSignup from './pages/collector/CollectorSignup';
 
 
 
@@ -80,6 +82,10 @@ const router = createBrowserRouter(
         <Route path='/admin/users' element={<AdminUsers />} />
         <Route path='/admin/user/:id' element={<ViewUserId />} />
         <Route path='/admin/feedbacks' element={<AdminFeedback />} />
+      </Route>
+
+      <Route element={<CollectorLayout />}>
+        <Route path='/collector/login' element={<CollectorSignup />} />
       </Route>
 
     </Route>
