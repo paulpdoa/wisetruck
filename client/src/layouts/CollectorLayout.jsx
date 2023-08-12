@@ -8,7 +8,7 @@ const CollectorLayout = () => {
 
     useEffect(() => {
         if(token === null) {
-            navigate('/login');
+            navigate('/collector/login');
         }
     },[])
 

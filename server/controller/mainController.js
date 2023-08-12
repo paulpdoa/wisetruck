@@ -11,6 +11,7 @@ const Admin = require('../model/Admin');
 const Announcement = require('../model/Announcement');
 const Feedback = require('../model/Feedback');
 const Collector = require('../model/Collector');
+const Schedule = require('../model/Schedule');
 
 const maxAge = 3 * 24 * 24 * 60;
 const createToken = (id) => {
@@ -114,7 +115,7 @@ module.exports.user_login = async (req,res) => {
             if(checkUserType.isApproved) {
                 const customerLogin = await User.login(email,password);
                 const token = createToken(customerLogin._id);
-                res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${customerLogin.userName}, welcome to Wisetruck App`, redirect: '/', customerDetails: checkUserType, token });
+                res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${checkUserType.userName}, welcome to Wisetruck App`, redirect: '/', customerDetails: checkUserType, token });
             } else {
                 res.status(400).json({ mssg: `${checkUserType.email} is not yet approved by admin. Please contact your administrator` })
             }
@@ -552,4 +553,59 @@ module.exports.collector_login = async (req,res) => {
         const error = handleError(err);
         res.status(400).json({ mssg: error });
     }
+}
+
+module.exports.get_schedule = async (req,res) => {
+    try {
+        const schedules = await Schedule.find();
+        res.status(200).json(schedules);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.get_schedule_detail = async (req,res) => {
+    const { id } = req.params;
+
+    try {
+        const schedules = await Schedule.findById(id);
+        res.status(200).json(schedules);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.post_schedule = async (req,res) => {
+    const { barangay,dateInputFormat } = req.body;
+    let year = ''
+    let date = ''
+    let month = ''
+    
+    // 20230812
+    for(let i = 0; i < dateInputFormat.length; i++) {
+        if(i < 4) {
+            year += dateInputFormat[i];
+        }
+
+        if(i > 3 && i < 6) {
+            month += dateInputFormat[i];
+        }
+
+        if(i > 5) {
+            date += dateInputFormat[i];
+        }
+    }
+    const dateFormat = `${year}-${month}-${(Number(date) + 1) < 10 ? `0${Number(date) + 1}` : Number(date) + 1 }`;
+
+    try {
+        const schedule = await Schedule.create({ barangay,collectionDate: dateFormat });
+        res.status(200).json({ mssg: `Schedule for barangay ${barangay} has been set.`,redirect: '/admin'});
+    } catch(err) {
+        // if(err.code === 1100) {
+        //     res.status(400).json({ mssg: 'Scheduc' });
+        // }
+        // Create validation to not repeat if barangay has been scheduled within the day
+        console.log(err);
+    }
+
 }

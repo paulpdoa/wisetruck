@@ -12,7 +12,10 @@ delete_announcement,
 get_collector,
 post_collector,
 get_collector_detail,
-collector_login} = require('../controller/mainController');
+collector_login,
+get_schedule,
+post_schedule,
+get_schedule_detail} = require('../controller/mainController');
 
 // Customer Routes
 route.get('/users',get_user);
@@ -55,11 +58,15 @@ route.delete('/announcements/:id',delete_announcement);
 route.get('/feedbacks',get_feedback);
 route.post('/feedbacks',post_feedback);
 
-//Collector Routes
+// Collector Routes
 route.get('/collectors',get_collector);
 route.get('/collectors/:id',get_collector_detail);
 route.post('/collectors',post_collector);
 route.post('/collectorlogin',collector_login);
 
+// Schedule Routes
+route.get('/schedules',get_schedule);
+route.get('/schedules/:id',get_schedule_detail);
+route.post('/schedules',post_schedule);
 
 module.exports = route;

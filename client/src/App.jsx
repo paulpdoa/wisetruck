@@ -29,16 +29,18 @@ import AdminCollection from './pages/admin/AdminCollection';
 import AdminNews from './pages/admin/AdminNews';
 import AdminWaste from './pages/admin/AdminWaste';
 import AdminUsers from './pages/admin/AdminUsers';
+import ViewUserId from './components/ViewUserId';
+import AdminFeedback from './pages/admin/AdminFeedback';
+import CustomerJunkShops from './pages/customer/CustomerJunkShops';
+import CollectorSignup from './pages/collector/CollectorSignup';
+import CollectorLogin from './pages/collector/CollectorLogin';
+import CollectorHome from './pages/collector/CollectorHome';
+import AdminSchedule from './pages/admin/AdminSchedule';
 
 // Layouts
 import CustomerLayout from './layouts/CustomerLayout';
 import AdminLayout from './layouts/AdminLayout';
-import ViewUserId from './components/ViewUserId';
-import AdminFeedback from './pages/admin/AdminFeedback';
-import CustomerJunkShops from './pages/customer/CustomerJunkShops';
 import CollectorLayout from './layouts/CollectorLayout';
-import CollectorSignup from './pages/collector/CollectorSignup';
-
 
 
 const router = createBrowserRouter(
@@ -53,6 +55,9 @@ const router = createBrowserRouter(
       {/* For Admin */}
       <Route path='/admin/signup' element={<AdminSignup />} />
       <Route path='/admin/login' element={<AdminLogin />} />
+      {/* For Collector */}
+      <Route path='/collector/signup' element={<CollectorSignup />} />
+      <Route path='/collector/login' element={<CollectorLogin />} />
 
       <Route element={<CustomerLayout />}>
         <Route path='/' element={<CustomerHome />} />
@@ -82,10 +87,11 @@ const router = createBrowserRouter(
         <Route path='/admin/users' element={<AdminUsers />} />
         <Route path='/admin/user/:id' element={<ViewUserId />} />
         <Route path='/admin/feedbacks' element={<AdminFeedback />} />
+        <Route path='/admin/schedule' element={<AdminSchedule />} />
       </Route>
 
       <Route element={<CollectorLayout />}>
-        <Route path='/collector/login' element={<CollectorSignup />} />
+        <Route path='/collector' element={<CollectorHome />} />
       </Route>
 
     </Route>
