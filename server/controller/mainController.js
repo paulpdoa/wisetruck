@@ -598,14 +598,92 @@ module.exports.post_schedule = async (req,res) => {
     const dateFormat = `${year}-${month}-${(Number(date) + 1) < 10 ? `0${Number(date) + 1}` : Number(date) + 1 }`;
 
     try {
-        const schedule = await Schedule.create({ barangay,collectionDate: dateFormat });
-        res.status(200).json({ mssg: `Schedule for barangay ${barangay} has been set.`,redirect: '/admin'});
+        const checkSchedule = await Schedule.findOne({ barangay: barangay, collectionDate: dateFormat });
+        // If there is already a schedule, don't allow because it will have multiple schedules within the day
+        if(checkSchedule) {
+            res.status(400).json({ mssg: 'You cannot book a schedule with same date and barangay' });
+        } else {
+            const schedule = await Schedule.create({ barangay,collectionDate: dateFormat, isCollected: false, isCollecting: false });
+            res.status(200).json({ mssg: `Schedule for barangay ${barangay} has been set.`,redirect: '/admin'});
+        }
+        
     } catch(err) {
-        // if(err.code === 1100) {
-        //     res.status(400).json({ mssg: 'Scheduc' });
-        // }
-        // Create validation to not repeat if barangay has been scheduled within the day
         console.log(err);
     }
+}
 
+module.exports.start_collecting = async (req,res) => {
+    const { id } = req.params;
+    const { isCollecting } = req.body;
+
+    try {
+        const barangay = await Schedule.findById(id);
+        const usersInBrgy = await User.find({ barangay: barangay.barangay });
+    
+        // If no users in barangay, throw error that no registered users here yet.
+        if(usersInBrgy.length < 1) {
+            const collect = await Schedule.updateOne({ _id: id }, { isCollecting });
+            res.status(200).json({ mssg: 'No users registered in this barangay yet but still collection has been updated' });
+        } else {
+            const collect = await Schedule.updateOne({ _id: id }, { isCollecting });
+            
+            for(let i = 0; i < usersInBrgy.length; i++) {
+                const info = await transporter.sendMail({
+                    from: `'Wisetruck App' <${process.env.MAIL_ACCOUNT}>`,
+                    to: `${usersInBrgy[i].email}`,
+                    subject: 'Starting Collection | Wisetruck App',
+                    html:  `
+                    <h1>Hello ${usersInBrgy[i].firstName} ${usersInBrgy[i].lastName}</h1>
+                    <p>This is to notify you that trash collection is starting in barangay ${usersInBrgy[i].barangay}</p>
+                
+                    <p>Kind Regards,</p>
+                    <p>Wisetruck App</p>
+                    `
+                });
+                console.log(info);
+            }
+        res.status(200).json({ mssg: 'Email has been sent to users in this barangay' });
+        }
+
+        
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.update_schedule = async (req,res) => {
+    const { id } = req.params;
+    const { isCollected } = req.body;
+
+    try {
+        const barangay = await Schedule.findById(id);
+        const usersInBrgy = await User.find({ barangay: barangay.barangay });
+    
+        // If no users in barangay, throw error that no registered users here yet.
+        if(usersInBrgy.length < 1) {
+            const collect = await Schedule.updateOne({ _id: id }, { isCollected });
+            res.status(200).json({ mssg: 'No users registered in this barangay yet but still collection has been updated' });
+        } else {
+            const collected = await Schedule.updateOne({ _id: id }, { isCollected });
+            
+            for(let i = 0; i < usersInBrgy.length; i++) {
+                const info = await transporter.sendMail({
+                    from: `'Wisetruck App' <${process.env.MAIL_ACCOUNT}>`,
+                    to: `${usersInBrgy[i].email}`,
+                    subject: 'Done Collection | Wisetruck App',
+                    html:  `
+                    <h1>Hello ${usersInBrgy[i].firstName} ${usersInBrgy[i].lastName}</h1>
+                    <p>This is to notify you that trash collection is done in barangay ${usersInBrgy[i].barangay}</p>
+                
+                    <p>Kind Regards,</p>
+                    <p>Wisetruck App</p>
+                    `
+                });
+                console.log(info);
+            }
+            res.status(200).json({ mssg: 'Collection for this barangay has been updated' });
+        }
+    } catch(err) {
+        console.log(err);
+    }
 }

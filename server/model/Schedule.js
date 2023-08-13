@@ -10,6 +10,12 @@ const scheduleSchema = new mongoose.Schema({
     collectionDate: {
         type: String,
         required:true
+    },
+    isCollected: {
+        type:Boolean
+    },
+    isCollecting: {
+        type: Boolean
     }
 }, { timestamps: true })
 

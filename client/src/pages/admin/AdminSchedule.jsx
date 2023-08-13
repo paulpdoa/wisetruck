@@ -38,7 +38,7 @@ const AdminSchedule = () => {
                 navigate(data.data.redirect);
             }
         } catch(err) {
-            console.log(err);
+            alert(err.response.data.mssg);
         }
     }
 

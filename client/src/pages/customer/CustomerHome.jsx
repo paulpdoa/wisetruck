@@ -11,9 +11,12 @@ const CustomerHome = () => {
     return (
         <div className="w-full h-screen">
             <div className="flex flex-col gap-5 py-20 pt-5">
-                <div className="bg-green-100 border border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
+                <Link to='/recyclecenters' className="bg-green-100 border border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
                     <h1 className="font-semibold">Locate your nearest Recycle Centers</h1>
-                </div>
+                </Link>
+                <Link to='/collections' className="bg-green-100 border border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
+                    <h1 className="font-semibold">Check collections today</h1>
+                </Link>
 
                 <div className="bg-green-100 border border-gray-500 p-2 mx-2 rounded-md">
                     <div className="flex justify-between items-center">

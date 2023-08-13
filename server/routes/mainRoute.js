@@ -15,7 +15,9 @@ get_collector_detail,
 collector_login,
 get_schedule,
 post_schedule,
-get_schedule_detail} = require('../controller/mainController');
+get_schedule_detail,
+start_collecting,
+update_schedule} = require('../controller/mainController');
 
 // Customer Routes
 route.get('/users',get_user);
@@ -68,5 +70,7 @@ route.post('/collectorlogin',collector_login);
 route.get('/schedules',get_schedule);
 route.get('/schedules/:id',get_schedule_detail);
 route.post('/schedules',post_schedule);
+route.patch('/schedules/:id',start_collecting);
+route.patch('/updateschedule/:id',update_schedule);
 
 module.exports = route;

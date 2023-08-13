@@ -41,6 +41,7 @@ import AdminSchedule from './pages/admin/AdminSchedule';
 import CustomerLayout from './layouts/CustomerLayout';
 import AdminLayout from './layouts/AdminLayout';
 import CollectorLayout from './layouts/CollectorLayout';
+import CustomerTrashCollection from './pages/customer/CustomerTrashCollection';
 
 
 const router = createBrowserRouter(
@@ -77,6 +78,7 @@ const router = createBrowserRouter(
         <Route path='/wasteinfo/:id' element={<WasteDetail />} />
         <Route path='/recyclecenters' element={<CustomerRecycleCenter />} />
         <Route path='/junkshops' element={<CustomerJunkShops />} />
+        <Route path='/collections' element={<CustomerTrashCollection />} />
       </Route>
 
       <Route element={<AdminLayout />}>
