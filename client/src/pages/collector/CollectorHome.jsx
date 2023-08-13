@@ -1,4 +1,4 @@
-import { RECORDS } from '../../json/refbrgy.json';
+import { useNavigate } from 'react-router-dom';
 import { FaGreaterThan } from 'react-icons/fa';
 import { useState } from 'react';
 import CollectMssg from '../../components/CollectMssg';
@@ -10,6 +10,7 @@ const CollectorHome = () => {
 
     const [barangayDone,setBarangayDone] = useState({});
     const [loading,setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const [detail,setDetail] = useState({});
     const [mssg,setMssg] = useState('');
@@ -54,15 +55,28 @@ const CollectorHome = () => {
             console.log(err);
         }
     }
+
+    const handleLogout = () => {
+        localStorage.removeItem('collector');
+        localStorage.removeItem('collectorId');
+        localStorage.removeItem('collectorToken');
+        navigate('/collector/login');
+    }
+
     // Filter schedule based on date today
     return (
         <div className="h-full p-5">
-            <h1 className="font-medium">Welcome {userName}!</h1>
-            <p className="text-sm">It's time to collect trash today</p>
+            <div className="flex justify-between items-center">
+                <div>
+                    <h1 className="font-medium">Welcome {userName}!</h1>
+                    <p className="text-sm">It's time to collect trash today</p>
+                </div>
+                <button onClick={handleLogout} className="bg-green-200 font-medium p-2 rounded-md">Logout</button>
+            </div>
             { isLoading && <h1 className="animate-pulse text-gray-500 font-medium text-xl mt-5">Loading please wait...</h1> }
             <h2 className="mt-5 font-medium text-gray-500 text-xl">{dateToday}</h2>
             { schedules?.filter(schedule => !schedule.isCollected && schedule.collectionDate === date).length < 1 && <h1 className="animate-pulse text-gray-500 font-medium text-xl mt-5">No schedule for today</h1> }
-            { schedules?.filter(schedule => schedule.collectionDate === date).map((schedule,idx) => (
+            { schedules?.filter(schedule => schedule.collectionDate === date && !schedule.isCollected).map((schedule,idx) => (
                 <div key={idx} className="bg-gray-200 rounded-lg w-full h-auto p-2 mt-2">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">

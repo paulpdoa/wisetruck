@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 const CustomerTrashCollection = () => {
 
-    const [barangay,setBarangay] = useState({});
     const { records: schedules,isLoading } = fetchApiHook(`${baseUrl()}/schedules`);
+    const [barangay,setBarangay] = useState({});
     const monthList = ['January','February','March','April','May','June','July','August','September','October','November','December']
     const dateToday = `${monthList[new Date().getMonth()]} ${new Date().getDate() < 10 ? `0${new Date().getDate()}` : new Date().getDate()}, ${new Date().getFullYear()}`;
     const date = `${new Date().getFullYear()}-${new Date().getDate() < 10 ? `0${new Date().getDate()}` : new Date().getDate()}-${new Date().getMonth() + 1 < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth() + 1}`;
@@ -40,29 +40,30 @@ const CustomerTrashCollection = () => {
             <div className="flex flex-col justify-center mt-10 gap-5 items-center">
                 { todayCollections.filter(schedule => schedule.barangay === barangay).map((schedule,idx) => (
                     <>
+                    {/*  */}
                     <div className="p-2 relative gap-5 flex items-center w-1/2">
-                        <div className={`${schedule?.isCollecting && !schedule.isCollecting ? 'bg-red-500 animate-pulse' : !schedule?.isCollecting ? 'bg-transparent' : 'bg-green-400'} border-dashed border border-gray-900 h-5 w-5 rounded-full`}></div>
+                        <div className={`${schedule?.isCollecting && !schedule.isCollected ? 'bg-red-500 animate-pulse' : !schedule?.isCollecting ? 'bg-transparent' : 'bg-green-400'} border-dashed border border-gray-900 h-5 w-5 rounded-full`}></div>
                         <div>
                             <h2>Ongoing</h2>
                             <p className="text-gray-500 text-sm">{schedule?.barangay}</p>
                         </div>
                     </div>
                     <div className="p-2 relative gap-5 flex items-center w-1/2">
-                        <div className={`${schedule?.isCollecting && !schedule.isCollecting ? 'bg-red-500 animate-pulse' : !schedule?.isCollecting ? 'bg-transparent' : 'bg-green-400'} border-dashed border border-gray-900 h-5 w-5 rounded-full`}></div>
+                        <div className={`${schedule?.isCollecting && !schedule.isCollected ? 'bg-red-500 animate-pulse' : !schedule?.isCollecting ? 'bg-transparent' : 'bg-green-400'} border-dashed border border-gray-900 h-5 w-5 rounded-full`}></div>
                         <div>
                             <h2>Collecting</h2>
                             <p className="text-gray-500 text-sm">{schedule?.barangay}</p>
                         </div>
                     </div>
                     <div className="p-2 relative gap-5 flex items-center w-1/2">
-                        <div className={`${schedule?.isCollected && !schedule.isCollecting ? 'bg-red-500 animate-pulse' : !schedule?.isCollected ? 'bg-transparent' : 'bg-green-400'} border-dashed border border-gray-900 h-5 w-5 rounded-full`}></div>
+                        <div className={`${schedule?.isCollected && !schedule.isCollected ? 'bg-red-500 animate-pulse' : !schedule?.isCollected ? 'bg-transparent' : 'bg-green-400'} border-dashed border border-gray-900 h-5 w-5 rounded-full`}></div>
                         <div>
                             <h2>Collected</h2>
                             <p className="text-gray-500 text-sm">{schedule?.barangay}</p>
                         </div>
                     </div>
                     <div className="p-2 relative gap-5 flex items-center w-1/2">
-                        <div className={`${schedule?.isCollected && !schedule.isCollecting ? 'bg-red-500 animate-pulse' : !schedule?.isCollected ? 'bg-transparent' : 'bg-green-400'} border-dashed border border-gray-900 h-5 w-5 rounded-full`}></div>
+                        <div className={`${schedule?.isCollected && !schedule.isCollected ? 'bg-red-500 animate-pulse' : !schedule?.isCollected ? 'bg-transparent' : 'bg-green-400'} border-dashed border border-gray-900 h-5 w-5 rounded-full`}></div>
                         <div>
                             <h2>Next Bound</h2>
                             <p className="text-gray-500 text-sm">Going to {todayCollections[idx + 1].barangay}</p>

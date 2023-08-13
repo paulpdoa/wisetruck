@@ -6,13 +6,19 @@ const CustomerHome = () => {
 
     const { records,isLoading } = fetchApiHook(`${baseUrl()}/news`);
     const latestNews = records[records?.length - 1];
-    
+
+    const monthList = ['January','February','March','April','May','June','July','August','September','October','November','December']
+    const date = `${new Date().getFullYear()}-${new Date().getDate() < 10 ? `0${new Date().getDate()}` : new Date().getDate()}-${new Date().getMonth() + 1 < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth() + 1}`;
+    const dateToday = `${monthList[new Date().getMonth()]} ${new Date().getDate() < 10 ? `0${new Date().getDate()}` : new Date().getDate()}, ${new Date().getFullYear()}`;
 
     return (
         <div className="w-full h-screen">
             <div className="flex flex-col gap-5 py-20 pt-5">
-                <Link to='/recyclecenters' className="bg-green-100 border border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
-                    <h1 className="font-semibold">Locate your nearest Recycle Centers</h1>
+                <Link to='/recyclecenters' className="relative bg-green-100 border border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
+                    <img className="absolute w-32 bg-white rounded-full bg-opacity-50" src="/images/Recycle-Centers-Pin-Location.png" alt="Pin" />
+                    <img className="" src="/images/Philippine_Map.png" alt="Map" />
+                    {/* <img src="/images/recycle-icon.png" alt="recycle icon" /> */}
+                    <h1 className="font-semibold absolute bottom-10 bg-white bg-opacity-50 rounded-md p-2">Locate your nearest Recycle Centers</h1>
                 </Link>
                 <Link to='/collections' className="bg-green-100 border border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
                     <h1 className="font-semibold">Check collections today</h1>
@@ -34,8 +40,11 @@ const CustomerHome = () => {
                     }
                 </div>
 
-                <Link to='/junkshops' className="bg-green-100 border border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
-                    <h1 className="font-semibold">Locate your nearest Junk shops</h1>
+                <Link to='/junkshops' className="bg-green-100 border relative border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
+                    <img className="absolute w-20" src="/images/Junkshop-Icon.png" alt="junkshop icon" />
+                    <img className="absolute w-40" src="/images/Junkshop-Crosshair-Icon.png" alt="junkshop crosshair" />
+                    <img className="opacity-40" src="/images/Junkshop-Homepage.jpg" alt="junkshop" />
+                    <h1 className="font-semibold absolute bottom-10 bg-white bg-opacity-90 rounded-md p-2">Locate your nearest Recycle Centers</h1>
                 </Link>
 
                 <div className="bg-green-100 border border-gray-500 p-2 mx-2 rounded-md">
@@ -53,7 +62,7 @@ const CustomerHome = () => {
 
                 <div className="bg-green-100 border border-gray-500 p-2 mx-2 rounded-md">
                     <h1 className="font-semibold">WiseTruck Impact</h1>
-                    <h2>Month of June:(Dynamic month)</h2>
+                    <h2>Month of {monthList[new Date().getMonth()]}</h2>
 
                     <div className="flex items-center justify-between mt-4">
                         <p>Plastic waste turned over</p>

@@ -11,7 +11,8 @@ const CustomerNews = () => {
     return (
         <div className="w-full h-auto py-10 pt-5">
             <div className="flex gap-2 items-center border-2 border-gray-400 m-3 justify-center p-3">
-                <TbSpeakerphone className="text-4xl" />
+                {/* <TbSpeakerphone className="text-4xl" /> */}
+                <img className="w-10" src="/images/announcement_icon.png" alt="announcement icon" />
                 { loading ? <h1 className="font-medium text-lg text-gray-500 animate-pulse">Loading please wait</h1> : records.length > 0 ? <p className="font-medium text-lg">{announcement?.description}</p> : <h1 className="font-medium text-lg">There's no announcement yet</h1> }
             </div>
 

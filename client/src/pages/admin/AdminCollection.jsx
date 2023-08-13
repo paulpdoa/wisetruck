@@ -41,7 +41,7 @@ const AdminCollection = () => {
                                 return schedule
                             }
                             if(barangay === '') {
-                                return schedule
+                                return schedule.collectionDate === date
                             }
                         }).map((schedule,idx) => (
                             <tr className="border border-black" key={idx}>

@@ -13,8 +13,8 @@ const WasteDetail = () => {
                 <h1 className="font-semibold text-gray-500 text-center text-lg uppercase">name ng item</h1>
             </div>
 
-            <div className="bg-green-200 rounded-lg h-56 w-11/12 mt-5">
-                <h1>Image ng product here</h1>
+            <div className="bg-green-200 rounded-lg h-56 w-11/12 mt-5 flex items-center justify-center">
+                <img src={`${baseUrl()}/images/${records?.photo}`} alt={records?.name} />
             </div>
 
             <div className="w-11/12 mt-5">
