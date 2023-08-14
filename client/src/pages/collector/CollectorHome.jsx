@@ -5,6 +5,7 @@ import CollectMssg from '../../components/CollectMssg';
 import { fetchApiHook } from '../../hooks/fetchApiHook';
 import { baseUrl } from '../../baseUrl';
 import axios from 'axios';
+import { barangayMaps } from '../../service/barangayMaps';
 
 const CollectorHome = () => {
 
@@ -22,11 +23,16 @@ const CollectorHome = () => {
     const date = `${new Date().getFullYear()}-${new Date().getDate() < 10 ? `0${new Date().getDate()}` : new Date().getDate()}-${new Date().getMonth() + 1 < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth() + 1}`;
    
     const { records: schedules, isLoading } = fetchApiHook(`${baseUrl()}/schedules`);
-    // const provinceCode = '0421';
-    // const cityCode = '042117';
     const userName = localStorage.getItem('collector');
 
-    // const barangays = RECORDS.filter((barangay => barangay.provCode === provinceCode && barangay.citymunCode === cityCode));
+    
+
+    // const provinceCode = '0421';
+    // const cityCode = '042117';
+     // const barangays = RECORDS.filter((barangay => barangay.provCode === provinceCode && barangay.citymunCode === cityCode));
+    
+
+   
 
     const collectGarbage = (brgy,idx) => {
         if(idx !== 0) {

@@ -41,8 +41,8 @@ const CollectorLogin = () => {
 
     return (
         <div className="relative h-screen flex flex-col items-center justify-center">
-            <div className="flex flex-col items-center justify-center bg-green-200 border border-gray-900">
-                <img className="w-1/2" src="/images/admin-login.png" alt="admin logo" />
+            <div className="flex flex-col items-center justify-center">
+                <img className="w-1/2" src="/images/WiseTruck_Logo.png" alt="admin logo" />
             </div>
 
             <h1 className="mt-5 font-semibold text-4xl">WiseTruck</h1>

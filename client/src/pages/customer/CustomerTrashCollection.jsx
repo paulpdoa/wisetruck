@@ -1,6 +1,7 @@
 import { fetchApiHook } from "../../hooks/fetchApiHook";
 import { baseUrl } from "../../baseUrl";
 import { useState } from 'react';
+import { barangayMaps } from '../../service/barangayMaps';
 
 const CustomerTrashCollection = () => {
 
@@ -15,6 +16,8 @@ const CustomerTrashCollection = () => {
 
     const selectBarangayCollected = (brgy) => {
         setBarangay(brgy.barangay);
+        const openMap = barangayMaps.filter(barangay => barangay.barangay === brgy.barangay).map(barangay => barangay.map);
+        window.open(openMap[0],'_blank','rel=noopener noreferrer');
     }
 
     return (
@@ -24,7 +27,7 @@ const CustomerTrashCollection = () => {
             </div>
             <h1 className="p-5 text-gray-500 font-medium text-xl">{dateToday}</h1>
             <div className="flex items-center justify-center gap-5 mt-4">
-                { todayCollections?.slice(0,4).map((barangay,idx) => (
+                { todayCollections?.slice(0,4)?.map((barangay,idx) => (
                     <div key={idx} className="flex flex-col items-center">
                         <div className="flex flex-col items-center justify-center">
                             <div className="flex gap-4 items-center">
@@ -38,7 +41,7 @@ const CustomerTrashCollection = () => {
             </div>
 
             <div className="flex flex-col justify-center mt-10 gap-5 items-center">
-                { todayCollections.filter(schedule => schedule.barangay === barangay).map((schedule,idx) => (
+                { todayCollections?.filter(schedule => schedule.barangay === barangay).map((schedule,idx) => (
                     <>
                     {/*  */}
                     <div className="p-2 relative gap-5 flex items-center w-1/2">
@@ -66,7 +69,7 @@ const CustomerTrashCollection = () => {
                         <div className={`${schedule?.isCollected && !schedule.isCollected ? 'bg-red-500 animate-pulse' : !schedule?.isCollected ? 'bg-transparent' : 'bg-green-400'} border-dashed border border-gray-900 h-5 w-5 rounded-full`}></div>
                         <div>
                             <h2>Next Bound</h2>
-                            <p className="text-gray-500 text-sm">Going to {todayCollections[idx + 1].barangay}</p>
+                            <p className="text-gray-500 text-sm">Going to {todayCollections[idx + 1]?.barangay}</p>
                         </div>
                     </div>
                     </>

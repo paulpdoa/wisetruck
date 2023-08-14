@@ -43,7 +43,7 @@ const Login = () => {
         <div className="relative h-screen flex items-center justify-center">
             <div className="top-0 left-0 absolute w-full flex justify-center">
                 <img className="w-full absolute" src="/images/Rectangle_2.png" alt="background" />
-                <img className="z-50 absolute mt-20 w-24" src="/images/icon_person.png" alt="icon person" />
+                <img className="z-50 absolute mt-12 w-32" src="/images/WiseTruck_Logo.png" alt="WiseTruck Logo" />
             </div>
 
             <form className="w-full px-14" onSubmit={handleLogin}>

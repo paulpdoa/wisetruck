@@ -31,7 +31,10 @@ const Verification = () => {
         <div className="relative h-screen flex items-center justify-center">
             <div className="top-0 left-0 absolute w-full flex justify-center">
                 <img className="w-full absolute" src="/images/Rectangle_2.png" alt="background" />
-                <img className="z-50 absolute mt-20 w-24" src="/images/icon_person.png" alt="icon person" />
+                <div className="w-full flex items-center justify-center z-50">
+                    <img className="mt-24 w-12" src="/images/old_phone.png" alt="old phone" />
+                    <img className="mt-4 left-52 w-12" src="/images/message.png" alt="message" />
+                </div>
             </div>
 
             <form className="w-full px-14" onSubmit={handleSubmit}>

@@ -115,7 +115,7 @@ module.exports.user_login = async (req,res) => {
             if(checkUserType.isApproved) {
                 const customerLogin = await User.login(email,password);
                 const token = createToken(customerLogin._id);
-                res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${checkUserType.userName}, welcome to Wisetruck App`, redirect: '/', customerDetails: checkUserType, token });
+                res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${checkUserType.firstName}, welcome to Wisetruck App`, redirect: '/', customerDetails: checkUserType, token });
             } else {
                 res.status(400).json({ mssg: `${checkUserType.email} is not yet approved by admin. Please contact your administrator` })
             }
