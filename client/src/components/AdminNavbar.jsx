@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { baseUrl } from '../baseUrl';
 import { fetchApiHook } from '../hooks/fetchApiHook';
 import { Link } from 'react-router-dom';
+import { CiMenuBurger } from 'react-icons/ci';
 
 const AdminNavbar = () => {
 
@@ -21,7 +22,10 @@ const AdminNavbar = () => {
 
     return (
         <nav className="flex justify-between items-center p-3 px-10 bg-green-200 text-gray-700">
-            <h1 className="text-xl font-semibold">{userName}</h1>
+            <div className="flex gap-5 items-center">
+                <button className="font-bold"><CiMenuBurger /></button>
+                <h1 className="text-xl font-semibold">{userName}</h1>
+            </div>
             <div className="flex items-center gap-4">
                 <button onClick={handleLogout}><BsPersonCircle /></button>
                 

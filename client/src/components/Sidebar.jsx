@@ -6,7 +6,7 @@ const Sidebar = () => {
     const path = window.location.pathname;
 
     return (
-        <nav className="bg-gray-700 text-gray-200 p-4 h-screen w-1/4">
+        <nav className="bg-gray-700 text-gray-200 p-4 h-screen w-1/4 hidden md:block">
             <h1 className="font-semibold">General</h1>
 
             <ul className="mt-10 flex flex-col gap-4">
