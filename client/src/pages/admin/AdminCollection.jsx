@@ -20,7 +20,7 @@ const AdminCollection = () => {
 
     return (
         <div className="p-10">
-            <select onChange={(e) => setBarangay(e.target.value)} className="p-2 w-1/4 outline-none border border-gray-500">
+            <select onChange={(e) => setBarangay(e.target.value)} className="p-2 md:w-1/4 w-full outline-none border border-gray-500">
                 <option hidden>Choose Barangay</option>
                 { brgyRosario.map((brgy,idx) => (
                     <option key={idx} value={brgy.brgyDesc}>{brgy.brgyDesc}</option>

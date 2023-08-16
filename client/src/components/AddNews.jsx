@@ -39,8 +39,8 @@ const AddNews = ({ closeNews }) => {
 
 
     return (
-        <div className="h-screen w-full flex items-center justify-center bg-opacity-50 absolute top-0 bg-white">
-            <form onSubmit={handleSubmit} className="border border-gray-900 w-1/2 rounded-md flex flex-col gap-3 p-5 relative bg-white">
+        <div className="h-screen w-full flex items-center justify-center bg-opacity-50 absolute md:p-0 p-3 top-0 bg-white left-0">
+            <form onSubmit={handleSubmit} className="border border-gray-900 md:w-1/2 w-full rounded-md flex flex-col gap-3 p-5 relative bg-white">
                 <button className="self-end text-red-500 text-xl" onClick={() => closeNews(false)}><AiOutlineCloseCircle /></button>
                 <div className="w-full border-gray-300 border p-2 outline-none relative">
                     <span className={`${newsPhoto !== '' ? 'hidden' : 'flex'} items-center gap-2 text-gray-400`}><HiOutlineUpload />Upload news photo</span>

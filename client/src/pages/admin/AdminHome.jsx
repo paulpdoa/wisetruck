@@ -14,20 +14,21 @@ const AdminHome = () => {
 
     return (
         <div className="p-10">
-            <div className="flex items-center gap-5 justify-around w-full">
+            <h1 className="pb-4 text-lg text-gray-600 font-medium">{ dateToday }</h1>
+            <div className="flex flex-col md:flex-row items-center gap-5 justify-around w-full">
                 <div className="border border-gray-500 p-3 text-center w-full">
                     <h2 className="text-xl text-gray-700">Number of Members</h2>
                     <p className="text-green-500 font-semibold text-sm">{activeUsers}</p>
                 </div>  
                 <div className="border border-gray-500 p-3 text-center w-full">
-                    <h2 className="text-xl text-gray-700">Number of accumulated plastics</h2>
-                    <p className="text-green-500 font-semibold text-sm">30 kg</p>
+                    <h2 className="text-xl text-gray-700">Number of collected trash today</h2>
+                    <p className="text-green-500 font-semibold text-sm">{ schedules.filter(schedule => schedule.collectionDate === date && schedule.isCollected).length }</p>
                 </div> 
             </div>
 
-            <div className="w-full mt-10">
+            <div className="md:w-full w-auto mt-10">
                 <h2 className="text-xl text-gray-700 border border-gray-500 p-3 text-center font-semibold">Upcoming Waste Collection</h2>
-                <table className="w-full border-gray-500 border border-collapse">
+                <table className="md:w-full w-auto border-gray-500 border border-collapse">
                    <tbody className="border border-gray-500">
                         <tr className="border border-gray-500">
                             <td className="text-left text-xl text-gray-700 font-medium">List of Barangay</td>
@@ -35,7 +36,7 @@ const AdminHome = () => {
                             <td className="text-left text-xl text-gray-700 font-medium">Status</td> 
                         </tr>
                         { schedules?.slice(0,4).filter(schedule => schedule.collectionDate === date).map((schedule,idx) => (
-                            <tr>
+                            <tr key={idx}>
                                 <td>{schedule.barangay}</td>
                                 <td>{monthList[schedule.collectionDate.split('-')[2] - 1]} {schedule.collectionDate.split('-')[1]}, {schedule.collectionDate.split('-')[0]}</td>
                                 <td>{schedule.isCollected ? 'Collected' : 'Not Collected'}</td>

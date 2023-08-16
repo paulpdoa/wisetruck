@@ -26,6 +26,10 @@ const ListNews = () => {
         setOpenUpdate(true);
     }
 
+    const paginateTable = () => {
+
+    }
+
     return (
         <div className="mt-5 h-80 overflow-auto">
            { isLoading ? <p className="text-xl font-medium animate-pulse">Loading please wait...</p> :

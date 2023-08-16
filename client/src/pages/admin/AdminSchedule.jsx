@@ -44,7 +44,7 @@ const AdminSchedule = () => {
 
     return (
         <div className="p-10 flex flex-col gap-4">
-            <select onChange={(e) => setBarangay(e.target.value)} className="p-2 w-1/4 outline-none border border-gray-500" required>
+            <select onChange={(e) => setBarangay(e.target.value)} className="p-2 md:w-1/4 w-full outline-none border border-gray-500" required>
                 <option hidden>Choose Barangay</option>
                 { brgyRosario.map((brgy,idx) => (
                     <option key={idx} value={brgy.brgyDesc}>{brgy.brgyDesc}</option>
@@ -53,7 +53,7 @@ const AdminSchedule = () => {
 
             <Calendar onChange={e => setDate(e)} value={date} />
 
-            <button onClick={generateSchedule} className="bg-green-300 p-2 w-1/4 text-gray-700 rounded-md">Generate</button>
+            <button onClick={generateSchedule} className="bg-green-300 p-2 md:w-1/4 w-auto text-gray-700 rounded-md">Generate</button>
         </div>
     )
 }

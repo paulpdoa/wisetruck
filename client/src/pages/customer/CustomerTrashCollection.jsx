@@ -69,7 +69,7 @@ const CustomerTrashCollection = () => {
                         <div className={`${schedule?.isCollected && !schedule.isCollected ? 'bg-red-500 animate-pulse' : !schedule?.isCollected ? 'bg-transparent' : 'bg-green-400'} border-dashed border border-gray-900 h-5 w-5 rounded-full`}></div>
                         <div>
                             <h2>Next Bound</h2>
-                            <p className="text-gray-500 text-sm">Going to {todayCollections[idx + 1]?.barangay}</p>
+                            <p className="text-gray-500 text-sm">Going to next bound</p>
                         </div>
                     </div>
                     </>

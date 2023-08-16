@@ -43,7 +43,7 @@ const AddWaste = ({ closeUpdate,wasteId }) => {
 
     return (
         <div className="mt-10 flex items-center gap-5 justify-around">
-            <div className="border border-gray-900 rounded-md w-1/2 flex items-center flex-col p-2 bg-white">
+            <div className="border border-gray-900 rounded-md md:w-1/2 w-full flex items-center flex-col p-2 bg-white">
                 <form onSubmit={handleSubmit} className="w-full rounded-md flex flex-col gap-3 p-5 relative">
                     <div className="w-full border-gray-300 border h-8 outline-none relative flex justify-center">
                         <span className={`${wastePhoto !== '' ? 'hidden' : 'flex'} items-center gap-2 text-gray-400`}><HiOutlineUpload />Upload waste photo</span>

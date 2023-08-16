@@ -68,7 +68,7 @@ const AdminNews = () => {
             
             { activeBtn === 'Add News' &&
             <>
-            <div className="mt-10 flex items-center gap-5 justify-around">
+            <div className="mt-10 flex flex-col md:flex-row items-center gap-5 justify-around">
                 <div className="w-full flex flex-col justify-start h-24">
                     <h2 className="text-xl text-gray-500 font-medium">News</h2>
                     <button onClick={() => setAddNews(true)} className="w-full h-full border border-gray-500 p-2 font-semibold text-xl rounded-md">+</button>
@@ -82,7 +82,7 @@ const AdminNews = () => {
                 </div>
             </div>
 
-            <div className="mt-14 border border-gray-800 p-2 rounded-md w-1/2">
+            <div className="mt-14 border border-gray-800 p-2 rounded-md md:w-1/2 w-full">
                 <div className="flex justify-between items-center">
                     <h2 className="text-xl text-gray-500 font-medium">Announcement Posted</h2>
                     { announcement !== null &&

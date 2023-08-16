@@ -5,7 +5,7 @@ import { fetchApiHook } from '../hooks/fetchApiHook';
 import { Link } from 'react-router-dom';
 import { CiMenuBurger } from 'react-icons/ci';
 
-const AdminNavbar = () => {
+const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
 
     const userName = localStorage.getItem('admin');
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const AdminNavbar = () => {
     return (
         <nav className="flex justify-between items-center p-3 px-10 bg-green-200 text-gray-700">
             <div className="flex gap-5 items-center">
-                <button className="font-bold"><CiMenuBurger /></button>
+                <button onClick={() => setShowSidebar(!showSidebar)} className="font-bold md:hidden block"><CiMenuBurger /></button>
                 <h1 className="text-xl font-semibold">{userName}</h1>
             </div>
             <div className="flex items-center gap-4">
