@@ -368,10 +368,10 @@ module.exports.delete_news = async(req,res) => {
 module.exports.update_news = async (req,res) => {
     const { id } = req.params;
     const { title,description } = req.body;
-    const photo = 'photo to'
+    // const photo = 'photo to'
 
     try {
-        const news = await News.updateOne({ _id:id },{ title,photo,description });
+        const news = await News.updateOne({ _id:id },{ title,description });
         res.status(200).json({ mssg: `${title} has been updated successfully`,redirect: '/admin' });
     } catch(err) {
         console.log(err);
@@ -458,10 +458,11 @@ module.exports.post_announcement = async (req,res) => {
 
 module.exports.update_announcement = async (req,res) => {
     const { id } = req.params;
-    const { description } = req.body;
+    const { desc } = req.body;
 
     try {
-        const announce = await Announcement.updateOne({ _id: id }, { description });
+        const announce = await Announcement.updateOne({ _id: id }, { description: desc });
+        res.status(200).json({ mssg: 'Announcement has been updated', redirect: '/admin' });
     } catch(err) {
         console.log(err);
     }

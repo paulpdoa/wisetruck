@@ -5,8 +5,8 @@ import { baseUrl } from '../../baseUrl';
 
 const AdminCollection = () => {
 
-    const [start,setStart] = useState(0);
-    const [end,setEnd] = useState(4);
+    // const [start,setStart] = useState(0);
+    // const [end,setEnd] = useState(4);
 
     const [barangay,setBarangay] = useState('');
     const { records: schedules, isLoading } = fetchApiHook(`${baseUrl()}/schedules`);
@@ -53,7 +53,7 @@ const AdminCollection = () => {
                             if(barangay === '') {
                                 return schedule.collectionDate === date
                             }
-                        }).slice(start,end).map((schedule,idx) => (
+                        }).map((schedule,idx) => (
                             <tr className="border border-black" key={idx}>
                                 <td>{schedule.barangay}</td>
                                 <td>{monthList[schedule.collectionDate.split('-')[2] - 1]} {schedule.collectionDate.split('-')[1]}, {schedule.collectionDate.split('-')[0]}</td>
@@ -69,7 +69,7 @@ const AdminCollection = () => {
                 </table>
                 
             </div>
-            <button onClick={nextPage}>Next</button>
+            {/* <button onClick={nextPage}>Next</button> */}
         </div>
     )
 }

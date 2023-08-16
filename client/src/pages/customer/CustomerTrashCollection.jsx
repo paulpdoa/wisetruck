@@ -26,6 +26,7 @@ const CustomerTrashCollection = () => {
                 <h1 className="font-semibold text-gray-500 text-center text-lg">COLLECTION STATUS</h1>
             </div>
             <h1 className="p-5 text-gray-500 font-medium text-xl">{dateToday}</h1>
+            { todayCollections.length < 1 && <h1 className="p-5 text-gray-500 text-center text-lg">No collections for today</h1> }
             <div className="flex items-center justify-center gap-5 mt-4">
                 { todayCollections?.slice(0,4)?.map((barangay,idx) => (
                     <div key={idx} className="flex flex-col items-center">

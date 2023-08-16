@@ -97,7 +97,7 @@ const CollectorHome = () => {
                         :
                         <div className="flex flex-col gap-1">
                             { schedule.isCollecting ? <p className="bg-white text-base p-2 rounded-full font-medium animate-pulse">Collecting</p> : <button onClick={() => collectGarbage(schedule,idx)} className="bg-white text-base p-2 rounded-full font-medium">Collect</button> }
-                            <button onClick={() => doneCollection(schedule)} className="bg-white text-base p-2 rounded-full font-medium">Done</button>
+                            { schedule.isCollecting && <button onClick={() => doneCollection(schedule)} className="bg-white text-base p-2 rounded-full font-medium">Done</button>    }
                         </div>
                         }
                     </div>

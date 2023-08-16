@@ -17,6 +17,7 @@ const AdminNews = () => {
     const [updateField,setUpdateField] = useState(false);
 
     const { records: announcement } = fetchApiHook(`${baseUrl()}/announcements`);
+    const [desc,setDesc] = useState('');
 
     const navigate = useNavigate()
 
@@ -36,11 +37,15 @@ const AdminNews = () => {
         }
     }
 
-    const updateAnnouncement = async (id) => {
+    const openAnnouncement = ({ description }) => {
         setUpdateField(!updateField)
+        setDesc(description);
+    }
+
+    const updateAnnouncement = async (id) => {
         
         try {
-            const data = await axios.put(`${baseUrl()}/announcements/${id}`,{ description });
+            const data = await axios.patch(`${baseUrl()}/announcements/${id}`,{ desc });
             alert(data.data.mssg);
             navigate(data.data.redirect);
         } catch(err) {
@@ -87,17 +92,17 @@ const AdminNews = () => {
                     <h2 className="text-xl text-gray-500 font-medium">Announcement Posted</h2>
                     { announcement !== null &&
                     <div className="flex justify-between items-center gap-3">
-                        <button onClick={() => updateAnnouncement(announcement._id)} className="text-green-500"><FiEdit /></button>
+                        <button onClick={() => openAnnouncement(announcement)} className="text-green-500"><FiEdit /></button>
                         <button onClick={() => deleteAnnouncement(announcement._id)} className="text-red-500"><BsTrash /></button>
                     </div>
                     }
                 </div>
                 { updateField ? 
                 <div className="mt-2">
-                    <input className="p-2 border border-gray-500 w-full" type="text" value={announcement.description} onChange={(e) => setDescription(e.target.value)} />
-                    <button className="bg-green-200 font-medium text-gray-800 p-2 rounded-md mt-2">Submit</button>
+                    <input className="p-2 border border-gray-500 w-full outline-none" type="text" value={desc} onChange={(e) => setDesc(e.target.value)} />
+                    <button onClick={() => updateAnnouncement(announcement._id) } className="bg-green-200 font-medium text-gray-800 p-2 rounded-md mt-2">Submit</button>
                 </div>
-                : announcement === null ? <p className="animate-pulse text-gray-500">No announcement yet</p> : <p>- {announcement?.description}</p> }
+                : announcement === null ? <p className="animate-pulse text-gray-500">No announcement yet</p> : <p>- { announcement?.description }</p> }
             </div>
             { addNews && <AddNews closeNews={setAddNews}/>}
             </>

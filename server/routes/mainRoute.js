@@ -53,7 +53,7 @@ route.patch('/wastes/:id',upload.single('wastePhoto'),update_waste);
 // Announcement Routes
 route.get('/announcements',get_announcement);
 route.post('/announcements',post_announcement);
-route.put('/announcements/:id',update_announcement);
+route.patch('/announcements/:id',update_announcement);
 route.delete('/announcements/:id',delete_announcement);
 
 // Feedback Routes

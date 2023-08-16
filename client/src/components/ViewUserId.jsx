@@ -16,7 +16,7 @@ const ViewUserId = () => {
 
                 <div className="flex flex-col items-center justify-center">
                     <div className="border border-gray-900 rounded-md">
-                        <img className="object-cover" src={`${baseUrl()}/images/${user.validId}`} alt="Valid Id" />
+                        <img className="object-cover w-32" src={`${baseUrl()}/images/${user.validId}`} alt="Valid Id" />
                     </div>
                     <table className="w-full mt-5">
                         <tbody>

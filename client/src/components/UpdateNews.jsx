@@ -32,7 +32,7 @@ const UpdateNews = ({ closeUpdate,newsId }) => {
                     <div className="w-full border-gray-300 border p-2 outline-none relative flex justify-center">
                         {/* <span className={`${wastePhoto !== '' ? 'hidden' : 'flex'} items-center gap-2 text-gray-400`}><HiOutlineUpload />Upload waste photo</span>
                         <input className={`opacity-0 absolute h-full w-full top-0 left-0`} onChange={getWastePhoto} accept='image/*' type="file" name="wastePhoto" required/> */}
-                        <img className="object-cover" src={`${baseUrl()}/images/${newsPhoto}`} alt={newsPhoto.title} />
+                        <img className="object-cover w-32" src={`${baseUrl()}/images/${newsPhoto}`} alt={newsPhoto.title} />
                     </div>
                     
                     <div className="p-2 border border-gray-500 rounded-md">

@@ -38,19 +38,19 @@ const CustomerProfile = () => {
             <div className="top-0 left-0 absolute w-full flex justify-center">
                 <img className="w-full" src="/images/Rectangle_2.png" alt="background" />
                 <img className="z-50 absolute p-2 w-24" src="/images/icon_person.png" alt="icon person" />
-                <h1 className="absolute bottom-7 font-semibold text-sm">{records.firstName} {records.middleName} {records.lastName}</h1>
+                <h1 className="absolute bottom-7 font-semibold text-sm">{records?.firstName} {records?.middleName} {records?.lastName}</h1>
             </div>
 
             <div className="border w-11/12 border-gray-500 p-2 mt-9">
                 <div className="text-center">
                     <h2 className="font-semibold">Address</h2>
-                    <p className="text-gray-400">{records.barangay} {records.municipality}, {records.province}</p>
+                    <p className="text-gray-400">{records?.barangay} {records?.municipality}, {records?.province}</p>
                 </div>
 
                 <div className="text-center mt-4">
                     <h2 className="font-semibold">Email and Phone Number</h2>
-                    <p>{records.email}</p>
-                    <p>+63{records.phoneNumber?.slice(1)}</p>
+                    <p>{records?.email}</p>
+                    <p>+63{records?.phoneNumber?.slice(1)}</p>
                 </div>  
             </div>
 
