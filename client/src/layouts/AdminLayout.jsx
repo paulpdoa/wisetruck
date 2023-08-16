@@ -10,7 +10,7 @@ const AdminLayout = () => {
 
     useEffect(() => {
         if(token === null) {
-            navigate('/login');
+            navigate('/admin/login');
         }
     },[])
 

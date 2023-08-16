@@ -15,7 +15,7 @@ export const fetchApiHook = (url) => {
          try {
             const data = await axios.get(url,{ signal });
             setIsLoading(false);
-            setRecords(data.data);
+            records.length > 1 ? setRecords(records => [...records,data.data]) : setRecords(data.data);
          } catch(err) {
             console.log(err);
          }

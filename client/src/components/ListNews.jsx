@@ -37,7 +37,8 @@ const ListNews = () => {
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
-                    { records.map((record,idx) => (
+                    { records?.map((record,idx) => (
+                        records.length > 0 && 
                         <tr className="border border-black" key={idx}>
                             <td>{record.title}</td>
                             <td>{record.description}</td>
