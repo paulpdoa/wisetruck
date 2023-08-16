@@ -26,7 +26,7 @@ const ListNews = () => {
         setOpenUpdate(true);
     }
 
-    const paginateTable = () => {
+    const nextPageTable = () => {
 
     }
 

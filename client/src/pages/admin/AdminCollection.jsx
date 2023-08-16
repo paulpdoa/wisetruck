@@ -5,6 +5,9 @@ import { baseUrl } from '../../baseUrl';
 
 const AdminCollection = () => {
 
+    const [start,setStart] = useState(0);
+    const [end,setEnd] = useState(4);
+
     const [barangay,setBarangay] = useState('');
     const { records: schedules, isLoading } = fetchApiHook(`${baseUrl()}/schedules`);
     const provinceCode = '0421';
@@ -17,6 +20,13 @@ const AdminCollection = () => {
     const date = `${new Date().getFullYear()}-${new Date().getDate() < 10 ? `0${new Date().getDate()}` : new Date().getDate()}-${new Date().getMonth() + 1 < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth() + 1}`;
     const dateToday = `${monthList[new Date().getMonth()]} ${new Date().getDate() < 10 ? `0${new Date().getDate()}` : new Date().getDate()}, ${new Date().getFullYear()}`;
     // const collectionsToday = schedules?.filter(schedule => schedule.collectionDate === date && !schedule.isCollected);
+
+
+    // const nextPage = () => {
+    //     setStart(start + 4);
+    //     setEnd(end + brgyRosario.length);
+    //     console.log(Math.ceil(5 / brgyRosario.length));
+    // }
 
     return (
         <div className="p-10">
@@ -43,7 +53,7 @@ const AdminCollection = () => {
                             if(barangay === '') {
                                 return schedule.collectionDate === date
                             }
-                        }).map((schedule,idx) => (
+                        }).slice(start,end).map((schedule,idx) => (
                             <tr className="border border-black" key={idx}>
                                 <td>{schedule.barangay}</td>
                                 <td>{monthList[schedule.collectionDate.split('-')[2] - 1]} {schedule.collectionDate.split('-')[1]}, {schedule.collectionDate.split('-')[0]}</td>
@@ -57,7 +67,9 @@ const AdminCollection = () => {
                         
                     </tbody>
                 </table>
+                
             </div>
+            <button onClick={nextPage}>Next</button>
         </div>
     )
 }
