@@ -18,7 +18,7 @@ const AdminFeedback = () => {
                             
                             <tr>
                                 <th>Name</th>
-                                <th>Feedback</th>
+                                <th>Message</th>
                             </tr>
                             { feedbacks?.map((record,idx) => (
                                 record.user_id !== undefined && 
