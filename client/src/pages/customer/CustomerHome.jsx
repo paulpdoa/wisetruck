@@ -26,16 +26,18 @@ const CustomerHome = () => {
                     </div> */}
                 </div>
 
+                <Link to='/collections' className="bg-green-100 border border-gray-500 p-2 flex flex-col items-start mx-2 rounded-md">
+                    <h1>Barangay Collections</h1>
+                    <h1 className="font-semibold">Check collections today</h1>
+                </Link>
+
                 <Link to='/recyclecenters' className="relative bg-green-100 border border-gray-500 p-2 flex flex-col items-center justify-center mx-2 rounded-md">
                     <img className="absolute w-32 bg-white rounded-full bg-opacity-50" src="/images/Recycle-Centers-Pin-Location.png" alt="Pin" />
                     <img className="" src="/images/Philippine_Map.png" alt="Map" />
                     {/* <img src="/images/recycle-icon.png" alt="recycle icon" /> */}
                     <h1 className="font-semibold absolute bottom-10 bg-white bg-opacity-50 rounded-md p-2">Locate your nearest Recycle Centers</h1>
                 </Link>
-                <Link to='/collections' className="bg-green-100 border border-gray-500 p-2 flex flex-col items-start mx-2 rounded-md">
-                    <h1>Barangay Collections</h1>
-                    <h1 className="font-semibold">Check collections today</h1>
-                </Link>
+                
 
                 <div className="bg-green-100 border border-gray-500 p-2 mx-2 rounded-md">
                     <div className="flex justify-between items-center">
@@ -64,7 +66,7 @@ const CustomerHome = () => {
                     <img className="absolute w-20" src="/images/Junkshop-Icon.png" alt="junkshop icon" />
                     <img className="absolute w-40" src="/images/Junkshop-Crosshair-Icon.png" alt="junkshop crosshair" />
                     <img className="opacity-40" src="/images/Junkshop-Homepage.jpg" alt="junkshop" />
-                    <h1 className="font-semibold absolute bottom-10 bg-white bg-opacity-50 rounded-md p-2">Locate your nearest Recycle Centers</h1>
+                    <h1 className="font-semibold absolute bottom-10 bg-white bg-opacity-50 rounded-md p-2">Locate nearest exclusive Junkshops</h1>
                 </Link>
 
                 <div className="bg-green-100 border border-gray-500 p-2 mx-2 rounded-md">
