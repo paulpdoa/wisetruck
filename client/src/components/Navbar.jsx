@@ -11,10 +11,10 @@ const Navbar = () => {
     return (
         <nav className="fixed bottom-0 w-full border-t-gray-900 border p-4 text-4xl bg-white z-50">
             <ul className="flex justify-around items-center">
-                <li><Link to='/'><FcHome /></Link></li>
-                <li><Link to='/news'><FcNews /></Link></li>
-                <li className="text-green-500"><Link to='/recyclecenters'><FaRecycle /></Link></li>
-                <li className="text-yellow-500"><Link to='/wasteinfo'><FaLightbulb /></Link></li>
+                <li><Link to='/'><img className="w-8 h-8" src="/images/home-icon.png" alt="Home Icon" /></Link></li>
+                <li><Link to='/news'><img className="w-8 h-8" src="/images/news-icon.png" alt="News Icon" /></Link></li>
+                <li className="text-green-500"><Link to='/recyclecenters'><img className="w-8 h-8" src="/images/globe-icon.png" alt="Globe Icon" /></Link></li>
+                <li className="text-yellow-500"><Link to='/wasteinfo'><img className="w-8 h-8" src="/images/bulb-icon.png" alt="Bulb Icon" /></Link></li>
                 <li className="text-green-500"><Link to={`/profile/${customerId}`}><BsPersonCircle /></Link></li>
             </ul>
         </nav>
