@@ -5,10 +5,8 @@ import { barangayMaps } from '../../service/barangayMaps';
 
 const CustomerTrashCollection = () => {
 
-    
-
-    const { records: schedules,isLoading } = fetchApiHook(`${baseUrl()}/schedules`);
-    const [barangay,setBarangay] = useState({});
+    const { records: schedules } = fetchApiHook(`${baseUrl()}/schedules`);
+    const [barangay,setBarangay] = useState('');
     const monthList = ['January','February','March','April','May','June','July','August','September','October','November','December']
     const dateToday = `${monthList[new Date().getMonth()]} ${new Date().getDate() < 10 ? `0${new Date().getDate()}` : new Date().getDate()}, ${new Date().getFullYear()}`;
     const date = `${new Date().getFullYear()}-${new Date().getDate() < 10 ? `0${new Date().getDate()}` : new Date().getDate()}-${new Date().getMonth() + 1 < 10 ? `0${new Date().getMonth() + 1}` : new Date().getMonth() + 1}`;
@@ -16,11 +14,8 @@ const CustomerTrashCollection = () => {
     const todayCollections = schedules?.filter(schedule => schedule.collectionDate === date);
     const ongoingCollections = todayCollections?.filter(schedule => !schedule.isCollected);
 
-    const [initialBrgy,setInitialBrgy] = useState(todayCollections[0]?.barangay);
-
     const selectBarangayCollected = (brgy) => {
         setBarangay(brgy.barangay);
-        setInitialBrgy(brgy.barangay);
         const openMap = barangayMaps.filter(barangay => barangay.barangay === brgy.barangay).map(barangay => barangay.map);
         window.open(openMap[0],'_blank','rel=noopener noreferrer');
     }
@@ -38,7 +33,6 @@ const CustomerTrashCollection = () => {
                         <div className="flex flex-col items-center justify-center">
                             <div className="flex gap-4 items-center">
                                 <div onClick={() => selectBarangayCollected(barangay)} className={`${barangay.isCollecting && !barangay.isCollected ? 'bg-green-400 animate-pulse' : barangay.isCollecting && barangay.isCollected ? 'bg-green-400' : 'bg-gray-500'} h-10 w-10 rounded-full border-dashed border-2 border-gray-900`}></div>
-                                {/* { todayCollections[idx + 1]?.barangay !== undefined && <p>----</p> }     */}
                             </div> 
                             <h2 className="text-sm text-gray-500">{barangay.barangay}</h2>
                         </div>
@@ -47,7 +41,14 @@ const CustomerTrashCollection = () => {
             </div>
 
             <div className="flex flex-col justify-center mt-10 gap-5 items-center">
-                { todayCollections?.filter(schedule => schedule.barangay === initialBrgy).map((schedule,idx) => (
+                { todayCollections?.filter(schedule => {
+                    if(barangay === '') {
+                        
+                        return schedule.barangay === todayCollections[0]?.barangay
+                    }  else {
+                        return schedule.barangay === barangay
+                    }
+                }).map((schedule,idx) => (
                     <>
                     {/*  */}
                     <div className="p-2 relative gap-5 flex items-center w-1/2">
