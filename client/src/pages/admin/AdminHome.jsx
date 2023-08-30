@@ -26,6 +26,10 @@ const AdminHome = () => {
                 </div> 
             </div>
 
+            {/* <div className="md:w-full w-auto mt-10">
+                <h2 className="text-xl text-gray-700 border border-gray-500 p-3 text-center font-semibold">Today's Schedule</h2>
+            </div> */}
+
             <div className="md:w-full w-auto mt-10">
                 <h2 className="text-xl text-gray-700 border border-gray-500 p-3 text-center font-semibold">Upcoming Waste Collection</h2>
                 <table className="md:w-full w-auto border-gray-500 border border-collapse">
@@ -35,7 +39,8 @@ const AdminHome = () => {
                             <td className="text-left text-xl text-gray-700 font-medium">Date of Collection</td>
                             <td className="text-left text-xl text-gray-700 font-medium">Status</td> 
                         </tr>
-                        { schedules?.slice(0,4).filter(schedule => schedule.collectionDate === date).map((schedule,idx) => (
+                    
+                        { schedules?.filter(schedule => schedule.collectionDate === date).slice(0,4).map((schedule,idx) => (
                             <tr key={idx}>
                                 <td>{schedule.barangay}</td>
                                 <td>{monthList[schedule.collectionDate.split('-')[2] - 1]} {schedule.collectionDate.split('-')[1]}, {schedule.collectionDate.split('-')[0]}</td>

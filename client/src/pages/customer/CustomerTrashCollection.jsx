@@ -5,6 +5,8 @@ import { barangayMaps } from '../../service/barangayMaps';
 
 const CustomerTrashCollection = () => {
 
+    
+
     const { records: schedules,isLoading } = fetchApiHook(`${baseUrl()}/schedules`);
     const [barangay,setBarangay] = useState({});
     const monthList = ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -14,8 +16,11 @@ const CustomerTrashCollection = () => {
     const todayCollections = schedules?.filter(schedule => schedule.collectionDate === date);
     const ongoingCollections = todayCollections?.filter(schedule => !schedule.isCollected);
 
+    const [initialBrgy,setInitialBrgy] = useState(todayCollections[0]?.barangay);
+
     const selectBarangayCollected = (brgy) => {
         setBarangay(brgy.barangay);
+        setInitialBrgy(brgy.barangay);
         const openMap = barangayMaps.filter(barangay => barangay.barangay === brgy.barangay).map(barangay => barangay.map);
         window.open(openMap[0],'_blank','rel=noopener noreferrer');
     }
@@ -42,7 +47,7 @@ const CustomerTrashCollection = () => {
             </div>
 
             <div className="flex flex-col justify-center mt-10 gap-5 items-center">
-                { todayCollections?.filter(schedule => schedule.barangay === barangay).map((schedule,idx) => (
+                { todayCollections?.filter(schedule => schedule.barangay === initialBrgy).map((schedule,idx) => (
                     <>
                     {/*  */}
                     <div className="p-2 relative gap-5 flex items-center w-1/2">
