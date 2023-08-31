@@ -14,7 +14,7 @@ const AddWaste = ({ closeUpdate,wasteId }) => {
     const [name,setName] = useState('');
     const [typeOfWaste,setTypeOfWaste] = useState('');
 
-    const [wastes] = useState(["Glass Waste","Plastic Waste","Paper Waste","Metal Waste","Organice Waste","Electronic Waste"])
+    const [wastes] = useState(["Glass Waste","Plastic Waste","Paper Waste","Metal Waste","Organice Waste","Electronic Waste","Medical Waste"])
 
     const navigate = useNavigate();
 

@@ -49,6 +49,13 @@ const CustomerWasteInfo = () => {
                     </Link>
                     <h2 className="font-semibold">Electronic Waste</h2>
                 </div>
+
+                <div className="flex flex-col items-center justify-center">
+                    <Link to='/wasteinfo/medicalwaste' className="bg-green-500 rounded-full h-24 w-24 flex items-center justify-center">
+                        <img src="/images/battery_save.png" alt="battery" />
+                    </Link>
+                    <h2 className="font-semibold">Medical Waste</h2>
+                </div>
         
             </div>
         </div>
