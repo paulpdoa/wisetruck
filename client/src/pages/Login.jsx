@@ -41,12 +41,12 @@ const Login = () => {
 
     return (
         <div className="relative h-screen flex items-center justify-center">
-            <div className="top-0 left-0 absolute w-full flex justify-center">
-                <img className="w-full absolute" src="/images/Rectangle_2.png" alt="background" />
+            <div className="top-0 fixed w-full flex justify-center">
+                <img className="w-full absolute h-32" src="/images/Rectangle_2.png" alt="background" />
                 <img className="z-50 absolute mt-12 w-32" src="/images/WiseTruck_Logo.png" alt="WiseTruck Logo" />
             </div>
 
-            <form className="w-full px-14" onSubmit={handleLogin}>
+            <form className="w-full px-14 z-50 bg-white" onSubmit={handleLogin}>
                 <h1 className="font-normal text-4xl">Welcome!</h1>
                 <p className="text-sm font-medium">Clear the way! - make room for a greener tomorrow</p>
                 <p className="text-sm">Sign in to your account</p>

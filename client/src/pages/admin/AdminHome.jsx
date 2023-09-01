@@ -26,22 +26,36 @@ const AdminHome = () => {
                 </div> 
             </div>
 
-            {/* <div className="md:w-full w-auto mt-10">
-                <h2 className="text-xl text-gray-700 border border-gray-500 p-3 text-center font-semibold">Today's Schedule</h2>
-            </div> */}
+            <div className="md:w-full w-auto mt-10 border border-gray-500">
+                <h2 className="text-xl text-gray-700 p-3 text-center font-semibold">Today's Schedule</h2>
+                { schedules?.filter(schedule => schedule.collectionDate === date).slice(0,1).map(schedule => (
+                    <div className="px-5 pb-5 flex justify-between items-center" key={schedule._id}>
+                        <h2 className="font-medium">Collection today at { schedule.barangay }</h2>
+                        <Link className="text-sm text-green-500 underline" to='/admin/collection'>More schedules today</Link>
+                    </div>
+                )) }
+            </div>
 
             <div className="md:w-full w-auto mt-10">
                 <h2 className="text-xl text-gray-700 border border-gray-500 p-3 text-center font-semibold">Upcoming Waste Collection</h2>
                 <table className="md:w-full w-auto border-gray-500 border border-collapse">
                    <tbody className="border border-gray-500">
                         <tr className="border border-gray-500">
-                            <td className="text-left text-xl text-gray-700 font-medium">List of Barangay</td>
-                            <td className="text-left text-xl text-gray-700 font-medium">Date of Collection</td>
-                            <td className="text-left text-xl text-gray-700 font-medium">Status</td> 
+                            <td className="text-left md:text-xl text-sm text-gray-700 font-medium">List of Barangay</td>
+                            <td className="text-left md:text-xl text-sm text-gray-700 font-medium">Date of Collection</td>
+                            <td className="text-left md:text-xl text-sm text-gray-700 font-medium">Status</td> 
                         </tr>
-                    
-                        { schedules?.filter(schedule => schedule.collectionDate === date).slice(0,4).map((schedule,idx) => (
+                        { schedules?.filter(schedule => {
+                            let collectionDate = schedule.collectionDate.split('-');
+                            let collectionDateFormatted = Number(collectionDate[0]+''+collectionDate[2]+collectionDate[1]);
+                            let currentDate = date.split('-');
+                            let currentDateFormatted = Number(currentDate[0]+''+currentDate[2]+currentDate[1]);
+                            
+                            return collectionDateFormatted > currentDateFormatted
+                            
+                        }).slice(0,4).map((schedule,idx) => (
                             <tr key={idx}>
+                                {console.log(schedule)}
                                 <td>{schedule.barangay}</td>
                                 <td>{monthList[schedule.collectionDate.split('-')[2] - 1]} {schedule.collectionDate.split('-')[1]}, {schedule.collectionDate.split('-')[0]}</td>
                                 <td>{schedule.isCollected ? 'Collected' : 'Not Collected'}</td>

@@ -47,7 +47,7 @@ const AdminLogin = () => {
 
             <h1 className="mt-5 font-semibold text-4xl">WiseTruck</h1>
 
-            <form className="w-full md:w-1/2 px-14 mt-10" onSubmit={handleLogin}>
+            <form className="w-full md:w-1/2 px-14 mt-10 z-50" onSubmit={handleLogin}>
                 <h1 className="font-normal text-4xl">Welcome Admin!</h1>
                 <p className="text-sm font-medium">Clear the way! - make room for a greener tomorrow</p>
                 <p className="text-sm">Sign in to your account</p>
