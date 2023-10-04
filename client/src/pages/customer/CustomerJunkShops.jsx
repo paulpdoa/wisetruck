@@ -9,7 +9,8 @@ const CustomerJunkShops = () => {
             {/* Working Atlist maps with markers */}
             {/* <iframe src="https://my.atlist.com/map/ec46811b-0d32-4428-b442-41844df17821?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="85%" frameborder="0" scrolling="no" allowfullscreen></iframe>         */}
             {/* <iframe src="https://my.atlist.com/map/7c3d70a1-b36e-452d-a4a0-496b48efa66f?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="700px" frameborder="0" scrolling="no" allowfullscreen></iframe> */}
-            <iframe src="https://my.atlist.com/map/3212a212-de25-410b-be85-5c546ccf3cd2?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="700px" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            {/* <iframe src="https://my.atlist.com/map/3212a212-de25-410b-be85-5c546ccf3cd2?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="700px" frameborder="0" scrolling="no" allowfullscreen></iframe> */}
+            <iframe src="https://my.atlist.com/map/d9d66412-d170-442d-b10b-30cebbd9fc73?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="700px" frameborder="0" scrolling="no" allowfullscreen></iframe>
         </div>
     )
 }

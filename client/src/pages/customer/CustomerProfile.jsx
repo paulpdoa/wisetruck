@@ -35,8 +35,8 @@ const CustomerProfile = () => {
     
     return (
         <div className="relative h-screen flex flex-col items-center justify-center">
-            <div className="top-0 left-0 absolute w-full flex justify-center">
-                <img className="w-full" src="/images/Rectangle_2.png" alt="background" />
+            <div className="top-0 fixed w-full flex justify-center">
+                <img className="w-full absolute h-32 md:hidden block" src="/images/Rectangle_2.png" alt="background" />
                 <img className="z-50 absolute p-2 w-24" src="/images/icon_person.png" alt="icon person" />
                 <h1 className="absolute bottom-7 font-semibold text-sm">{records?.firstName} {records?.middleName} {records?.lastName}</h1>
             </div>
