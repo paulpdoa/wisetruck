@@ -1,0 +1,6 @@
+1. Color scheme of all pages
+-Change to Green
+2. News page 
+-Change to green inside boxes
+3. Add Wisetruck logo to left side and text in center
+4. 
