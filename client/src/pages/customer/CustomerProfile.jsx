@@ -38,10 +38,10 @@ const CustomerProfile = () => {
             <div className="top-0 fixed w-full flex justify-center">
                 <img className="w-full absolute h-32 md:hidden block" src="/images/Rectangle_2.png" alt="background" />
                 <img className="z-50 absolute p-2 w-24" src="/images/icon_person.png" alt="icon person" />
-                <h1 className="absolute bottom-7 font-semibold text-sm">{records?.firstName} {records?.middleName} {records?.lastName}</h1>
+                <h1 className="absolute bottom-24 font-semibold text-sm z-50">{records?.firstName} {records?.middleName} {records?.lastName}</h1>
             </div>
 
-            <div className="border w-11/12 border-gray-500 p-2 mt-9">
+            <div className="border w-11/12 border-gray-500 p-2 md:mt-28 mt-9">
                 <div className="text-center">
                     <h2 className="font-semibold">Address</h2>
                     <p className="text-gray-400">{records?.barangay} {records?.municipality}, {records?.province}</p>
