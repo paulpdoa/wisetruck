@@ -1,8 +1,9 @@
 const CustomerJunkShops = () => {
     return (
         <div className="h-screen w-full">
-            <div className="bg-green-200 p-5">
-                <h1 className="font-semibold text-center text-lg">Rosario, Cavite Junk Shops</h1>
+            <div className="bg-green-500 p-5 relative">
+                <img className="w-10 absolute top-2" src="/images/WiseTruck_Logo.png" alt="Wisetruck Logo" />
+                <h1 className="font-semibold text-gray-900 text-center text-lg">Rosario, Cavite Junk Shops</h1>
             </div>
             {/* Working Google Maps with markers / will be used as backup */}
             {/* <iframe src="https://www.google.com/maps/d/u/0/embed?mid=19cOor4sIKOqIT25SjkumAtDr2DObtrQ&ehbc=2E312F" width="100%" height="85%"></iframe> */}

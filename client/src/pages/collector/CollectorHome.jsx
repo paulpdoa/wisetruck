@@ -77,12 +77,12 @@ const CollectorHome = () => {
                     <h1 className="font-medium">Welcome {userName}!</h1>
                     <p className="text-sm">It's time to collect trash today</p>
                 </div>
-                <button onClick={handleLogout} className="bg-green-200 font-medium p-2 rounded-md">Logout</button>
+                <button onClick={handleLogout} className="bg-green-500 font-medium p-2 rounded-md">Logout</button>
             </div>
             { isLoading && <h1 className="animate-pulse text-gray-500 font-medium text-xl mt-5">Loading please wait...</h1> }
             <h2 className="mt-5 font-medium text-gray-500 text-xl">{dateToday}</h2>
             { schedules?.filter(schedule => !schedule.isCollected && schedule.collectionDate === date).length < 1 && <h1 className="animate-pulse text-gray-500 font-medium text-xl mt-5">No schedule for today</h1> }
-            { schedules?.filter(schedule => schedule.collectionDate === date && !schedule.isCollected).map((schedule,idx) => (
+            { schedules?.filter(schedule => schedule.collectionDate === date && !schedule.isCollected).map((schedule,idx,elements) => (
                 <div key={idx} className="bg-gray-200 rounded-lg w-full h-auto p-2 mt-2">
                     <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
@@ -101,11 +101,11 @@ const CollectorHome = () => {
                         </div>
                         }
                     </div>
-                    { schedules[idx + 1]?.barangay !== undefined && 
+                    { schedules.length > 0 && elements[idx + 1] !== undefined &&
                     <div className="flex justify-around items-center mt-3">
                         <p className="text-lg">Departure</p>
                         <p className="flex items-center font-bold">--------<FaGreaterThan /></p>
-                        <button className="bg-white text-sm p-2 rounded-full font-medium">{ schedules[idx + 1]?.barangay }</button>
+                        <button className="bg-white text-sm p-2 rounded-full font-medium">{elements[idx + 1].barangay}</button>
                     </div> 
                     }
                 </div>

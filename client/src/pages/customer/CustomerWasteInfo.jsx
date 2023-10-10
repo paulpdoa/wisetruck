@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 const CustomerWasteInfo = () => {
     return (
         <div className="w-full h-auto">
-            <div className="bg-green-200 p-5">
-                <h1 className="font-semibold text-gray-500 text-center text-lg">TYPES OF WASTE</h1>
+            <div className="bg-green-500 p-5 relative">
+                <img className="w-10 absolute top-2" src="/images/WiseTruck_Logo.png" alt="Wisetruck Logo" />
+                <h1 className="font-semibold text-gray-900 text-center text-lg">TYPES OF WASTE</h1>
             </div>
 
             <div className="grid grid-cols-2 justify-items-center py-20 gap-5">

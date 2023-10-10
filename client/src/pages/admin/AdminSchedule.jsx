@@ -13,8 +13,8 @@ const AdminSchedule = () => {
     const [date,setDate] = useState(new Date());
 
     // MM - DD - YY
-    const dateInputFormat = `${date.getFullYear()}${date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`}${date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth()}`;
-    const dateToday = `${new Date().getFullYear()}${new Date().getDate() < 10 ? `0${new Date().getDate()}` : `${new Date().getDate()}`}${new Date().getMonth() < 10 ? `0${new Date().getMonth()}` : new Date().getMonth()}`;
+    const dateInputFormat = `${date.getFullYear()}${date.getMonth() < 10 ? `0${date.getMonth()}` : date.getMonth()}${date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`}`;
+    const dateToday = `${new Date().getFullYear()}${new Date().getMonth() < 10 ? `0${new Date().getMonth()}` : new Date().getMonth()}${new Date().getDate() < 10 ? `0${new Date().getDate()}` : `${new Date().getDate()}`}`;
     
     const provinceCode = '0421';
     const cityCode = '042117';
@@ -23,7 +23,7 @@ const AdminSchedule = () => {
     const brgyRosario = barangays.filter((barangay => barangay.provCode === provinceCode && barangay.citymunCode === cityCode));
 
     const navigate = useNavigate();
-
+    
     const generateSchedule = async () => {
         try {
             if(Number(dateInputFormat) < Number(dateToday) || barangay === '') {

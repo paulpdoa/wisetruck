@@ -9,11 +9,12 @@ const WasteDetail = () => {
 
     return (
         <div className="w-full h-auto flex flex-col items-center">
-            <div className="bg-green-200 p-5 w-full">
-                <h1 className="font-semibold text-gray-500 text-center text-lg uppercase">{ records?.name }</h1>
+            <div className="bg-green-500 p-5 relative w-full">
+                <img className="w-10 absolute top-2" src="/images/WiseTruck_Logo.png" alt="Wisetruck Logo" />
+                <h1 className="font-semibold text-gray-900 text-center text-lg uppercase">{ records?.name }</h1>
             </div>
 
-            <div className="bg-green-200 rounded-lg h-56 w-11/12 mt-5 flex items-center justify-center">
+            <div className="bg-green-500 rounded-lg h-56 w-11/12 mt-5 flex items-center justify-center">
                 <img className="object-cover w-32" src={`${baseUrl()}/images/${records?.photo}`} alt={records?.name} />
             </div>
 

@@ -21,9 +21,10 @@ const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
     }
 
     return (
-        <nav className="flex justify-between items-center p-3 px-10 bg-green-200 text-gray-700">
+        <nav className="flex justify-between items-center p-3 px-10 bg-green-500 text-gray-700">
             <div className="flex gap-5 items-center">
                 <button onClick={() => setShowSidebar(!showSidebar)} className="font-bold md:hidden block"><CiMenuBurger /></button>
+                <img className="w-10 h-10" src="/images/WiseTruck_Logo.png" alt="wisetruck logo" />
                 <h1 className="text-xl font-semibold">{userName}</h1>
             </div>
             <div className="flex items-center gap-4">

@@ -38,7 +38,7 @@ const CustomerProfile = () => {
             <div className="top-0 fixed w-full flex justify-center">
                 <img className="w-full absolute h-32 md:hidden block" src="/images/Rectangle_2.png" alt="background" />
                 <img className="z-50 absolute p-2 w-24" src="/images/icon_person.png" alt="icon person" />
-                <h1 className="absolute bottom-24 font-semibold text-sm z-50">{records?.firstName} {records?.middleName} {records?.lastName}</h1>
+                <h1 className="font-semibold text-sm z-50 mt-24">{records?.firstName} {records?.middleName} {records?.lastName}</h1>
             </div>
 
             <div className="border w-11/12 border-gray-500 p-2 md:mt-28 mt-9">
@@ -79,7 +79,7 @@ const CustomerProfile = () => {
 
                     <form onSubmit={addFeedback} className="flex flex-col mt-2">
                         <input onChange={(e) => setFeedback(e.target.value)} className="border border-gray-500 p-2 outline-none" type="text" placeholder="Comment feedback" />
-                        <button className="items-end bg-green-200 w-1/2 mt-2 p-1 rounded-md font-medium">Submit</button>
+                        <button className="items-end bg-green-500 w-1/2 mt-2 p-1 rounded-md font-medium">Submit</button>
                     </form>
                 </div>
             </div>

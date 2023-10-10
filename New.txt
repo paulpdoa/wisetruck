@@ -1,6 +1,15 @@
-1. Color scheme of all pages
--Change to Green
-2. News page 
+Customer Page
+1. Color scheme of all - 500
+-Change to Green 
+2. News page - 500
 -Change to green inside boxes
-3. Add Wisetruck logo to left side and text in center
-4. 
+3. Add Wisetruck logo to left side and text in center - 500
+4. Name nawala sa profile - 0
+
+Admin Page
+1. Less date cannot be scheduled - Generate Schedules page - 0
+2. Add logo to navbar beside name of admin - 500
+3. Add latest comment to the top.  500
+
+Collector Page
+1. If one barangay only, don't display departure, else put next barangay - 0

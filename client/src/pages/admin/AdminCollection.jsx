@@ -47,15 +47,19 @@ const AdminCollection = () => {
                             {/* <th>Action</th> */}
                         </tr>
                         { schedules?.filter(schedule => {
-                            if(barangay === schedule.barangay) {
+                            if(barangay === '') {
                                 return schedule
                             }
-                            if(barangay === '') {
-                                return schedule.collectionDate === date
-                            }
+                            if(barangay === schedule.barangay) {
+                                return schedule
+                            } 
+                            // if(schedule.collectionDate === date) {
+                            //     return schedule
+                            // }
                         }).map((schedule,idx) => (
                             <tr className="border border-black" key={idx}>
                                 <td>{schedule.barangay}</td>
+                                {schedule.barangay === 'Ligtong I' && console.log(schedule.collectionDate)}
                                 <td>{monthList[schedule.collectionDate.split('-')[2] - 1]} {schedule.collectionDate.split('-')[1]}, {schedule.collectionDate.split('-')[0]}</td>
                                 {schedule.isCollected ? <td className="text-green-500 font-medium">Collected</td> : <td className="text-green-500 font-medium">Not Collected</td>}
                                 {/* <td className="flex items-center justify-center gap-2 border-none">

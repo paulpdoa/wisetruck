@@ -20,13 +20,13 @@ const AdminFeedback = () => {
                                 <th>Name</th>
                                 <th>Message</th>
                             </tr>
-                            { feedbacks?.map((record,idx) => (
+                            { feedbacks?.sort((a,b) => Number(b.createdAt.split('T')[0].split('-').join('')) - Number(a.createdAt.split('T')[0].split('-').join(''))).map((record,idx) => (
                                 record.user_id !== undefined && 
                                 <tr className="border border-black" key={idx}>
                                     <td>{record.user_id?.firstName} {record.user_id?.lastName}</td>
                                     <td>{record.feedback}</td>
                                 </tr>
-                            )) }
+                            ))}
                             
                         </tbody>
                     </table>

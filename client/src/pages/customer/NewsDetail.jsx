@@ -12,7 +12,7 @@ const NewsDetail = () => {
             <div className="bg-green-200 p-5">
                 <h1 className="font-semibold text-center text-lg">News Detail</h1>
             </div>
-            <div className="mt-10">
+            <div className="">
                 <div className="bg-green-200 border border-gray-500 p-5">
                     <div className="w-full h-56 border border-gray-500 overflow-auto flex items-center justify-center">
                         <img className="" src={`${baseUrl()}/images/${records.photo}`} alt={records.title} />

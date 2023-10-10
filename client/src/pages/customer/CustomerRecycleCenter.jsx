@@ -4,7 +4,8 @@ const CustomerRecycleCenter = () => {
 
     return (
         <div className="h-screen w-full">
-           <div className="bg-green-200 p-5">
+            <div className="bg-green-500 p-5 relative">
+                <img className="w-10 absolute top-2" src="/images/WiseTruck_Logo.png" alt="Wisetruck Logo" />
                 <h1 className="font-semibold text-center text-lg">Rosario, Cavite Recycle Center</h1>
             </div>
             {/* Working Google Maps with markers / will be used as backup */}

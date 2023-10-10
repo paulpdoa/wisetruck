@@ -578,6 +578,7 @@ module.exports.get_schedule_detail = async (req,res) => {
 
 module.exports.post_schedule = async (req,res) => {
     const { barangay,dateInputFormat } = req.body;
+
     let year = ''
     let date = ''
     let month = ''
@@ -589,15 +590,15 @@ module.exports.post_schedule = async (req,res) => {
         }
 
         if(i > 3 && i < 6) {
-            month += dateInputFormat[i];
+            date += dateInputFormat[i];
         }
 
         if(i > 5) {
-            date += dateInputFormat[i];
+            month += dateInputFormat[i];
         }
     }
     const dateFormat = `${year}-${month}-${(Number(date) + 1) < 10 ? `0${Number(date) + 1}` : Number(date) + 1 }`;
-
+  
     try {
         const checkSchedule = await Schedule.findOne({ barangay: barangay, collectionDate: dateFormat });
         // If there is already a schedule, don't allow because it will have multiple schedules within the day
