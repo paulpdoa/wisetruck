@@ -9,11 +9,12 @@ const NewsDetail = () => {
 
     return (
         <div className="w-full h-full">
-            <div className="bg-green-200 p-5">
-                <h1 className="font-semibold text-center text-lg">News Detail</h1>
+            <div className="bg-green-500 p-5 relative w-full">
+                <img className="w-10 absolute top-2" src="/images/WiseTruck_Logo.png" alt="Wisetruck Logo" />
+                <h1 className="font-semibold text-center text-lg text-gray-900">News Detail</h1>
             </div>
             <div className="">
-                <div className="bg-green-200 border border-gray-500 p-5">
+                <div className="bg-green-500 border border-gray-500 p-5">
                     <div className="w-full h-56 border border-gray-500 overflow-auto flex items-center justify-center">
                         <img className="" src={`${baseUrl()}/images/${records.photo}`} alt={records.title} />
                     </div>
