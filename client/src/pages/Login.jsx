@@ -41,8 +41,8 @@ const Login = () => {
 
     return (
         <div className="relative h-screen flex items-center justify-center">
-            <div className="top-0 fixed w-full flex justify-center">
-                <img className="w-full absolute h-32" src="/images/Rectangle_2.png" alt="background" />
+            <div className="top-0 fixed w-full flex justify-center bg-green-500 h-32 rounded-b-full">
+                {/* <img className="w-full absolute h-32" src="/images/Rectangle_2.png" alt="background" /> */}
                 <img className="z-50 absolute mt-12 w-32" src="/images/WiseTruck_Logo.png" alt="WiseTruck Logo" />
             </div>
 
@@ -57,7 +57,7 @@ const Login = () => {
                     <input className="w-full border-gray-300 border p-2 outline-none" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password..." />
                     <span className="text-red-500 text-xs">{passwordErr}</span>
                     <Link className="text-sm text-right" to='/forgot/password'>Forgot Password?</Link>
-                    <button className="bg-green-200 text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Login</button>
+                    <button className="bg-green-500 text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Login</button>
 
                     <p className="text-center text-sm mt-6">Not on WiseTruck yet? <Link className="underline" to='/signup'>Signup</Link></p>
                 </div>

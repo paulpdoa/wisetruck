@@ -34,11 +34,11 @@ const CustomerProfile = () => {
     }
     
     return (
-        <div className="relative h-screen flex flex-col items-center justify-center">
-            <div className="top-0 fixed w-full flex justify-center">
-                <img className="w-full absolute h-32 md:hidden block" src="/images/Rectangle_2.png" alt="background" />
+        <div className="flex flex-col items-center justify-center">
+            <div className="w-full relative flex h-32 justify-center bg-green-500 rounded-b-full">
+                {/* <img className="w-full absolute h-32 md:hidden block" src="/images/Rectangle_2.png" alt="background" /> */}
                 <img className="z-50 absolute p-2 w-24" src="/images/icon_person.png" alt="icon person" />
-                <h1 className="font-semibold text-sm z-50 mt-24">{records?.firstName} {records?.middleName} {records?.lastName}</h1>
+                <h1 className="font-semibold text-sm z-50 absolute bottom-2">{records?.firstName} {records?.middleName} {records?.lastName}</h1>
             </div>
 
             <div className="border w-11/12 border-gray-500 p-2 md:mt-28 mt-9">
