@@ -14,9 +14,11 @@ const CustomerLayout = () => {
     },[])
 
     return (
-        <div className="h-screen">
-            <Outlet />
-            <Navbar />
+        <div className="h-full">
+            <div className="h-screen bg-green-50">
+                <Outlet />
+                <Navbar />
+            </div>
         </div>
     )
 }

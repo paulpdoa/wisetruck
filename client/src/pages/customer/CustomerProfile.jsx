@@ -34,14 +34,14 @@ const CustomerProfile = () => {
     }
     
     return (
-        <div className="flex flex-col items-center justify-center">
-            <div className="w-full relative flex h-32 justify-center bg-green-500 rounded-b-full">
+        <div className="flex flex-col items-center justify-center bg-green-50 pb-36">
+            <div className="w-full relative flex h-32 justify-center bg-green-700 rounded-b-full">
                 {/* <img className="w-full absolute h-32 md:hidden block" src="/images/Rectangle_2.png" alt="background" /> */}
                 <img className="z-50 absolute p-2 w-24" src="/images/icon_person.png" alt="icon person" />
-                <h1 className="font-semibold text-sm z-50 absolute bottom-2">{records?.firstName} {records?.middleName} {records?.lastName}</h1>
+                <h1 className="font-semibold text-sm z-50 absolute bottom-2 text-white">{records?.firstName} {records?.middleName} {records?.lastName}</h1>
             </div>
 
-            <div className="border w-11/12 border-gray-500 p-2 md:mt-28 mt-9">
+            <div className="border w-11/12 md:w-1/2 border-gray-500 bg-white p-2 md:mt-28 mt-9">
                 <div className="text-center">
                     <h2 className="font-semibold">Address</h2>
                     <p className="text-gray-400">{records?.barangay} {records?.municipality}, {records?.province}</p>
@@ -54,21 +54,21 @@ const CustomerProfile = () => {
                 </div>  
             </div>
 
-            <div className="m-2 w-11/12 mt-10">
+            <div className="m-2 w-11/12 md:w-1/2 mt-10">
                 <Link to='/about'>
-                    <div className="border border-gray-500 p-2 flex justify-between items-center">
+                    <div className="border border-gray-500 bg-white p-2 flex justify-between items-center">
                         <h2>About Us</h2>
                         <Link className="text-lg" to='/about'><FiChevronRight /></Link>
                     </div>
                 </Link>
                 <Link to='/support'>
-                    <div className="border border-gray-500 p-2 flex justify-between items-center">
+                    <div className="border border-gray-500 bg-white p-2 flex justify-between items-center">
                         <h2>Help and Support</h2>
                         <Link className="text-lg" to='/support'><FiChevronRight /></Link>
                     </div>
                 </Link>
                 <Link to='/contact'>
-                    <div className="border border-gray-500 p-2 flex justify-between items-center">
+                    <div className="border border-gray-500 bg-white p-2 flex justify-between items-center">
                         <h2>Contact Us</h2>
                         <Link className="text-lg" to='/contact'><FiChevronRight /></Link>
                     </div>
@@ -79,12 +79,12 @@ const CustomerProfile = () => {
 
                     <form onSubmit={addFeedback} className="flex flex-col mt-2">
                         <input onChange={(e) => setFeedback(e.target.value)} className="border border-gray-500 p-2 outline-none" type="text" placeholder="Comment feedback" />
-                        <button className="items-end bg-green-500 w-1/2 mt-2 p-1 rounded-md font-medium">Submit</button>
+                        <button className="items-end bg-green-500 w-1/3 border border-gray-900 mt-2 p-1 rounded-full font-medium text-white">Submit</button>
                     </form>
                 </div>
             </div>
 
-            <button onClick={logoutUser} className="border border-gray-500 p-2 w-11/12 mt-20 font-semibold">Sign out</button>
+            <button onClick={logoutUser} className="border border-gray-500 p-2 w-11/12 md:w-1/2 mt-20 font-semibold bg-white">Sign out</button>
 
         </div>
     )

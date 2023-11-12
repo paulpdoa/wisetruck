@@ -113,14 +113,13 @@ const Signup = () => {
     }
 
     return (
-        <div className="relative h-screen flex items-center justify-center">
-            <div className="top-0 left-0 absolute w-full flex justify-center">
-                <img className="w-full absolute" src="/images/Rectangle_2.png" alt="background" />
-                <img className="z-50 absolute mt-20 w-24" src="/images/icon_person.png" alt="icon person" />
-            </div>
+        <div className="relative h-screen flex items-center justify-center overflow-hidden pb-36">
+            {/* <div className="top-0 fixed w-full flex justify-center bg-green-500 h-32 rounded-b-full">
+                <img className="z-50 absolute mt-12 w-32" src="/images/WiseTruck_Logo.png" alt="WiseTruck Logo" />
+            </div> */}
             
             <form className="w-full px-14" onSubmit={handleSubmit}>
-                <h1 className="font-semibold text-xl">Register here!</h1>
+                <h1 className="font-semibold text-green-700 text-xl">Register here!</h1>
 
                 { !isNextPage ? 
                 <div className="flex flex-col gap-2 mt-5">
@@ -131,7 +130,7 @@ const Signup = () => {
                     <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full border-gray-300 border p-2 outline-none" type="email" placeholder="Email Address:" />
                     <input onChange={(e) => setPassword(e.target.value)} value={password} className="w-full border-gray-300 border p-2 outline-none" type="password" placeholder="Password:" />
                     <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className="w-full border-gray-300 border p-2 outline-none" type="password" placeholder="Confirm Password:" />
-                    <p onClick={validateFirstPage} className="self-center font-semibold bg-green-200 w-1/2 text-center rounded-full mt-3" role='button'>Next</p>
+                    <p onClick={validateFirstPage} className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full text-center " role='button'>Next</p>
                 </div> : 
                 <div className="flex flex-col gap-2 mt-5">
                     <select onChange={(e) => selectProvince(e.target.value)} className="w-full border-gray-300 border p-2 outline-none" required>
@@ -183,16 +182,14 @@ const Signup = () => {
                     </div>
 
                     <div className="flex gap-2">
-                        <p onClick={() => setIsNextPage(!isNextPage)} className="self-center font-semibold bg-green-200 w-1/2 text-center rounded-full mt-3" role='button'>Back</p>
-                        <button className="self-center font-semibold bg-green-200 w-1/2 text-center rounded-full mt-3">Submit</button>
+                        <p onClick={() => setIsNextPage(!isNextPage)} className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 text-center rounded-full" role='button'>Back</p>
+                        <button className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Submit</button>
                     </div>
                 </div>
                 }
-
-                
-                
-
             </form>
+            <img className="absolute bottom-0 -right-12" src="/images/WiseTruck_Logo.png" alt="Logo" />
+
             { isRegistered && <SuccessMssg message={message} redirect={redirect} closeMessage={setIsRegistered} /> }
         </div>
     )

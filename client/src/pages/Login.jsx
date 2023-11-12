@@ -40,28 +40,30 @@ const Login = () => {
     }
 
     return (
-        <div className="relative h-screen flex items-center justify-center">
-            <div className="top-0 fixed w-full flex justify-center bg-green-500 h-32 rounded-b-full">
-                {/* <img className="w-full absolute h-32" src="/images/Rectangle_2.png" alt="background" /> */}
+        <div className="relative h-screen flex items-center justify-center md:bg-green-50 overflow-hidden pb-36 md:pb-0">
+            {/* <div className="top-0 fixed w-full flex justify-center bg-green-700 h-32 rounded-b-full">
                 <img className="z-50 absolute mt-12 w-32" src="/images/WiseTruck_Logo.png" alt="WiseTruck Logo" />
-            </div>
+            </div> */}
 
-            <form className="w-full px-14 z-50 bg-white" onSubmit={handleLogin}>
-                <h1 className="font-normal text-4xl">Welcome!</h1>
-                <p className="text-sm font-medium">Clear the way! - make room for a greener tomorrow</p>
+            <form className="w-full md:w-1/3 md:h-4/5 overflow-hidden py-0 md:py-5 md:border relative border-gray-900 md:rounded-md px-14 z-50 bg-white" onSubmit={handleLogin}>
+                <h1 className="font-normal text-4xl text-green-700">Welcome!</h1>
+                <p className="text-sm font-medium text-green-700">Clear the way! - make room for a greener tomorrow</p>
                 <p className="text-sm">Sign in to your account</p>
 
                 <div className="relative flex flex-col gap-2 mt-5">
-                    <input className="w-full border-gray-300 border p-2 outline-none" type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email..." />
+                    <input className="w-full border-gray-300 border p-2 outline-none" type="email" absolutege={(e) => setEmail(e.target.value)} placeholder="Email..." />
                     <span className="text-red-500 text-xs">{emailErr}</span>
                     <input className="w-full border-gray-300 border p-2 outline-none" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password..." />
                     <span className="text-red-500 text-xs">{passwordErr}</span>
                     <Link className="text-sm text-right" to='/forgot/password'>Forgot Password?</Link>
-                    <button className="bg-green-500 text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Login</button>
+                    <button className="bg-green-700 text-lg font-normal text-white border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Login</button>
 
                     <p className="text-center text-sm mt-6">Not on WiseTruck yet? <Link className="underline" to='/signup'>Signup</Link></p>
                 </div>
+                <img className="absolute md:block hidden bottom-0 -right-12 w-1/2" src="/images/WiseTruck_Logo.png" alt="Logo" />
             </form>
+
+            <img className="absolute md:hidden bottom-0 -right-12" src="/images/WiseTruck_Logo.png" alt="Logo" />
 
         </div>
         

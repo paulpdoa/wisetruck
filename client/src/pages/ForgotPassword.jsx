@@ -30,24 +30,18 @@ const ForgotPassword = () => {
     }
 
     return (
-        <div className="relative h-screen flex items-center justify-center">
-            <div className="top-0 left-0 absolute w-full flex justify-center">
-                <img className="w-full absolute" src="/images/Rectangle_2.png" alt="background" />
-                <img className="z-50 absolute mt-14 w-44" src="/images/eye.png" alt="eye" />
-            </div>
-
+        <div className="relative h-screen flex items-center justify-center pb-36">
             <form className="w-full px-14" onSubmit={searchEmail}>
-                <h1 className="font-normal text-2xl">Recover your account</h1>
+                <h1 className="font-bold text-green-700 text-2xl">Recover your account</h1>
 
                 <div className="relative flex flex-col gap-2 mt-5">
-                    
-                    { isLoading && <p className="text-xs text-green-500 flex items-center gap-2"><AiOutlineLoading3Quarters className="animate-spin" /> Please wait, a message is being sent to your email.</p> }
+                    { isLoading && <p className="text-xs text-green-700 flex items-center gap-2"><AiOutlineLoading3Quarters className="animate-spin" /> Please wait, a message is being sent to your email.</p> }
                     <input className="w-full border-gray-300 border p-2 outline-none" type="email" onChange={(e) => setEmail(e.target.value)} placeholder="Email..." />
                     { emailErr !== '' && <p className="text-xs text-red-500 flex items-center gap-2">{emailErr}</p> }
-                    <button className="bg-green-200 text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Send Code</button>
+                    <button className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Send Code</button>
                 </div>
             </form>
-
+            <img className="absolute bottom-0 -right-12" src="/images/WiseTruck_Logo.png" alt="Logo" /> 
         </div>
     )
 }

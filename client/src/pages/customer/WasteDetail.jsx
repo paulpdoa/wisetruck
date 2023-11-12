@@ -8,13 +8,13 @@ const WasteDetail = () => {
     const { records } = fetchApiHook(`${baseUrl()}/wastes/${id}`);
 
     return (
-        <div className="w-full h-auto flex flex-col items-center">
-            <div className="bg-green-500 p-5 relative w-full">
+        <div className="w-full h-auto flex flex-col items-center pb-36">
+            <div className="bg-green-700 p-5 relative w-full">
                 <img className="w-10 absolute top-2" src="/images/WiseTruck_Logo.png" alt="Wisetruck Logo" />
-                <h1 className="font-semibold text-gray-900 text-center text-lg uppercase">{ records?.name }</h1>
+                <h1 className="font-bold text-white text-center text-3xl">{records?.name?.slice(0,1).toUpperCase()}{records?.name?.slice(1)}</h1>
             </div>
 
-            <div className="bg-green-500 rounded-lg h-56 w-11/12 mt-5 flex items-center justify-center">
+            <div className="bg-green-700 rounded-lg h-56 w-11/12 mt-5 flex items-center justify-center">
                 <img className="object-cover w-32" src={`${baseUrl()}/images/${records?.photo}`} alt={records?.name} />
             </div>
 

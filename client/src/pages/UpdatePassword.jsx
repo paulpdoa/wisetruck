@@ -35,14 +35,9 @@ const UpdatePassword = () => {
     }
 
     return (
-        <div className="relative h-screen flex items-center justify-center">
-            <div className="top-0 left-0 absolute w-full flex justify-center">
-                <img className="w-full absolute" src="/images/Rectangle_2.png" alt="background" />
-                <img className="z-50 absolute mt-20 w-24" src="/images/verified.png" alt="verified" />
-            </div>
-
+        <div className="relative h-screen flex items-center justify-center pb-36">
             <form className="w-full px-14" onSubmit={handleSubmit}>
-                <h1 className="font-normal text-2xl">Create new password</h1>
+                <h1 className="font-bold text-green-700 text-2xl">Create new password</h1>
 
                 <div className="relative flex flex-col gap-2 mt-5">
                     <span className="text-xs text-right text-gray-500">Minimum of 8 characters</span>
@@ -51,9 +46,10 @@ const UpdatePassword = () => {
 
                     <input className="w-full border-gray-300 border p-2 outline-none" type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />
                     
-                    <button className="bg-green-200 text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Submit</button>
+                    <button className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Submit</button>
                 </div>
             </form>
+            <img className="absolute bottom-0 -right-12" src="/images/WiseTruck_Logo.png" alt="Logo" />
             { isUpdated && <SuccessMssg message={message} redirect={redirect} closeMessage={setIsUpdated} /> }
         </div>
     )

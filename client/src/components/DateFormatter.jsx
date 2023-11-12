@@ -1,4 +1,4 @@
-const DateFormatter = ({ date }) => {
+const DateFormatter = ({ date,style }) => {
 
     const monthList = ['January','February','March','April','May','June','July','August','September','October','November','December']
     
@@ -9,7 +9,7 @@ const DateFormatter = ({ date }) => {
     const day = dateFormat.split('-')[2];
 
     return (
-        <span className="text-gray-900 font-normal">{ monthList[parseInt(month,10) - 1] } { day }, { year } </span>
+        <span className={`${style !== '' ? style : "text-gray-900 font-normal" }`}>{ monthList[parseInt(month,10) - 1] } { day }, { year } </span>
     )
 }
 
