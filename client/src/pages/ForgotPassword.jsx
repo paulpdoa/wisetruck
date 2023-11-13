@@ -30,8 +30,8 @@ const ForgotPassword = () => {
     }
 
     return (
-        <div className="relative h-screen flex items-center justify-center pb-36">
-            <form className="w-full px-14" onSubmit={searchEmail}>
+        <div className="relative h-screen flex items-center justify-center pb-36 overflow-hidden">
+            <form className="w-full md:w-1/3 px-14" onSubmit={searchEmail}>
                 <h1 className="font-bold text-green-700 text-2xl">Recover your account</h1>
 
                 <div className="relative flex flex-col gap-2 mt-5">
