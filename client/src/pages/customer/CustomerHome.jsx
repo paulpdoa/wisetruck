@@ -62,7 +62,7 @@ const CustomerHome = () => {
                                         <img className="absolute w-10" src="/images/Junkshop-Icon.png" alt="icon" />
                                         <img className="w-24" src="/images/Junkshop-Crosshair-Icon.png" alt="cross hair" />
                                     </div>
-                                    <Link to='/junkshops' className="bg-white bg-opacity-50 text-green-700 w-fit font-bold p-2 rounded-md border border-gray-400">Locate your nearest Exclusive Junkshops</Link>
+                                    <Link to='/junkshops' className="bg-white md:text-lg text-sm bg-opacity-50 text-green-700 w-fit font-bold p-2 rounded-md border border-gray-400">Locate your nearest Junkshops</Link>
                                 </div>
                             </div>
                             <p className="text-white font-bold">Earn while conserving the environment by turning over recyclable wastes to your nearest exclusive junkshops</p>
@@ -76,7 +76,7 @@ const CustomerHome = () => {
                                         <img className="absolute w-16" src="/images/Recycle-Centers-Pin-Location.png" alt="icon" />
                                         <img className="w-24" src="/images/globe.png" alt="globe" />
                                     </div>
-                                    <Link to='/recyclecenters' className="bg-white bg-opacity-50 text-green-700 w-fit font-bold p-2 rounded-md border border-gray-400">Locate your nearest Recycle Centers</Link>
+                                    <Link to='/recyclecenters' className="bg-white  md:text-lg text-sm bg-opacity-50 text-green-700 w-fit font-bold p-2 rounded-md border border-gray-400">Locate your nearest Recycle Centers</Link>
                                 </div>
                             </div>
                             <p className="text-white font-bold">Participate by turning over your plastic wastes to your nearest Recycle Centers to lessen municipal generated waste </p>

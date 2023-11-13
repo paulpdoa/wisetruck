@@ -79,7 +79,7 @@ const CustomerProfile = () => {
 
                     <form onSubmit={addFeedback} className="flex flex-col mt-2">
                         <input onChange={(e) => setFeedback(e.target.value)} className="border border-gray-500 p-2 outline-none" type="text" placeholder="Comment feedback" />
-                        <button className="items-end bg-green-500 w-1/3 border border-gray-900 mt-2 p-1 rounded-full font-medium text-white">Submit</button>
+                        <button className="items-end bg-green-700 w-1/3 border border-gray-900 mt-2 p-1 rounded-full font-medium text-white">Submit</button>
                     </form>
                 </div>
             </div>

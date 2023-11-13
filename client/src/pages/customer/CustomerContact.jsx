@@ -1,8 +1,9 @@
 const CustomerContact = () => {
     return (
         <div className="h-screen w-full">
-            <div className="bg-green-200 p-5">
-                <h1 className="font-semibold text-center text-lg">Contact Us</h1>
+            <div className="bg-green-700 p-5 relative">
+                <img className="w-10 absolute top-2" src="/images/WiseTruck_Logo.png" alt="Wisetruck Logo" />
+                <h1 className="font-bold text-center text-white md:text-2xl text-lg">Contact Us</h1>
             </div>
 
             <div className="p-5">
