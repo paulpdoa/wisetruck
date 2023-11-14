@@ -76,7 +76,7 @@ const CustomerHome = () => {
                                         <img className="absolute w-16" src="/images/Recycle-Centers-Pin-Location.png" alt="icon" />
                                         <img className="w-24" src="/images/globe.png" alt="globe" />
                                     </div>
-                                    <Link to='/recyclecenters' className="bg-white  md:text-lg text-sm bg-opacity-50 text-green-700 w-fit font-bold p-2 rounded-md border border-gray-400">Locate your nearest Recycle Centers</Link>
+                                    <Link to='/recyclecenters' className="bg-white  md:text-lg text-sm   bg-opacity-50 text-green-700 w-fit font-bold p-2 rounded-md border border-gray-400">Locate your nearest Recycle Centers</Link>
                                 </div>
                             </div>
                             <p className="text-white font-bold">Participate by turning over your plastic wastes to your nearest Recycle Centers to lessen municipal generated waste </p>
@@ -123,8 +123,8 @@ const CustomerHome = () => {
                     <h1 className="font-bold text-green-700 text-3xl">Announcements</h1>
 
                     <div className="p-2 w-full flex items-center justify-around rounded-md mt-5">
-                        <div className="border-8 border-gray-900 relative rounded-2xl">
-                            <p className="p-2 text-green-700 font-bold md:text-sm text-xs w-3/4">{announcement.description}</p>
+                        <div className="border-8 border-gray-900 h-56 relative rounded-2xl">
+                            <p className="p-2 text-green-700 font-bold md:text-sm text-xs w-full">{announcement.description}</p>
                             <div className="w-14 h-14 overflow-hidden rotate-45 absolute bottom-5 -right-[34px]">
                                 <div className="w-14 h-14 border-8 absolute border-gray-800 bg-green-100 border-l-0 border-b-0"></div>
                             </div>
