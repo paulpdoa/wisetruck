@@ -95,7 +95,7 @@ const CustomerHome = () => {
                                 <p className="text-xs text-end"><DateFormatter style="text-green-700 font-bold" date={news.createdAt} /></p>
                             </Link>
                         )) }
-                        <Link to='/news' className="w-full md:flex justify-center hidden bg-[url('/images/Junkshop-Homepage.jpg')] relative bg-cover bg-blend-lighten bg-white bg-opacity-50 h-[213px]">
+                        <Link to='/news' className="w-full md:flex justify-center hidden bg-[url('/images/cleanup.png')] relative bg-cover bg-blend-lighten bg-white bg-opacity-50 h-[213px]">
                             <div className="text-center absolute h-[213px] w-full flex flex-col items-center justify-center">
                                 <h2 className="text-green-700 text-6xl font-bold p-1">+</h2>
                                 <p className="text-end text-2xl font-bold text-green-700">See more...</p>
@@ -110,7 +110,7 @@ const CustomerHome = () => {
                                 <p className="text-xs text-end"><DateFormatter style="text-green-700 font-bold" date={news.createdAt} /></p>
                             </Link>
                         )) }
-                        <Link to='/news' className="w-full flex justify-center md:hidden relative  bg-[url('/images/Junkshop-Homepage.jpg')] bg-cover bg-blend-lighten bg-white bg-opacity-50 h-[213px]">
+                        <Link to='/news' className="w-full flex justify-center md:hidden relative  bg-[url('/images/cleanup.png')] bg-cover bg-blend-lighten bg-white bg-opacity-50 h-[213px]">
                             <div className="text-center absolute h-[213px] w-full flex flex-col items-center justify-center">
                                 <h2 className="text-green-700 text-6xl font-bold p-1">+</h2>
                                 <p className="text-end text-2xl font-bold text-green-700">See more...</p>
