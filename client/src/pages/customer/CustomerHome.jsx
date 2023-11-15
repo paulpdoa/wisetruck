@@ -123,9 +123,11 @@ const CustomerHome = () => {
                     <h1 className="font-bold text-green-700 text-3xl">Announcements</h1>
 
                     <div className="p-2 w-full flex items-center justify-around rounded-md mt-5">
-                        <div className="border-8 border-gray-900 h-56 relative rounded-2xl">
-                            <p className="p-2 text-green-700 font-bold md:text-sm text-xs w-full">{announcement.description}</p>
-                            <div className="w-14 h-14 overflow-hidden rotate-45 absolute bottom-5 -right-[34px]">
+                        <div className="relative">
+                            <div className="border-8 border-gray-900 h-56 md:flex md:flex-col md:items-center md:justify-center relative rounded-2xl overflow-y-scroll announce">
+                                <p className="p-2 text-green-700 font-bold md:text-sm text-xs md:text-center w-full">{announcement.description}</p>
+                            </div>
+                            <div className="w-14 h-14 overflow-hidden rotate-45 absolute bottom-4 -right-[25px]">
                                 <div className="w-14 h-14 border-8 absolute border-gray-800 bg-green-100 border-l-0 border-b-0"></div>
                             </div>
                         </div>
