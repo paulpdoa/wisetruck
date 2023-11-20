@@ -113,82 +113,80 @@ const Signup = () => {
     }
 
     return (
-        <div className="relative h-screen flex items-center justify-center overflow-hidden pb-36">
-            {/* <div className="top-0 fixed w-full flex justify-center bg-green-500 h-32 rounded-b-full">
-                <img className="z-50 absolute mt-12 w-32" src="/images/WiseTruck_Logo.png" alt="WiseTruck Logo" />
-            </div> */}
-            
-            <form className="w-full px-14" onSubmit={handleSubmit}>
-                <h1 className="font-semibold text-green-700 text-xl">Register here!</h1>
+        <div className="relative h-screen bg-green-50 flex items-center justify-center overflow-hidden pb-36 md:pb-0">
+            <div className="md:w-1/2 w-full md:relative md:bg-white md:p-5 md:rounded-lg md:border md:border-gray-800 px-14">
+                <form className="z-20" onSubmit={handleSubmit}>
+                    <h1 className="font-semibold text-green-700 text-xl">Register here!</h1>
 
-                { !isNextPage ? 
-                <div className="flex flex-col gap-2 mt-5">
-                    <input onChange={(e) => setFirstName(e.target.value)} value={firstName} className="w-full border-gray-300 border p-2 outline-none" type="text" placeholder="Firstname:" />
-                    <input onChange={(e) => setLastName(e.target.value)} value={lastName} className="w-full border-gray-300 border p-2 outline-none" type="text" placeholder="Lastname:" />
-                    <input onChange={(e) => setMiddleName(e.target.value)} value={middleName} className="w-full border-gray-300 border p-2 outline-none" type="text" placeholder="Middlename:" />
-                    <input onChange={(e) => setPhoneNumber(e.target.value)} value={phoneNumber} className="w-full border-gray-300 border p-2 outline-none" type="text" placeholder="Phone no.:" />
-                    <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full border-gray-300 border p-2 outline-none" type="email" placeholder="Email Address:" />
-                    <input onChange={(e) => setPassword(e.target.value)} value={password} className="w-full border-gray-300 border p-2 outline-none" type="password" placeholder="Password:" />
-                    <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className="w-full border-gray-300 border p-2 outline-none" type="password" placeholder="Confirm Password:" />
-                    <p onClick={validateFirstPage} className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full text-center " role='button'>Next</p>
-                </div> : 
-                <div className="flex flex-col gap-2 mt-5">
-                    <select onChange={(e) => selectProvince(e.target.value)} className="w-full border-gray-300 border p-2 outline-none" required>
-                        <option hidden>Select Province first</option>
-                        { provinces.RECORDS.sort((a,b) =>{
-                                if (a.provDesc < b.provDesc) {
-                                return -1;
-                                }
-                                if (a.provDesc > b.provDesc) {
-                                return 1;
-                                }
-                                return 0;
-                        }).map((province) => (
-                            <option key={province.id} value={ province.provCode }>{ province.provDesc[0]+province.provDesc.slice(1,province.provDesc.length).toLowerCase() }</option>
-                        )) }
-                    </select>
-                    { province === '' ? <p className="w-full border-gray-300 border p-2 outline-none text-gray-400">Select province first</p> : <select value={city.toUpperCase()} onChange={(e) => selectCity(e.target.value)} className="w-full border-gray-300 border p-2 outline-none" required>
-                        <option hidden>Municipality</option>
-                        { cities.RECORDS.sort((a,b) => {
-                            if (a.citymunDesc < b.citymunDesc) {
-                                return -1;
-                                }
-                                if (a.citymunDesc > b.citymunDesc) {
-                                return 1;
-                                }
-                                return 0;
-                        }).filter(city => city.provCode === provCode).map((city) => (
-                            <option key={city.id} value={ city.citymunDesc }>{ city.citymunDesc[0]+city.citymunDesc.slice(1,city.citymunDesc.length).toLowerCase() }</option> 
-                        )) }
-                    </select> }
+                    { !isNextPage ? 
+                    <div className="flex flex-col gap-2 mt-5">
+                        <input onChange={(e) => setFirstName(e.target.value)} value={firstName} className="w-full border-gray-300 border p-2 outline-none z-50" type="text" placeholder="Firstname:" />
+                        <input onChange={(e) => setLastName(e.target.value)} value={lastName} className="w-full border-gray-300 border p-2 outline-none z-50" type="text" placeholder="Lastname:" />
+                        <input onChange={(e) => setMiddleName(e.target.value)} value={middleName} className="w-full border-gray-300 border p-2 outline-none z-50" type="text" placeholder="Middlename:" />
+                        <input onChange={(e) => setPhoneNumber(e.target.value)} value={phoneNumber} className="w-full border-gray-300 border p-2 outline-none z-50" type="text" placeholder="Phone no.:" />
+                        <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full border-gray-300 border p-2 outline-none z-50" type="email" placeholder="Email Address:" />
+                        <input onChange={(e) => setPassword(e.target.value)} value={password} className="w-full border-gray-300 border p-2 outline-none z-50" type="password" placeholder="Password:" />
+                        <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className="w-full border-gray-300 border p-2 outline-none z-50" type="password" placeholder="Confirm Password:" />
+                        <p onClick={validateFirstPage} className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full text-center z-50" role='button'>Next</p>
+                    </div> : 
+                    <div className="flex flex-col gap-2 mt-5">
+                        <select onChange={(e) => selectProvince(e.target.value)} className="w-full border-gray-300 border p-2 outline-none z-50" required>
+                            <option hidden>Select Province first</option>
+                            { provinces.RECORDS.sort((a,b) =>{
+                                    if (a.provDesc < b.provDesc) {
+                                    return -1;
+                                    }
+                                    if (a.provDesc > b.provDesc) {
+                                    return 1;
+                                    }
+                                    return 0;
+                            }).map((province) => (
+                                <option key={province.id} value={ province.provCode }>{ province.provDesc[0]+province.provDesc.slice(1,province.provDesc.length).toLowerCase() }</option>
+                            )) }
+                        </select>
+                        { province === '' ? <p className="w-full bg-white border-gray-300 border p-2 outline-none text-gray-400 z-50">Select province first</p> : <select value={city.toUpperCase()} onChange={(e) => selectCity(e.target.value)} className="w-full border-gray-300 border p-2 outline-none z-50" required>
+                            <option hidden>Municipality</option>
+                            { cities.RECORDS.sort((a,b) => {
+                                if (a.citymunDesc < b.citymunDesc) {
+                                    return -1;
+                                    }
+                                    if (a.citymunDesc > b.citymunDesc) {
+                                    return 1;
+                                    }
+                                    return 0;
+                            }).filter(city => city.provCode === provCode).map((city) => (
+                                <option key={city.id} value={ city.citymunDesc }>{ city.citymunDesc[0]+city.citymunDesc.slice(1,city.citymunDesc.length).toLowerCase() }</option> 
+                            )) }
+                        </select> }
 
-                    { city === '' ? <p className="w-full border-gray-300 border p-2 outline-none text-gray-400">Select city first</p> :<select value={barangay} onChange={(e) => setBarangay(e.target.value)} className="w-full border-gray-300 border p-2 outline-none" required>
-                        <option hidden>Select your barangay</option>
-                        { barangays.RECORDS.sort((a,b) => {
-                            if (a.brgyDesc < b.brgyDesc) {
-                                return -1;
-                                }
-                                if (a.brgyDesc > b.brgyDesc) {
-                                return 1;
-                                }
-                                return 0;
-                        }).filter(barangay => barangay.citymunCode === cityCode).map((barangay) => (
-                            <option key={barangay.id} value={ barangay.brgyDesc }>{ barangay.brgyDesc }</option>
-                        )) }
-                    </select> }
-                    <div className="w-full border-gray-300 border p-2 outline-none relative">
-                        <span className={`${validId !== '' ? 'hidden' : 'flex'} items-center gap-2 text-gray-400`}><HiOutlineUpload />Upload your ID</span>
-                        <input className={`${validId !== '' ? 'opacity-100' : 'opacity-0 absolute h-full w-full'} top-0 left-0`} onChange={getValidId} accept='image/*' type="file" name="idCard" />
+                        { city === '' ? <p className="w-full bg-white border-gray-300 border p-2 outline-none text-gray-400 z-50">Select city first</p> :<select value={barangay} onChange={(e) => setBarangay(e.target.value)} className="w-full border-gray-300 border p-2 outline-none z-50" required>
+                            <option hidden>Select your barangay</option>
+                            { barangays.RECORDS.sort((a,b) => {
+                                if (a.brgyDesc < b.brgyDesc) {
+                                    return -1;
+                                    }
+                                    if (a.brgyDesc > b.brgyDesc) {
+                                    return 1;
+                                    }
+                                    return 0;
+                            }).filter(barangay => barangay.citymunCode === cityCode).map((barangay) => (
+                                <option key={barangay.id} value={ barangay.brgyDesc }>{ barangay.brgyDesc }</option>
+                            )) }
+                        </select> }
+                        <div className="w-full border-gray-300 border p-2 outline-none relative z-50 bg-white">
+                            <span className={`${validId !== '' ? 'hidden' : 'flex'} items-center gap-2 text-gray-400`}><HiOutlineUpload />Upload your ID</span>
+                            <input className={`${validId !== '' ? 'opacity-100' : 'opacity-0 absolute h-full w-full'} top-0 left-0`} onChange={getValidId} accept='image/*' type="file" name="idCard" />
+                        </div>
+
+                        <div className="flex gap-2 z-50">
+                            <p onClick={() => setIsNextPage(!isNextPage)} className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 text-center rounded-full" role='button'>Back</p>
+                            <button className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Submit</button>
+                        </div>
                     </div>
-
-                    <div className="flex gap-2">
-                        <p onClick={() => setIsNextPage(!isNextPage)} className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 text-center rounded-full" role='button'>Back</p>
-                        <button className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Submit</button>
-                    </div>
-                </div>
-                }
-            </form>
-            <img className="absolute bottom-0 -right-12" src="/images/WiseTruck_Logo.png" alt="Logo" />
+                    }
+                </form>
+                <img className="absolute bottom-0 -right-12 z-0" src="/images/WiseTruck_Logo.png" alt="Logo" />
+            </div>
 
             { isRegistered && <SuccessMssg message={message} redirect={redirect} closeMessage={setIsRegistered} /> }
         </div>

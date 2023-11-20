@@ -49,13 +49,10 @@ const AdminHome = () => {
                             let collectionDate = schedule.collectionDate.split('-');
                             let collectionDateFormatted = Number(collectionDate[0]+''+collectionDate[2]+collectionDate[1]);
                             let currentDate = date.split('-');
-                            let currentDateFormatted = Number(currentDate[0]+''+currentDate[2]+currentDate[1]);
-                            
-                            return collectionDateFormatted > currentDateFormatted
-                            
+                            let currentDateFormatted = Number(currentDate[0]+''+currentDate[2]+currentDate[1]);           
+                            return collectionDateFormatted > currentDateFormatted                 
                         }).slice(0,4).map((schedule,idx) => (
                             <tr key={idx}>
-                                {console.log(schedule)}
                                 <td>{schedule.barangay}</td>
                                 <td>{monthList[schedule.collectionDate.split('-')[2] - 1]} {schedule.collectionDate.split('-')[1]}, {schedule.collectionDate.split('-')[0]}</td>
                                 <td>{schedule.isCollected ? 'Collected' : 'Not Collected'}</td>

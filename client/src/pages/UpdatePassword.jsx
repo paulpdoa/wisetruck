@@ -35,11 +35,11 @@ const UpdatePassword = () => {
     }
 
     return (
-        <div className="relative h-screen flex items-center justify-center pb-36">
-            <form className="w-full px-14" onSubmit={handleSubmit}>
+        <div className="relative h-screen flex items-center justify-center bg-green-50 overflow-hidden pb-36">
+            <form className="md:w-1/2 relative overflow-hidden w-full p-14 md:bg-white md:border md:border-gray-800 md:shadow-lg md:rounded-lg" onSubmit={handleSubmit}>
                 <h1 className="font-bold text-green-700 text-2xl">Create new password</h1>
 
-                <div className="relative flex flex-col gap-2 mt-5">
+                <div className="relative flex flex-col gap-2 mt-5 z-50">
                     <span className="text-xs text-right text-gray-500">Minimum of 8 characters</span>
                     <input className="w-full border-gray-300 border p-2 outline-none" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="New Password" />
                     <span className="text-red-500 text-xs">{passwordErr}</span>
@@ -48,8 +48,9 @@ const UpdatePassword = () => {
                     
                     <button className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Submit</button>
                 </div>
+                <img className="absolute w-1/3 bottom-0 -right-12 md:block hidden" src="/images/WiseTruck_Logo.png" alt="Logo" />
             </form>
-            <img className="absolute bottom-0 -right-12" src="/images/WiseTruck_Logo.png" alt="Logo" />
+            <img className="absolute bottom-0 -right-12 md:hidden block" src="/images/WiseTruck_Logo.png" alt="Logo" />
             { isUpdated && <SuccessMssg message={message} redirect={redirect} closeMessage={setIsUpdated} /> }
         </div>
     )

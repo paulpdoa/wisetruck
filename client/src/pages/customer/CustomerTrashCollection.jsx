@@ -22,9 +22,9 @@ const CustomerTrashCollection = () => {
 
     return (
         <div className="w-full h-auto">
-           <div className="bg-green-500 p-5 relative w-full">
+           <div className="bg-green-700 p-5 relative w-full">
                 <img className="w-10 absolute top-2" src="/images/WiseTruck_Logo.png" alt="Wisetruck Logo" />
-                <h1 className="font-semibold text-gray-900 text-center text-lg">COLLECTION STATUS</h1>
+                <h1 className="font-bold text-white text-center text-3xl">Collection Status</h1>
             </div>
             <h1 className="p-5 text-gray-500 font-medium text-xl">{dateToday}</h1>
             { todayCollections.length < 1 && <h1 className="p-5 text-gray-500 text-center text-lg">No collections for today</h1> }
