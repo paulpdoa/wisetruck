@@ -17,9 +17,9 @@ const AdminLayout = () => {
     },[])
 
     return (
-        <div className="h-screen flex">
+        <div className="grid grid-cols-5 relative">
             <Sidebar setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
-            <div className="w-full">
+            <div className="w-full md:col-span-4 col-span-5">
                 <AdminNavbar setShowSidebar={setShowSidebar} showSidebar={showSidebar} />
                 <Outlet />
             </div>

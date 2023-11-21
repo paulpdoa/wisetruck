@@ -17,10 +17,12 @@ get_schedule,
 post_schedule,
 get_schedule_detail,
 start_collecting,
-update_schedule} = require('../controller/mainController');
+update_schedule,
+get_new_user} = require('../controller/mainController');
 
 // Customer Routes
 route.get('/users',get_user);
+route.get('/new/users',get_new_user);
 route.get('/users/:id',get_user_detail);
 route.post('/users',upload.single('idCard'),post_user);
 route.post('/userlogin',user_login);

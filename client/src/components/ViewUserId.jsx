@@ -25,12 +25,14 @@ const ViewUserId = () => {
                                 <th>Address</th>
                                 <th>Email</th>
                                 <th>Phone Number</th>
+                                <th>Action</th>
                             </tr> 
                             <tr>
                                 <td>{user.firstName} {user.middleName} {user.lastName}</td>
                                 <td>{user.barangay} {user.municipality}, {user.province}</td>
                                 <td>{user.email}</td>
                                 <td>{user.phoneNumber}</td>
+                                <td><button className="text-green-500">Edit</button></td>
                             </tr>
                         </tbody>
                     </table>

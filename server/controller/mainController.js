@@ -69,6 +69,15 @@ module.exports.get_user = async (req,res) => {
     }
 }
 
+module.exports.get_new_user = async (req,res) => {
+    try {
+        const user = await User.find({ isApproved: false });
+        res.status(200).json(user);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
 module.exports.get_user_detail = async (req,res) => {
 
     const { id } = req.params;

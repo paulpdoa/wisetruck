@@ -5,14 +5,25 @@ import DateFormatter from './DateFormatter';
 import RejectUser from './RejectUser';
 import UpdateUser from './UpdateUser';
 import { Link } from 'react-router-dom';
+import Pagination from './Pagination';
 
 const ApproveUsers = ({ searchItem }) => {
-    const { records,isLoading } = fetchApiHook(`${baseUrl()}/users`);
+    const { records,isLoading } = fetchApiHook(`${baseUrl()}/new/users`);
     const [openReject,setOpenReject] = useState(false);
     const [openApprove,setOpenApprove] = useState(false);
     const [usersId,setUsersId] = useState('');
     const [usersDetail,setUsersDetail] = useState([]);
     const [mssg,setMssg] = useState('');
+
+    //Table Pagination
+    const [currentPage,setCurrentPage] = useState(1);
+    const recordsPerPage = 10;
+    const lastIndex = currentPage * recordsPerPage;
+    const firstIndex = lastIndex - recordsPerPage;
+    const lists = records.slice(firstIndex,lastIndex);
+    const numberPage = Math.ceil(records.length / recordsPerPage);
+    const numbers = [...Array(numberPage + 1).keys()].slice(1);
+
 
     const rejectUser = (id,name) => {
         setMssg(`Are you sure you want to reject ${name}`);
@@ -27,9 +38,9 @@ const ApproveUsers = ({ searchItem }) => {
     }
 
     return (
-        <div className="mt-5 h-80 overflow-auto">
+        <div className="mt-5 md:h-[31rem] h-[700px] relative">
             { isLoading ? <p className="text-xl font-medium animate-pulse">Loading please wait...</p> :
-             records.filter(record => !record.isApproved).length < 1 && <p className="text-xl font-medium animate-pulse">No users for approval</p> }
+             lists.filter(record => !record.isApproved).length < 1 && <p className="text-xl font-medium animate-pulse">No users for approval</p> }
             <table className="w-full">
                 <tbody>
                     
@@ -39,7 +50,7 @@ const ApproveUsers = ({ searchItem }) => {
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-                    { records.filter(record => !record.isApproved && record.firstName.toLowerCase().includes(searchItem)).map((record,idx) => (
+                    { lists.filter(record => !record.isApproved && record.firstName.toLowerCase().includes(searchItem)).map((record,idx) => (
                         <tr className="border border-black" key={idx}>
                             <td><Link className="text-green-500 underline" to={`/admin/user/${record._id}`}>{record.firstName} {record.lastName}</Link></td>
                             <td><DateFormatter date={record.createdAt} /></td>
@@ -53,6 +64,7 @@ const ApproveUsers = ({ searchItem }) => {
                     
                 </tbody>
             </table>
+            <Pagination numbers={numbers} setCurrentPage={setCurrentPage} currentPage={currentPage} numberPage={numberPage} />
             { openReject && <RejectUser closeReject={setOpenReject} userId={usersId} mssg={mssg} /> }
             { openApprove && <UpdateUser closeApprove={setOpenApprove} userId={usersDetail} mssg={mssg} /> }
         </div>

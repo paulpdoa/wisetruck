@@ -4,43 +4,42 @@ import { fetchApiHook } from '../hooks/fetchApiHook';
 // import { FiEdit } from 'react-icons/fi';
 import { useState } from 'react';
 import DateFormatter from './DateFormatter';
+import Pagination from './Pagination';
 
 const ListUsers = ({ searchItem }) => {
+    
     const { records,isLoading } = fetchApiHook(`${baseUrl()}/users`);
-    const [openDelete,setOpenDelete] = useState(false);
-    const [openUpdate,setOpenUpdate] = useState(false);
-    const [usersId,setUsersId] = useState('');
-    const [usersDetail,setUsersDetail] = useState([]);
-    const [mssg,setMssg] = useState('');
-    console.log(searchItem);
+
+    const [currentPage,setCurrentPage] = useState(1);
+    const recordsPerPage = 10;
+    const lastIndex = currentPage * recordsPerPage;
+    const firstIndex = lastIndex - recordsPerPage;
+    const lists = records.slice(firstIndex,lastIndex);
+    const numberPage = Math.ceil(records.length / recordsPerPage);
+    const numbers = [...Array(numberPage + 1).keys()].slice(1);
+
     return (
-        <div className="mt-5 h-80 overflow-auto">
+        <div className="mt-5 md:h-[31rem] h-[700px] relative">
             { isLoading ? <p className="text-xl font-medium animate-pulse">Loading please wait...</p> :
-             records.filter(record => record.isApproved).length < 1 && <p className="text-xl font-medium animate-pulse">No active users yet</p> }
+             lists.filter(record => record.isApproved).length < 1 && <p className="text-xl font-medium animate-pulse">No active users yet</p> }
             <table className="w-full">
                 <tbody>
                     <tr>
                         <th>Name</th>
                         <th>Date Registered</th>
                         <th>Status</th>
-                        {/* <th>Action</th> */}
                     </tr>
-                    { records.filter(record => record.isApproved && record.firstName.toLowerCase().includes(searchItem)).map((record,idx) => (
+                    { lists.filter(record => record.isApproved && record.firstName.toLowerCase().includes(searchItem)).map((record,idx) => (
                         <tr className="border border-black" key={idx}>
                             <td>{record.firstName} {record.lastName}</td>
                             <td><DateFormatter date={record.createdAt} /></td>
                             <td className={`${record.isApproved ? 'text-green-500' : 'text-red-500'}`}>{record.isApproved ? 'Active' : 'Inactive'}</td>
-                            {/* <td className="flex items-center justify-center gap-2 border-none">
-                                <button onClick={() => updateNews(record)} className="text-green-500"><FiEdit /></button>
-                                <button onClick={() => deleteNews(record._id,record.firstName)} className="text-red-500"><BsTrash /></button>
-                            </td> */}
                         </tr>
                     )) }
                     
                 </tbody>
             </table>
-            {/* { openDelete && <DeleteNews closeDelete={setOpenDelete} newsId={newsId} mssg={mssg} /> } */}
-            {/* { openUpdate && <UpdateNews closeUpdate={setOpenUpdate} newsId={newsDetail} /> } */}
+            <Pagination numbers={numbers} setCurrentPage={setCurrentPage} currentPage={currentPage} numberPage={numberPage} />
         </div>
     )
 }

@@ -4,9 +4,9 @@ import { AiOutlineClose } from 'react-icons/ai';
 const Sidebar = ({ showSidebar,setShowSidebar }) => {
 
     const path = window.location.pathname;
-
+    const viewHeight = window.outerHeight;
     return (
-        <nav className={`bg-gray-700 text-gray-200 p-4 h-screen md:block md:w-1/4 ${ showSidebar ? 'block fixed z-50' : 'hidden' }`}>
+        <nav style={{ height: viewHeight }} className={`bg-gray-700 text-gray-200 p-4 h-full md:block md:w-full col-span-1 ${ showSidebar ? 'block fixed z-50' : 'hidden' }`}>
             <div className="flex justify-between items-center">
                 <h1 className="font-semibold">General</h1>
                 <button className="md:hidden block" onClick={() => setShowSidebar(false)}><AiOutlineClose /></button>
