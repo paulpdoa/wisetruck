@@ -6,7 +6,7 @@ const SuccessMssg = ({ message,redirect,closeMessage }) => {
 
     return (
         <div className="h-full w-full absolute bg-black z-50 bg-opacity-50 flex items-center justify-center">
-            <div className="bg-gray-200 w-8/12 flex flex-col items-center p-4 text-center">
+            <div className="bg-gray-200 w-full md:w-2/5 flex flex-col items-center p-4 text-center">
                 <h1 className="text-lg text-gray-800">{message}</h1>
                 <button className="text-lg text-gray-800 p-2 bg-gray-300 rounded-full font-semibold" onClick={() => {
                     navigate(redirect)

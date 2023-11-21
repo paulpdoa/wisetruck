@@ -45,7 +45,7 @@ const Login = () => {
                 <img className="z-50 absolute mt-12 w-32" src="/images/WiseTruck_Logo.png" alt="WiseTruck Logo" />
             </div> */}
 
-            <form className="w-full md:w-[40%] md:h-4/5 overflow-hidden py-0 md:py-5 md:border relative border-gray-900 md:rounded-md px-14 z-50 bg-white" onSubmit={handleLogin}>
+            <form className="w-full md:w-[40%] overflow-hidden py-0 md:py-5 md:border relative border-gray-900 md:rounded-md px-14 z-50 bg-white" onSubmit={handleLogin}>
                 <h1 className="font-normal text-4xl text-green-700">Welcome!</h1>
                 <p className="text-sm font-medium text-green-700">Clear the way! - make room for a greener tomorrow</p>
                 <p className="text-sm">Sign in to your account</p>
@@ -60,10 +60,9 @@ const Login = () => {
 
                     <p className="text-center text-sm mt-6 z-50">Not on WiseTruck yet? <Link className="underline" to='/signup'>Signup</Link></p>
                 </div>
-                <img className="absolute md:block hidden bottom-0 -right-12 w-1/2" src="/images/WiseTruck_Logo.png" alt="Logo" />
             </form>
 
-            <img className="absolute md:hidden bottom-0 -right-12" src="/images/WiseTruck_Logo.png" alt="Logo" />
+            <img className="absolute bottom-0 -right-12" src="/images/WiseTruck_Logo.png" alt="Logo" />
 
         </div>
         

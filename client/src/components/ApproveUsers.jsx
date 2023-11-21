@@ -6,7 +6,7 @@ import RejectUser from './RejectUser';
 import UpdateUser from './UpdateUser';
 import { Link } from 'react-router-dom';
 
-const ApproveUsers = () => {
+const ApproveUsers = ({ searchItem }) => {
     const { records,isLoading } = fetchApiHook(`${baseUrl()}/users`);
     const [openReject,setOpenReject] = useState(false);
     const [openApprove,setOpenApprove] = useState(false);
@@ -39,7 +39,7 @@ const ApproveUsers = () => {
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
-                    { records.filter(record => !record.isApproved).map((record,idx) => (
+                    { records.filter(record => !record.isApproved && record.firstName.toLowerCase().includes(searchItem)).map((record,idx) => (
                         <tr className="border border-black" key={idx}>
                             <td><Link className="text-green-500 underline" to={`/admin/user/${record._id}`}>{record.firstName} {record.lastName}</Link></td>
                             <td><DateFormatter date={record.createdAt} /></td>

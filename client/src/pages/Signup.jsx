@@ -185,9 +185,9 @@ const Signup = () => {
                     </div>
                     }
                 </form>
-                <img className="absolute bottom-0 -right-12 z-0" src="/images/WiseTruck_Logo.png" alt="Logo" />
+                
             </div>
-
+            <img className="absolute bottom-0 -right-12 z-0" src="/images/WiseTruck_Logo.png" alt="Logo" />
             { isRegistered && <SuccessMssg message={message} redirect={redirect} closeMessage={setIsRegistered} /> }
         </div>
     )

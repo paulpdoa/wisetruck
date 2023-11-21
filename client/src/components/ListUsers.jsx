@@ -5,39 +5,27 @@ import { fetchApiHook } from '../hooks/fetchApiHook';
 import { useState } from 'react';
 import DateFormatter from './DateFormatter';
 
-const ListUsers = () => {
+const ListUsers = ({ searchItem }) => {
     const { records,isLoading } = fetchApiHook(`${baseUrl()}/users`);
     const [openDelete,setOpenDelete] = useState(false);
     const [openUpdate,setOpenUpdate] = useState(false);
     const [usersId,setUsersId] = useState('');
     const [usersDetail,setUsersDetail] = useState([]);
     const [mssg,setMssg] = useState('');
-
-    // const deleteNews = (id,name) => {
-    //     setMssg(`Are you sure you want to delete ${name}`);
-    //     setUsersId(id);
-    //     setOpenDelete(true);
-    // }
-
-    // const updateNews = (detail) => {
-    //     setUsersDetail(detail);
-    //     setOpenUpdate(true);
-    // }
-
+    console.log(searchItem);
     return (
         <div className="mt-5 h-80 overflow-auto">
             { isLoading ? <p className="text-xl font-medium animate-pulse">Loading please wait...</p> :
              records.filter(record => record.isApproved).length < 1 && <p className="text-xl font-medium animate-pulse">No active users yet</p> }
             <table className="w-full">
                 <tbody>
-                    
                     <tr>
                         <th>Name</th>
                         <th>Date Registered</th>
                         <th>Status</th>
                         {/* <th>Action</th> */}
                     </tr>
-                    { records.filter(record => record.isApproved).map((record,idx) => (
+                    { records.filter(record => record.isApproved && record.firstName.toLowerCase().includes(searchItem)).map((record,idx) => (
                         <tr className="border border-black" key={idx}>
                             <td>{record.firstName} {record.lastName}</td>
                             <td><DateFormatter date={record.createdAt} /></td>

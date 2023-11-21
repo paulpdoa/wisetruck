@@ -39,10 +39,9 @@ const Verification = () => {
                     
                     <button className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Submit</button>
 
-                </div>
-                <img className="absolute bottom-0 w-1/3 -right-12 md:block hidden" src="/images/WiseTruck_Logo.png" alt="Logo" />         
+                </div>         
             </form>
-            <img className="absolute bottom-0 -right-12 md:hidden block" src="/images/WiseTruck_Logo.png" alt="Logo" />
+            <img className="absolute bottom-0 -right-12" src="/images/WiseTruck_Logo.png" alt="Logo" />
         </div>
     )
 }
