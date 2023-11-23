@@ -18,7 +18,7 @@ post_schedule,
 get_schedule_detail,
 start_collecting,
 update_schedule,
-get_new_user} = require('../controller/mainController');
+get_new_user,update_user} = require('../controller/mainController');
 
 // Customer Routes
 route.get('/users',get_user);
@@ -37,6 +37,7 @@ route.post('/admin',post_admin);
 route.post('/adminlogin',admin_login);
 route.post('/admin/rejectuser/',reject_user);
 route.patch('/admin/approveuser/:id',approve_user);
+route.patch('/admin/update/user/:id',update_user);
 
 // News Routes
 route.get('/news',get_news);

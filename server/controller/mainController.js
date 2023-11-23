@@ -330,6 +330,19 @@ module.exports.admin_login = async (req,res) => {
     }
 } 
 
+module.exports.update_user = async(req,res) => {
+
+    const { id } = req.params;
+    const { firstName,middleName,lastName,barangay,municipality,province,phoneNumber } = req.body;
+
+    try {
+        const user = await User.updateOne({ _id:id },{ firstName,middleName,lastName,barangay,municipality,province,phoneNumber });
+        res.status(200).json({ mssg: 'User has been updated successfully', redirect: '/admin/users' });
+    } catch(err) {
+        console.log(err);
+    }
+}
+
 module.exports.get_news = async(req,res) => {
     try {
         const allNews = await News.find();

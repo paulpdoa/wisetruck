@@ -38,7 +38,7 @@ const ApproveUsers = ({ searchItem }) => {
     }
 
     return (
-        <div className="mt-5 md:h-[31rem] h-[700px] relative">
+        <div className="mt-5 md:h-[31rem] h-[700px]">
             { isLoading ? <p className="text-xl font-medium animate-pulse">Loading please wait...</p> :
              lists.filter(record => !record.isApproved).length < 1 && <p className="text-xl font-medium animate-pulse">No users for approval</p> }
             <table className="w-full">
@@ -52,7 +52,7 @@ const ApproveUsers = ({ searchItem }) => {
                     </tr>
                     { lists.filter(record => !record.isApproved && record.firstName.toLowerCase().includes(searchItem)).map((record,idx) => (
                         <tr className="border border-black" key={idx}>
-                            <td><Link className="text-green-500 underline" to={`/admin/user/${record._id}`}>{record.firstName} {record.lastName}</Link></td>
+                            <td><Link className="text-black underline" to={`/admin/user/${record._id}`}>{record.firstName} {record.lastName}</Link></td>
                             <td><DateFormatter date={record.createdAt} /></td>
                             <td className={`${record.isApproved ? 'text-green-500' : 'text-red-500'}`}>{record.isApproved ? 'Active' : 'Inactive'}</td>
                             <td className="flex items-center justify-center gap-2 border-none">

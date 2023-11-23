@@ -48,7 +48,7 @@ const ListWaste = ({ searchItem }) => {
                         <th>Description</th>
                         <th>Action</th>
                     </tr>
-                    { lists.filter(record => record.name.toLowerCase().includes(searchItem)).map((record,idx) => (
+                    { (searchItem !== '' ? records : lists).filter(record => record.name.toLowerCase().includes(searchItem)).map((record,idx) => (
                         <tr className="border border-black" key={idx}>
                             <td>{record.name}</td>
                             <td>{record.typeOfWaste}</td>

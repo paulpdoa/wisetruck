@@ -54,7 +54,7 @@ const AdminHome = () => {
                         }).slice(0,4).map((schedule,idx) => (
                             <tr key={idx}>
                                 <td>{schedule.barangay}</td>
-                                <td>{monthList[schedule.collectionDate.split('-')[2] - 1]} {schedule.collectionDate.split('-')[1]}, {schedule.collectionDate.split('-')[0]}</td>
+                                <td>{monthList[Number(schedule.collectionDate.split('-')[2] - 1)]} {schedule.collectionDate.split('-')[1]}, {schedule.collectionDate.split('-')[0]}</td>
                                 <td>{schedule.isCollected ? 'Collected' : 'Not Collected'}</td>
                             </tr>
                         )) }
