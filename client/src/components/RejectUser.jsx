@@ -13,7 +13,7 @@ const RejectUser = ({ closeReject,userId,mssg }) => {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const data = await axios.post(`${baseUrl()}/admin/rejectuser/`, { id: userId });
+            const data = await axios.delete(`${baseUrl()}/admin/rejectuser/${userId}`);
             setIsLoading(false);
             alert(data.data.mssg);
             navigate(data.data.redirect);

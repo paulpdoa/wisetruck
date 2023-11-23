@@ -228,11 +228,10 @@ module.exports.user_update_password = async (req,res) => {
 }
 
 module.exports.reject_user = async (req,res) => {
-    const { id } = req.body;
-    console.log
+    const { id } = req.params;
 
     try {
-        const userFind = await User.findById(id);
+        const userFind = await User.findByIdAndDelete(id);
         const info = await transporter.sendMail({
             from: `'Wisetruck App' <${process.env.MAIL_ACCOUNT}>`,
             to: `${userFind.email}`,
@@ -244,7 +243,7 @@ module.exports.reject_user = async (req,res) => {
             <p>Please contact your administrator for more information, thank you.</p>
             `
         });
-        console.log(info);
+  
         res.status(200).json({ mssg: `${userFind.firstName} has been rejected!`, redirect:'/admin' });
     } catch(err) {
         console.log(err.message);

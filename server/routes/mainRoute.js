@@ -35,7 +35,7 @@ route.get('/admin',get_admin);
 route.get('/admin/:id',get_admin_detail);
 route.post('/admin',post_admin);
 route.post('/adminlogin',admin_login);
-route.post('/admin/rejectuser/',reject_user);
+route.delete('/admin/rejectuser/:id',reject_user);
 route.patch('/admin/approveuser/:id',approve_user);
 route.patch('/admin/update/user/:id',update_user);
 
