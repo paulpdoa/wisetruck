@@ -11,7 +11,7 @@ const CustomerJunkShops = () => {
             {/* <iframe src="https://my.atlist.com/map/ec46811b-0d32-4428-b442-41844df17821?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="85%" frameborder="0" scrolling="no" allowfullscreen></iframe>         */}
             {/* <iframe src="https://my.atlist.com/map/7c3d70a1-b36e-452d-a4a0-496b48efa66f?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="700px" frameborder="0" scrolling="no" allowfullscreen></iframe> */}
             {/* <iframe src="https://my.atlist.com/map/3212a212-de25-410b-be85-5c546ccf3cd2?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="700px" frameborder="0" scrolling="no" allowfullscreen></iframe> */}
-            <iframe src="https://my.atlist.com/map/6efc3887-92ad-4de0-8d66-74cc26ade1e2?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="700px" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            <iframe src="https://my.atlist.com/map/ac5dd1fd-f3ed-41a7-b8f3-4869cd945803?share=true" allow="geolocation 'self' https://my.atlist.com" width="100%" height="700px" loading="lazy" frameborder="0" scrolling="no" allowfullscreen></iframe>
         </div>
     )
 }
