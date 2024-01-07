@@ -8,8 +8,10 @@ const CustomerLayout = () => {
     const token = localStorage.getItem('token');
 
     useEffect(() => {
-        if(token === null) {
+        if(token === '') {
             navigate('/login');
+        } else {
+            navigate('/');
         }
     },[])
 

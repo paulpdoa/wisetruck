@@ -1,8 +1,6 @@
 const nodemailer = require('nodemailer');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
-
 // Models
 const User = require('../model/User');
 const News = require('../model/New');
@@ -55,7 +53,7 @@ const handleError = (err) => { // Handling errors
     if(err.code === 11000 && err.keyPattern.userName === 1) {
         errMssg = 'This username is already in use, please choose another username';
     }
-
+    
     return errMssg;
 
 }
@@ -94,7 +92,7 @@ module.exports.post_user = async (req,res) => {
     const { firstName,lastName,middleName,phoneNumber,email,isApproved,typeOfUser,province,barangay,city: municipality,password,confirmPassword } = req.body;
 
     const validId = req.file.filename;
-
+    
     try {
         if(password === confirmPassword) {
             const createUser = await User.create({ firstName,lastName,middleName,phoneNumber,email,isApproved,validId,typeOfUser,province,barangay,municipality,password });
