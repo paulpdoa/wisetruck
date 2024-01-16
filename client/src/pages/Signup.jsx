@@ -173,6 +173,7 @@ const Signup = () => {
                                 <option key={barangay.id} value={ barangay.brgyDesc }>{ barangay.brgyDesc }</option>
                             )) }
                         </select> }
+                        <span className="text-xs text-green-500">Brgy. ID, Voter's ID, Passport ID, or National ID is needed for ID uploads</span>
                         <div className="w-full border-gray-300 border p-2 outline-none relative z-50 bg-white">
                             <span className={`${validId !== '' ? 'hidden' : 'flex'} items-center gap-2 text-gray-400`}><HiOutlineUpload />Upload your ID</span>
                             <input className={`${validId !== '' ? 'opacity-100' : 'opacity-0 absolute h-full w-full'} top-0 left-0`} onChange={getValidId} accept='image/*' type="file" name="idCard" />

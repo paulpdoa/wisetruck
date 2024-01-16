@@ -53,19 +53,11 @@ const AdminCollection = () => {
                             if(barangay === schedule.barangay) {
                                 return schedule
                             } 
-                            // if(schedule.collectionDate === date) {
-                            //     return schedule
-                            // }
-                        }).map((schedule,idx) => (
+                        }).sort((a,b) => b.collectionDate.split('-').join('') - a.collectionDate.split('-').join('')).map((schedule,idx) => (
                             <tr className="border border-black" key={idx}>
                                 <td>{schedule.barangay}</td>
-                                {schedule.barangay === 'Ligtong I' && console.log(schedule.collectionDate)}
                                 <td>{monthList[schedule.collectionDate.split('-')[2] - 1]} {schedule.collectionDate.split('-')[1]}, {schedule.collectionDate.split('-')[0]}</td>
-                                {schedule.isCollected ? <td className="text-green-500 font-medium">Collected</td> : <td className="text-green-500 font-medium">Not Collected</td>}
-                                {/* <td className="flex items-center justify-center gap-2 border-none">
-                                    <button onClick={() => updateNews(record)} className="text-green-500"><FiEdit /></button>
-                                    <button onClick={() => deleteNews(record._id,record.firstName)} className="text-red-500"><BsTrash /></button>
-                                </td> */}
+                                {schedule.isCollected ? <td className="text-green-500 font-medium">Collected</td> : <td className="text-red-500 font-medium">Not Collected</td>}
                             </tr>
                         )) }
                         
@@ -73,7 +65,6 @@ const AdminCollection = () => {
                 </table>
                 
             </div>
-            {/* <button onClick={nextPage}>Next</button> */}
         </div>
     )
 }

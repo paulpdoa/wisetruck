@@ -4,6 +4,7 @@ import { baseUrl } from '../baseUrl';
 import { fetchApiHook } from '../hooks/fetchApiHook';
 import { Link } from 'react-router-dom';
 import { CiMenuBurger } from 'react-icons/ci';
+import { IoIosLogOut } from "react-icons/io";
 
 const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
 
@@ -12,6 +13,9 @@ const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
 
     const { records: users } = fetchApiHook(`${baseUrl()}/users`);
     const lastRegistered = users[users?.length - 1];
+
+    const { records: feedbacks } = fetchApiHook(`${baseUrl()}/feedbacks`);
+    console.log(feedbacks);
 
     const handleLogout = () => {
         localStorage.removeItem('admin');
@@ -28,7 +32,7 @@ const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
                 <h1 className="text-xl font-semibold">{userName}</h1>
             </div>
             <div className="flex items-center gap-4">
-                <button onClick={handleLogout}><BsPersonCircle /></button>
+                {/* <button onClick={handleLogout}><BsPersonCircle /></button> */}
                 
                 { lastRegistered?.isApproved ? <BsFillBellFill /> : 
                 <Link to='/admin/users' className="relative">
@@ -36,6 +40,9 @@ const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
                     <p className="bg-red-500 absolute flex items-center justify-center -right-2 text-gray-100 text-xs rounded-full w-4 h-4">1</p> 
                 </Link>
                 }
+
+                <button onClick={handleLogout}><IoIosLogOut /></button>
+                
             </div>
         </nav>
     )
