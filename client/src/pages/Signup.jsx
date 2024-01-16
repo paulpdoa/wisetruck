@@ -6,6 +6,7 @@ import cities from '../json/refcitymun.json';
 import { HiOutlineUpload } from 'react-icons/hi';
 import { baseUrl } from '../baseUrl';
 import SuccessMssg from '../components/SuccessMssg';
+import { IoEyeOutline,IoEyeOffOutline  } from "react-icons/io5";
 
 const Signup = () => {
 
@@ -16,14 +17,14 @@ const Signup = () => {
     const [phoneNumber,setPhoneNumber] = useState('');
     const [password,setPassword] = useState('');
     const [confirmPassword,setConfirmPassword] = useState('');    
-    const [province,setProvince] = useState('');
+    const [province,setProvince] = useState('Cavite');
     const [city,setCity] = useState('');
     const [barangay,setBarangay] = useState('');
     const [typeOfUser] = useState('customer');
     const [isApproved] = useState(false);
     const [validId,setValidId] = useState('');
 
-    const [provCode,setProvCode] = useState('');  
+    const [provCode,setProvCode] = useState('0421');  
     const [cityCode,setCityCode] = useState('');
 
     const [isNextPage,setIsNextPage] = useState(false);
@@ -31,6 +32,9 @@ const Signup = () => {
     const [message,setMessage] = useState('');
     const [redirect,setRedirect] = useState('');
     const [isRegistered,setIsRegistered] = useState(false);
+
+    const [isHiddenPass,setIsHiddenPass] = useState(true);
+    const [isHiddenConfirmPass,setIsHiddenConfirmPass] = useState(true);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -125,12 +129,19 @@ const Signup = () => {
                         <input onChange={(e) => setMiddleName(e.target.value)} value={middleName} className="w-full border-gray-300 border p-2 outline-none z-50" type="text" placeholder="Middlename:" />
                         <input onChange={(e) => setPhoneNumber(e.target.value)} value={phoneNumber} className="w-full border-gray-300 border p-2 outline-none z-50" type="text" placeholder="Phone no.:" />
                         <input onChange={(e) => setEmail(e.target.value)} value={email} className="w-full border-gray-300 border p-2 outline-none z-50" type="email" placeholder="Email Address:" />
-                        <input onChange={(e) => setPassword(e.target.value)} value={password} className="w-full border-gray-300 border p-2 outline-none z-50" type="password" placeholder="Password:" />
-                        <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className="w-full border-gray-300 border p-2 outline-none z-50" type="password" placeholder="Confirm Password:" />
+                        <div className="flex items-center p-2 border border-gray-300 bg-white">
+                            <input onChange={(e) => setPassword(e.target.value)} value={password} className="w-full h-full outline-none z-50" type={isHiddenPass ? "password" : "text"} placeholder="Password:" />
+                            <p role="button" onClick={() => setIsHiddenPass(!isHiddenPass)}>{ !isHiddenPass ? <IoEyeOutline /> : <IoEyeOffOutline />}</p>
+                        </div>
+                        <div className="flex items-center p-2 border border-gray-300 bg-white">
+                            <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className="w-full h-full outline-none z-50" type={isHiddenConfirmPass ? "password" : "text"} placeholder="Confirm Password:" /> 
+                            <p role="button" onClick={() => setIsHiddenConfirmPass(!isHiddenConfirmPass)}>{ !isHiddenConfirmPass ? <IoEyeOutline /> : <IoEyeOffOutline />}</p>
+                        </div>
+                        
                         <p onClick={validateFirstPage} className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full text-center z-50" role='button'>Next</p>
                     </div> : 
                     <div className="flex flex-col gap-2 mt-5">
-                        <select onChange={(e) => selectProvince(e.target.value)} className="w-full border-gray-300 border p-2 outline-none z-50" required>
+                        {/* <select onChange={(e) => selectProvince(e.target.value)} className="w-full border-gray-300 border p-2 outline-none z-50" required>
                             <option hidden>Select Province first</option>
                             { provinces.RECORDS.sort((a,b) =>{
                                     if (a.provDesc < b.provDesc) {
@@ -141,9 +152,10 @@ const Signup = () => {
                                     }
                                     return 0;
                             }).map((province) => (
-                                <option key={province.id} value={ province.provCode }>{ province.provDesc[0]+province.provDesc.slice(1,province.provDesc.length).toLowerCase() }</option>
+                                <option key={province.id} value={"0421"}>Cavite</option>
                             )) }
-                        </select>
+                        </select> */}
+                        <div className="w-full bg-white border-gray-300 border p-2 outline-none z-50">Cavite</div>
                         { province === '' ? <p className="w-full bg-white border-gray-300 border p-2 outline-none text-gray-400 z-50">Select province first</p> : <select value={city.toUpperCase()} onChange={(e) => selectCity(e.target.value)} className="w-full border-gray-300 border p-2 outline-none z-50" required>
                             <option hidden>Municipality</option>
                             { cities.RECORDS.sort((a,b) => {

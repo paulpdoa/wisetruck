@@ -43,6 +43,8 @@ import AdminLayout from './layouts/AdminLayout';
 import CollectorLayout from './layouts/CollectorLayout';
 import CustomerTrashCollection from './pages/customer/CustomerTrashCollection';
 import MedicalWaste from './pages/customer/MedicalWaste';
+import AdminCollector from './pages/admin/AdminCollector';
+import CollectorChangePassword from './components/CollectorChangePassword';
 
 
 const router = createBrowserRouter(
@@ -92,7 +94,10 @@ const router = createBrowserRouter(
         <Route path='/admin/user/:id' element={<ViewUserId />} />
         <Route path='/admin/feedbacks' element={<AdminFeedback />} />
         <Route path='/admin/schedule' element={<AdminSchedule />} />
-      </Route>
+        <Route path='/admin/collector' element={<AdminCollector />} />
+        <Route path='/admin/collector/change/password/:id' element={<CollectorChangePassword />} />
+        <Route path='/admin/create' element={<AdminSignup />} />
+      </Route> 
 
       <Route element={<CollectorLayout />}>
         <Route path='/collector' element={<CollectorHome />} />

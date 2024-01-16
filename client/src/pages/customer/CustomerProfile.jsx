@@ -11,6 +11,7 @@ const CustomerProfile = () => {
     const { records } = fetchApiHook(`${baseUrl()}/users/${id}`);
 
     const [feedback,setFeedback] = useState('');
+    const [isRead,setIsRead] = useState(false); 
 
     const navigate = useNavigate();
 
@@ -25,7 +26,7 @@ const CustomerProfile = () => {
         e.preventDefault();
 
         try {   
-            const data = await axios.post(`${baseUrl()}/feedbacks`,{ id,feedback });
+            const data = await axios.post(`${baseUrl()}/feedbacks`,{ id,feedback,isRead });
             alert(data.data.mssg);
             navigate(data.data.redirect);
         } catch(err) {

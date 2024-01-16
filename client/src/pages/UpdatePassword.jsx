@@ -3,6 +3,7 @@ import axios from 'axios';
 import { baseUrl } from '../baseUrl';
 import { useParams } from 'react-router-dom';
 import SuccessMssg from '../components/SuccessMssg';
+import { IoEyeOutline,IoEyeOffOutline  } from "react-icons/io5";
 
 const UpdatePassword = () => {
 
@@ -12,6 +13,9 @@ const UpdatePassword = () => {
     const [message,setMessage] = useState('');
     const [redirect,setRedirect] = useState('');
     const [isUpdated,setIsUpdated] = useState(false);
+
+    const [isHiddenPass,setIsHiddenPass] = useState(true);
+    const [isHiddenConfirmPass,setIsHiddenConfirmPass] = useState(true);
 
     const [passwordErr,setPasswordErr] = useState('');
 
@@ -41,10 +45,17 @@ const UpdatePassword = () => {
 
                 <div className="relative flex flex-col gap-2 mt-5 z-50">
                     <span className="text-xs text-right text-gray-500">Minimum of 8 characters</span>
-                    <input className="w-full border-gray-300 border p-2 outline-none" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="New Password" />
+                    <div className="flex items-center p-2 border border-gray-300 bg-white">
+                        <input className="w-full h-full outline-none z-50" type={isHiddenPass ? "password" : "text"} onChange={(e) => setPassword(e.target.value)} placeholder="New Password" />
+                        <p role="button" onClick={() => setIsHiddenPass(!isHiddenPass)}>{ !isHiddenPass ? <IoEyeOutline /> : <IoEyeOffOutline />}</p>
+                    </div>
                     <span className="text-red-500 text-xs">{passwordErr}</span>
 
-                    <input className="w-full border-gray-300 border p-2 outline-none" type="password" onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />
+                    <div className="flex items-center p-2 border border-gray-300 bg-white">
+                        <input className="w-full h-full outline-none z-50" type={isHiddenConfirmPass ? "password" : "text"} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" />
+                        <p role="button" onClick={() => setIsHiddenConfirmPass(!isHiddenConfirmPass)}>{ !isHiddenConfirmPass ? <IoEyeOutline /> : <IoEyeOffOutline />}</p>
+                    </div>
+
                     
                     <button className="bg-green-700 text-white text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Submit</button>
                 </div>

@@ -7,8 +7,6 @@ const AdminUsers = () => {
     const [activeBtn,setActiveBtn] = useState('List Users');
     const [searchItem,setSearchItem] = useState('');
 
-    
-
     return (
         <div className="p-10 relative">
             <div className="relative">

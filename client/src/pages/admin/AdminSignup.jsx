@@ -7,6 +7,8 @@ import cities from '../../json/refcitymun.json';
 import { baseUrl } from '../../baseUrl';
 import SuccessMssg from '../../components/SuccessMssg';
 
+import { IoEyeOutline,IoEyeOffOutline  } from "react-icons/io5";
+
 const AdminSignup = () => {
 
     const [firstName,setFirstName] = useState('');
@@ -14,16 +16,19 @@ const AdminSignup = () => {
     const [userName,setUserName] = useState('');
     const [password,setPassword] = useState('');
     const [confirmPassword,setConfirmPassword] = useState('');    
-    const [province,setProvince] = useState('');
+    const [province,setProvince] = useState('Cavite');
     const [city,setCity] = useState('');
     const [barangay,setBarangay] = useState('');
     
-    const [provCode,setProvCode] = useState('');  
+    const [provCode,setProvCode] = useState('0421');  
     const [cityCode,setCityCode] = useState('');
 
     const [message,setMessage] = useState('');
     const [redirect,setRedirect] = useState('');
     const [isRegistered,setIsRegistered] = useState(false);
+
+    const [isHiddenPass,setIsHiddenPass] = useState(true);
+    const [isHiddenConfirmPass,setIsHiddenConfirmPass] = useState(true);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -69,21 +74,27 @@ const AdminSignup = () => {
       
 
     return (
-        <div className="relative h-screen flex items-center justify-center">
+        <div className="relative flex items-center justify-center">
         
             
             <form className="w-full md:w-1/2 px-14" onSubmit={handleSubmit}>
-                <h1 className="font-semibold text-xl md:text-4xl">Register Here!</h1>
+                <h1 className="font-semibold text-xl md:text-2xl mt-5">Register Admin Here!</h1>
 
                 <div className="flex flex-col gap-2 mt-5">
                     <input onChange={(e) => setFirstName(e.target.value)} value={firstName} className="w-full border-gray-300 border p-2 outline-none" type="text" placeholder="Firstname:" />
                     <input onChange={(e) => setLastName(e.target.value)} value={lastName} className="w-full border-gray-300 border p-2 outline-none" type="text" placeholder="Lastname:" />
                     <input onChange={(e) => setUserName(e.target.value)} value={userName} className="w-full border-gray-300 border p-2 outline-none" type="text" placeholder="Username:" />
                     
-                    <input onChange={(e) => setPassword(e.target.value)} value={password} className="w-full border-gray-300 border p-2 outline-none" type="password" placeholder="Password:" />
-                    <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className="w-full border-gray-300 border p-2 outline-none" type="password" placeholder="Confirm Password:" />
+                    <div className="flex items-center p-2 border border-gray-300 bg-white">
+                        <input onChange={(e) => setPassword(e.target.value)} value={password} className="w-full h-full outline-none" type={isHiddenPass ? "password" : "text"} placeholder="Password:" />
+                        <p role="button" onClick={() => setIsHiddenPass(!isHiddenPass)}>{ !isHiddenPass ? <IoEyeOutline /> : <IoEyeOffOutline />}</p>
+                    </div>
+                    <div className="flex items-center p-2 border border-gray-300 bg-white">
+                        <input onChange={(e) => setConfirmPassword(e.target.value)} value={confirmPassword} className="w-full h-full outline-none" type={isHiddenConfirmPass ? "password" : "text"} placeholder="Confirm Password:" /> 
+                        <p role="button" onClick={() => setIsHiddenConfirmPass(!isHiddenConfirmPass)}>{ !isHiddenConfirmPass ? <IoEyeOutline /> : <IoEyeOffOutline />}</p>
+                    </div>
                     
-                    <select onChange={(e) => selectProvince(e.target.value)} className="w-full border-gray-300 border p-2 outline-none" required>
+                    {/* <select onChange={(e) => selectProvince(e.target.value)} className="w-full border-gray-300 border p-2 outline-none" required>
                         <option hidden>Select Province first</option>
                         { provinces.RECORDS.sort((a,b) =>{
                                 if (a.provDesc < b.provDesc) {
@@ -96,7 +107,8 @@ const AdminSignup = () => {
                         }).map((province) => (
                             <option key={province.id} value={ province.provCode }>{ province.provDesc[0]+province.provDesc.slice(1,province.provDesc.length).toLowerCase() }</option>
                         )) }
-                    </select>
+                    </select> */}
+                    <div className="w-full bg-white border-gray-300 border p-2 outline-none">Cavite</div>
                     { province === '' ? <p className="w-full border-gray-300 border p-2 outline-none text-gray-400">Select province first</p> : <select value={city.toUpperCase()} onChange={(e) => selectCity(e.target.value)} className="w-full border-gray-300 border p-2 outline-none" required>
                         <option hidden>Municipality</option>
                         { cities.RECORDS.sort((a,b) => {
@@ -129,8 +141,7 @@ const AdminSignup = () => {
                     
 
                     <div className="flex justify-center gap-2">
-                        
-                        <button className="self-center font-semibold bg-green-200 w-1/2 text-center rounded-full mt-3">Submit</button>
+                        <button className="self-center font-semibold bg-green-200 w-1/2 bg-green-600 text-white text-center rounded-full mt-3">Submit</button>
                     </div>
                 </div> 
             </form>

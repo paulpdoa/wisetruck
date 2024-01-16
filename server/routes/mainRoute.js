@@ -18,7 +18,7 @@ post_schedule,
 get_schedule_detail,
 start_collecting,
 update_schedule,
-get_new_user,update_user} = require('../controller/mainController');
+get_new_user,update_user, delete_collector,update_collector_password} = require('../controller/mainController');
 
 // Customer Routes
 route.get('/users',get_user);
@@ -68,6 +68,8 @@ route.get('/collectors',get_collector);
 route.get('/collectors/:id',get_collector_detail);
 route.post('/collectors',post_collector);
 route.post('/collectorlogin',collector_login);
+route.delete('/collector/:id',delete_collector);
+route.patch('/collector/update/password/:id',update_collector_password)
 
 // Schedule Routes
 route.get('/schedules',get_schedule);

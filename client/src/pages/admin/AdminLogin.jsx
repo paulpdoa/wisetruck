@@ -60,7 +60,7 @@ const AdminLogin = () => {
                     {/* <Link className="text-sm text-right" to='/forgot/password'>Forgot Password?</Link> */}
                     <button className="bg-green-500 text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Login</button>
 
-                    <p className="text-center text-sm mt-6">Don't have account yet? <Link className="underline" to='/admin/signup'>Register</Link></p>
+                    {/* <p className="text-center text-sm mt-6">Don't have account yet? <Link className="underline" to='/admin/signup'>Register</Link></p> */}
                 </div>
             </form>
 

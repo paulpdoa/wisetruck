@@ -509,13 +509,21 @@ module.exports.get_feedback = async (req,res) => {
 }
 
 module.exports.post_feedback = async (req,res) => {
-    const { id: user_id,feedback } = req.body;
+    const { id: user_id,feedback,isRead } = req.body;
     
     try {
-        const feeds = await Feedback.create({ user_id,feedback });
+        const feeds = await Feedback.create({ user_id,feedback,isRead });
         res.status(200).json({ mssg: 'Feedback has been created', redirect:'/' });
     } catch(err) {
         consol.log(err);
+    }
+}
+
+module.exports.mark_feedback_as_read = async (req,res) => {
+    try {
+        
+    } catch(err) {
+        console.log(err);
     }
 }
 
@@ -524,6 +532,32 @@ module.exports.get_collector = async (req,res) => {
     try {
         const collector = await Collector.find();
         res.status(200).json(collector);
+    } catch(err) {
+        console.log(err);
+    }
+}
+
+module.exports.delete_collector = async (req,res) => {
+    const { id } = req.params;
+
+    try {
+        const collector = await Collector.deleteOne({_id: id});
+        res.status(200).json({mssg:`Collector has been deleted`, redirect:'/admin' });
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+module.exports.update_collector_password = async (req,res) => {
+    const { id } = req.params;
+    const {password} = req.body;
+
+    try {
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password,salt);
+        const collector = await Collector.updateOne({_id:id}, { password: hashedPassword })
+
+        res.status(200).json({ mssg: `Collector password has been changed`, redirect:'/admin' })
     } catch(err) {
         console.log(err);
     }
