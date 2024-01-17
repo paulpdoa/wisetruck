@@ -17,7 +17,10 @@ const collectorSchema = new mongoose.Schema({
     province: requiredString,
     municipality: requiredString,
     barangay: requiredString,
-    password: requiredString
+    password: requiredString,
+    isActivated: {
+        type: Boolean
+    }
 }, { timestamps: true });
 
 collectorSchema.pre('save', async function(next) {

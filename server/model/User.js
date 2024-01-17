@@ -31,7 +31,10 @@ const userSchema = new mongoose.Schema({
     municipality: requiredString,
     barangay: requiredString,
     validId: requiredString,
-    password: requiredString
+    password: requiredString,
+    isActivated: {
+        type: Boolean
+    }
 }, { timestamps: true });
 
 userSchema.pre('save', async function(next) {

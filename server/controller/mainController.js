@@ -119,13 +119,17 @@ module.exports.user_login = async (req,res) => {
         
         // If user is customer, redirect to customer page etc...
         if(typeOfUser === 'customer') {
-            if(checkUserType.isApproved) {
-                const customerLogin = await User.login(email,password);
-                const token = createToken(customerLogin._id);
-                res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${checkUserType.firstName}, welcome to Wisetruck App`, redirect: '/', customerDetails: checkUserType, token });
-            } else {
-                res.status(400).json({ mssg: `${checkUserType.email} is not yet approved by admin. Please contact your administrator` })
-            }
+           if(checkUserType.isActivated) {
+                if(checkUserType.isApproved) {
+                    const customerLogin = await User.login(email,password);
+                    const token = createToken(customerLogin._id);
+                    res.status(200).cookie('userJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${checkUserType.firstName}, welcome to Wisetruck App`, redirect: '/', customerDetails: checkUserType, token });
+                } else {
+                    res.status(400).json({ mssg: `${checkUserType.email} is not yet approved by admin. Please contact your administrator` })
+                }
+           } else {
+                res.status(400).json({ mssg: `${checkUserType.email} is deactivated by admin. Please contact your administrator` })
+           }
             
         }  else if(typeOfUser === 'driver') {
             const driverLogin = await User.login(email,password);
@@ -225,6 +229,7 @@ module.exports.user_update_password = async (req,res) => {
     }
 }
 
+
 module.exports.reject_user = async (req,res) => {
     const { id } = req.params;
 
@@ -311,6 +316,21 @@ module.exports.post_admin = async (req,res) => {
 
 }
 
+module.exports.update_admin_password = async (req,res) => {
+    const { id } = req.params;
+    const {password} = req.body;
+
+    try {
+        const salt = await bcrypt.genSalt();
+        const hashedPassword = await bcrypt.hash(password,salt);
+        const admin = await Admin.updateOne({_id:id}, { password: hashedPassword })
+
+        res.status(200).json({ mssg: `Admin password has been changed`, redirect:'/admin' })
+    } catch(err) {
+        console.log(err);
+    }
+}
+
 module.exports.admin_login = async (req,res) => {
     const { userName,password } = req.body;
 
@@ -337,6 +357,28 @@ module.exports.update_user = async(req,res) => {
         res.status(200).json({ mssg: 'User has been updated successfully', redirect: '/admin/users' });
     } catch(err) {
         console.log(err);
+    }
+}
+
+module.exports.deactivate_user = async (req,res) => {
+    const { id } = req.params;
+
+    try {
+        const user = await User.updateOne({_id: id},{ isActivated: false });
+        res.status(200).json({mssg:`User has been deactivated`, redirect:'/admin' });
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+module.exports.activate_user = async (req,res) => {
+    const { id } = req.params;
+
+    try {
+        const user = await User.updateOne({_id: id},{ isActivated: true });
+        res.status(200).json({mssg:`User has been activated`, redirect:'/admin' });
+    } catch(err) {
+        console.log(err)
     }
 }
 
@@ -521,7 +563,8 @@ module.exports.post_feedback = async (req,res) => {
 
 module.exports.mark_feedback_as_read = async (req,res) => {
     try {
-        
+        const feedback = await Feedback.updateMany({},{ isRead: true });
+        console.log('feedbacks has been read');
     } catch(err) {
         console.log(err);
     }
@@ -537,12 +580,23 @@ module.exports.get_collector = async (req,res) => {
     }
 }
 
-module.exports.delete_collector = async (req,res) => {
+module.exports.deactivate_collector = async (req,res) => {
     const { id } = req.params;
 
     try {
-        const collector = await Collector.deleteOne({_id: id});
-        res.status(200).json({mssg:`Collector has been deleted`, redirect:'/admin' });
+        const collector = await Collector.updateOne({_id: id},{ isActivated: false });
+        res.status(200).json({mssg:`Collector has been deactivated`, redirect:'/admin' });
+    } catch(err) {
+        console.log(err)
+    }
+}
+
+module.exports.activate_collector = async (req,res) => {
+    const { id } = req.params;
+
+    try {
+        const collector = await Collector.updateOne({_id: id},{ isActivated: true });
+        res.status(200).json({mssg:`Collector has been activated`, redirect:'/admin' });
     } catch(err) {
         console.log(err)
     }

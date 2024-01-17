@@ -45,6 +45,8 @@ import CustomerTrashCollection from './pages/customer/CustomerTrashCollection';
 import MedicalWaste from './pages/customer/MedicalWaste';
 import AdminCollector from './pages/admin/AdminCollector';
 import CollectorChangePassword from './components/CollectorChangePassword';
+import AdminAdd from './pages/admin/AdminAdd';
+import AdminChangePass from './components/AdminChangePass';
 
 
 const router = createBrowserRouter(
@@ -96,7 +98,8 @@ const router = createBrowserRouter(
         <Route path='/admin/schedule' element={<AdminSchedule />} />
         <Route path='/admin/collector' element={<AdminCollector />} />
         <Route path='/admin/collector/change/password/:id' element={<CollectorChangePassword />} />
-        <Route path='/admin/create' element={<AdminSignup />} />
+        <Route path='/admin/change/password/:id' element={<AdminChangePass />} />
+        <Route path='/admin/create' element={<AdminAdd />} />
       </Route> 
 
       <Route element={<CollectorLayout />}>

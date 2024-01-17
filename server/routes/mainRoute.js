@@ -18,7 +18,7 @@ post_schedule,
 get_schedule_detail,
 start_collecting,
 update_schedule,
-get_new_user,update_user, delete_collector,update_collector_password} = require('../controller/mainController');
+get_new_user,update_user, deactivate_collector,update_collector_password, mark_feedback_as_read, activate_collector, deactivate_user, activate_user, update_admin_password} = require('../controller/mainController');
 
 // Customer Routes
 route.get('/users',get_user);
@@ -29,6 +29,8 @@ route.post('/userlogin',user_login);
 route.post('/user/forgot/password',user_forget_password);
 route.post('/user/verify/code',user_verify_code);
 route.patch('/user/update/password',user_update_password);
+route.patch('/user/:id',deactivate_user);
+route.patch('/user/activate/:id',activate_user);
 
 // Admin Routes
 route.get('/admin',get_admin);
@@ -38,6 +40,7 @@ route.post('/adminlogin',admin_login);
 route.delete('/admin/rejectuser/:id',reject_user);
 route.patch('/admin/approveuser/:id',approve_user);
 route.patch('/admin/update/user/:id',update_user);
+route.patch('/admin/update/password/:id',update_admin_password);
 
 // News Routes
 route.get('/news',get_news);
@@ -62,14 +65,16 @@ route.delete('/announcements/:id',delete_announcement);
 // Feedback Routes
 route.get('/feedbacks',get_feedback);
 route.post('/feedbacks',post_feedback);
+route.get('/feedbacks/markasread',mark_feedback_as_read);
 
 // Collector Routes
 route.get('/collectors',get_collector);
 route.get('/collectors/:id',get_collector_detail);
 route.post('/collectors',post_collector);
 route.post('/collectorlogin',collector_login);
-route.delete('/collector/:id',delete_collector);
+route.patch('/collector/:id',deactivate_collector);
 route.patch('/collector/update/password/:id',update_collector_password)
+route.patch('/collector/activate/:id',activate_collector);
 
 // Schedule Routes
 route.get('/schedules',get_schedule);

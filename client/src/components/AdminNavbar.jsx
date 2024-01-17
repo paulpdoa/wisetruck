@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { CiMenuBurger } from 'react-icons/ci';
 import { IoIosLogOut } from "react-icons/io";
 import { useState,useEffect } from 'react'
+import axios from 'axios';
 
 const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
 
@@ -21,6 +22,18 @@ const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
     const newUserCount = users?.filter(user => !user.isApproved).length;
 
     const totalNumberOfNotif = notReadCount + newUserCount;
+
+    const [showNotif,setShowNotif] = useState(false);
+
+    const markFeedbackAsRead = async () => {
+        window.location.reload();
+        try {
+            const data = await axios.get(`${baseUrl()}/feedbacks/markasread`);
+            console.log('data has been read');
+        } catch(err) {
+            console.log(err);
+        }
+    }
 
     const handleLogout = () => {
         localStorage.removeItem('admin');
@@ -39,13 +52,22 @@ const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
             <div className="flex items-center gap-4">
                 {/* <button onClick={handleLogout}><BsPersonCircle /></button> */}
 
-                <div className="relative">
-                    <button><BsFillBellFill /></button>
+                <div className="relative flex flex-col">
+                    { totalNumberOfNotif > 0 ? <button onClick={() => setShowNotif(!showNotif)}><BsFillBellFill /></button> : <BsFillBellFill /> }
+                    {!showNotif && totalNumberOfNotif > 0 && <p className="absolute text-xs top-3 z-50 bg-red-500 text-white w-4 h-4 rounded-full flex items-center justify-center left-2">{totalNumberOfNotif}</p>}
 
                     {/* Show items to be clicked under here */}
-                    <div className="bg-white border border-gray-300 rounded-md w-24 p-2">
-                        { }
-                    </div>
+                    { showNotif &&
+                        <div className="bg-white border border-gray-300 rounded-md w-44 p-2 absolute top-5 -left-32 z-50 flex flex-col gap-2">
+                            { notReadCount > 0 && 
+                            <p onClick={markFeedbackAsRead} className="text-xs bg-gray-100 p-2 cursor-pointer border border-gray-300"><Link to='/admin/feedbacks'>There are unread feedbacks, please check</Link></p>
+                            }
+
+                            { newUserCount > 0 && 
+                            <p className="text-xs bg-gray-100 p-2 cursor-pointer border border-gray-300"><Link to='/admin/users'>There are new users, please check</Link></p>
+                            }
+                        </div>
+                    }
                 </div>
 
                 {/* { lastRegistered?.isApproved ? <BsFillBellFill /> : 
