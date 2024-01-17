@@ -52,14 +52,14 @@ const ListUsers = ({ searchItem }) => {
                     <tr>
                         <th>Name</th>
                         <th>Date Registered</th>
-                        <th>Status</th>
+                        {/* <th>Status</th> */}
                         <th>Action</th>
                     </tr>
                     { (searchItem !== '' ? records : lists).filter(record => record.isApproved && `${record.firstName} ${record.lastName}`.toLowerCase().includes(searchItem)).map((record,idx) => (
                         <tr className="border border-black" key={idx}>
                             <td><Link className="text-black underline" to={`/admin/user/${record._id}`}>{record.firstName} {record.lastName}</Link></td>
                             <td><DateFormatter date={record.createdAt} /></td>
-                            <td className={`${record.isApproved ? 'text-green-500' : 'text-red-500'}`}>{record.isApproved ? 'Active' : 'Inactive'}</td>
+                            {/* <td className={`${record.isApproved ? 'text-green-500' : 'text-red-500'}`}>{record.isApproved ? 'Active' : 'Inactive'}</td> */}
                             <td>
                             { record?.isActivated ? <button onClick={() => deactivateUser(record._id)} className="text-red-500 underline">Deactivate</button> :
                              <button onClick={() => activateUser(record._id)} className="text-green-500 underline">Activate</button> }

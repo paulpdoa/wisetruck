@@ -654,9 +654,13 @@ module.exports.collector_login = async (req,res) => {
 
     try {
         const collectorDetails = await Collector.findOne({ userName });
-        const collectorLogin = await Collector.login(userName,password);
-        const token = createToken(collectorLogin._id);
-        res.status(200).cookie('collectorJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${collectorDetails.userName}, welcome to Wisetruck Collector page`, redirect: '/collector', token, collectorDetails });
+        if(collectorDetails.isActivated) {
+            const collectorLogin = await Collector.login(userName,password);
+            const token = createToken(collectorLogin._id);
+            res.status(200).cookie('collectorJwt', token, { maxAge: maxAge * 1000 }).json({ mssg: `Hi ${collectorDetails.userName}, welcome to Wisetruck Collector page`, redirect: '/collector', token, collectorDetails });
+        } else {
+            res.status(400).json({ mssg: `${collectorDetails.userName} is not yet approved by admin. Please contact your administrator` })
+        }
     } catch(err) {
         const error = handleError(err);
         res.status(400).json({ mssg: error });
