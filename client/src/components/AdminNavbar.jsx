@@ -16,22 +16,11 @@ const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
     const lastRegistered = users[users?.length - 1];
 
     const { records: feedbacks } = fetchApiHook(`${baseUrl()}/feedbacks`);
+    
+    const notReadCount = feedbacks?.filter(feedback => !feedback.isRead).length;
+    const newUserCount = users?.filter(user => !user.isApproved).length;
 
-    const [notifications,setNotifications] = useState([]);
-
-    useEffect(() => {
-        const createNotificationLists = () => {
-            if(!lastRegistered?.isApproved) {
-                setNotifications(lastRegistered);
-            }
-
-            if(!feedbacks?.isRead) {
-                setNotifications(feedbacks);
-            }
-        }
-        createNotificationLists();
-    },[])
-
+    const totalNumberOfNotif = notReadCount + newUserCount;
 
     const handleLogout = () => {
         localStorage.removeItem('admin');
@@ -49,16 +38,22 @@ const AdminNavbar = ({ setShowSidebar,showSidebar }) => {
             </div>
             <div className="flex items-center gap-4">
                 {/* <button onClick={handleLogout}><BsPersonCircle /></button> */}
-                <BsFillBellFill />
+
+                <div className="relative">
+                    <button><BsFillBellFill /></button>
+
+                    {/* Show items to be clicked under here */}
+                    <div className="bg-white border border-gray-300 rounded-md w-24 p-2">
+                        { }
+                    </div>
+                </div>
+
                 {/* { lastRegistered?.isApproved ? <BsFillBellFill /> : 
                 <div className="relative">
                     <BsFillBellFill />
                     <p className="bg-red-500 absolute flex items-center justify-center -right-2 text-gray-100 text-xs rounded-full w-4 h-4">1</p> 
                 </div>
                 } */}
-
-                { console.log(notifications) }
-
                 <button onClick={handleLogout}><IoIosLogOut /></button>
                 
             </div>

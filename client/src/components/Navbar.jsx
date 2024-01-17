@@ -22,7 +22,7 @@ const Navbar = () => {
                     :
                     <>
                         <Link to='/news'><img className="w-8 h-8" src="/images/news-icon.png" alt="News Icon" /></Link>
-                        <Link to='/junkshops'><img class    Name="w-8 h-8" src="/images/globe-icon.png" alt="Globe Icon" /></Link>
+                        <Link to='/junkshops'><img className="w-8 h-8" src="/images/globe-icon.png" alt="Globe Icon" /></Link>
                         <Link to="/wasteinfo"><img className="w-8 h-8" src="/images/bulb-icon.png" alt="Bulb Icon" /></Link>
                     </>
                 }
