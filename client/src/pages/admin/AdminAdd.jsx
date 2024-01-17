@@ -4,7 +4,7 @@ import { FaSearch } from "react-icons/fa";
 import ListAdmin from '../../components/ListAdmin';
 
 const AdminAdd = () => {
-    const [activeBtn,setActiveBtn] = useState('List Users');
+    const [activeBtn,setActiveBtn] = useState('List Admin');
     const [searchItem,setSearchItem] = useState('');
 
     return (

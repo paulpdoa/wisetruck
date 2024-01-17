@@ -60,13 +60,19 @@ const AdminCollection = () => {
                             {/* <th>Action</th> */}
                         </tr>
                         { schedules?.filter(schedule => {
-                            if(barangay === '') {
+                            if(barangay === '' && status === undefined) {
                                 return schedule
                             }
-                            if(status === String(schedule.isCollected) && barangay === schedule.barangay) {
+
+                            if(status === String(schedule.isCollected) && barangay === '') {
                                 return schedule
                             }
-                         
+
+                            if((status === String(schedule.isCollected) && barangay === schedule.barangay)) {
+                                return schedule
+                            } 
+                            
+                            
                             
                         }).sort((a,b) => b.collectionDate.split('-').join('') - a.collectionDate.split('-').join('')).map((schedule,idx) => (
                             <tr className="border border-black" key={idx}>
