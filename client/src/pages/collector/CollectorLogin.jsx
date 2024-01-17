@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Link,useNavigate } from 'react-router-dom';
 import { baseUrl } from '../../baseUrl';
+import { IoEyeOutline,IoEyeOffOutline  } from "react-icons/io5";
+
 
 const CollectorLogin = () => {
 
@@ -10,6 +12,8 @@ const CollectorLogin = () => {
 
     const [userNameErr,setUserNameErr] = useState('');
     const [passwordErr,setPasswordErr] = useState('');
+
+    const [isHidden,setIsHidden] = useState(true);
 
     const navigate = useNavigate();
 
@@ -55,7 +59,10 @@ const CollectorLogin = () => {
                 <div className="relative flex flex-col gap-2 mt-5">
                     <input className="w-full border-gray-300 border p-2 outline-none" type="text" onChange={(e) => setUserName(e.target.value)} placeholder="Username:" />
                     <span className="text-red-500 text-xs">{userNameErr}</span>
-                    <input className="w-full border-gray-300 border p-2 outline-none" type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password:" />
+                    <div className="flex items-center border-gray-300 border p-2">
+                        <input className="w-full h-full outline-none" type={isHidden ? "password" : "text"} onChange={(e) => setPassword(e.target.value)} placeholder="Password..." />
+                        <p role="button" onClick={() => setIsHidden(!isHidden)}>{ !isHidden ? <IoEyeOutline /> : <IoEyeOffOutline />}</p>
+                    </div>
                     <span className="text-red-500 text-xs">{passwordErr}</span>
                     {/* <Link className="text-sm text-right" to='/forgot/password'>Forgot Password?</Link> */}
                     <button className="bg-green-500 text-lg font-normal border mt-3 border-gray-800 w-1/2 self-center p-2 rounded-full">Login</button>
